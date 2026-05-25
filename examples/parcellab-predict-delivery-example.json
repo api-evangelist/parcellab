@@ -1,0 +1,30 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://api.parcellab.com/v4/promise/prediction/predict/?account=12345&destination_country_iso3=DEU&destination_postal_code=80331&courier=dhl&calibration=balanced&language_iso2=de",
+    "headers": {
+      "Authorization": "Parcellab-API-Token MTIzNDU6c2VjcmV0"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "request_id": "8b8a3f7c-1d8e-44f8-bd1c-9b9b1d22f0a1",
+      "success": true,
+      "prediction": [
+        {
+          "courier": "dhl",
+          "service_level": "standard",
+          "date_min": "2026-05-26",
+          "date_max": "2026-05-28",
+          "date_likely": "2026-05-27",
+          "days_min": 1,
+          "days_max": 3,
+          "days_likely": 2,
+          "cutoff": "2026-05-25T16:00:00Z",
+          "localized": { "de": "Lieferung am Mittwoch, 27. Mai" }
+        }
+      ]
+    }
+  }
+}

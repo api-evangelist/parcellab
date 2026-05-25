@@ -1,0 +1,48 @@
+{
+  "request": {
+    "method": "PUT",
+    "url": "https://api.parcellab.com/v4/track/orders/",
+    "headers": {
+      "Authorization": "Parcellab-API-Token MTIzNDU6c2VjcmV0",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "account": 12345,
+      "order_number": "WEB-2026-00871",
+      "destination_country_iso3": "DEU",
+      "recipient_email": "anna.mueller@example.com",
+      "recipient_name": "Anna Mueller",
+      "shipping_address": {
+        "name": "Anna Mueller",
+        "street": "Marienplatz",
+        "house_no": "1",
+        "city": "Munich",
+        "postal_code": "80331",
+        "country_iso3": "DEU"
+      },
+      "articles_order": [
+        { "sku": "SHIRT-RED-M", "name": "Cotton T-Shirt (Red, M)", "quantity": 2, "price": 24.90, "currency": "EUR" },
+        { "sku": "JEANS-32-32", "name": "Slim Jeans 32x32", "quantity": 1, "price": 79.00, "currency": "EUR" }
+      ],
+      "mutations": [
+        {
+          "type": "add_tracking",
+          "payload": { "courier": "dhl", "tracking_number": "00340434292135100186" }
+        }
+      ]
+    }
+  },
+  "response": {
+    "status": 201,
+    "body": {
+      "external_id": "5f3b8c6e-9f0a-4a8e-9e7d-5e4f5a6b7c8d",
+      "order_number": "WEB-2026-00871",
+      "mutations": [
+        {
+          "type": "add_tracking",
+          "result": { "success": true, "message": "Tracking added.", "errors": {}, "warnings": [] }
+        }
+      ]
+    }
+  }
+}

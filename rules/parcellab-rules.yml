@@ -1,0 +1,71 @@
+extends: [[spectral:oas, recommended]]
+documentationUrl: https://docs.parcellab.com/docs/developers/getting-started/api-reference
+rules:
+  parcellab-info-contact:
+    description: parcelLab specs must point at parcelLab developer support.
+    given: $.info.contact
+    severity: warn
+    then:
+      - field: name
+        function: truthy
+      - field: url
+        function: pattern
+        functionOptions:
+          match: "^https://docs\\.parcellab\\.com/.*"
+  parcellab-versioned-paths:
+    description: Operations live under /v4/ — the current API version.
+    given: $.paths.*~
+    severity: error
+    then:
+      function: pattern
+      functionOptions:
+        match: "^/v[0-9]+/"
+  parcellab-operation-id-camel:
+    description: Operation IDs use camelCase.
+    given: $.paths[*][*].operationId
+    severity: warn
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]+$"
+  parcellab-summary-title-case:
+    description: Operation summaries use Title Case.
+    given: $.paths[*][*].summary
+    severity: warn
+    then:
+      function: pattern
+      functionOptions:
+        match: "^([A-Z][a-zA-Z0-9]*)(\\s+[A-Z/][a-zA-Z0-9/]*)*$"
+  parcellab-auth-token-header:
+    description: Define the Parcellab-API-Token apiKey security scheme on the Authorization header.
+    given: $.components.securitySchemes
+    severity: error
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          minProperties: 1
+  parcellab-tag-set:
+    description: Use the canonical parcelLab tag set.
+    given: $.tags[*].name
+    severity: warn
+    then:
+      function: enumeration
+      functionOptions:
+        values:
+          - Orders
+          - Events
+          - Place Info
+          - Promise
+          - Returns
+          - Campaigns
+          - Surveys
+  parcellab-trailing-slash:
+    description: parcelLab paths end with a trailing slash, matching the published API.
+    given: $.paths.*~
+    severity: warn
+    then:
+      function: pattern
+      functionOptions:
+        match: ".*/$"

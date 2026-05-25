@@ -1,0 +1,105 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: parcelLab API — Campaigns
+  description: parcelLab API — Campaigns. Evaluate campaign targeting and capture redirect analytics.
+  tags:
+  - ParcelLab
+  - Campaigns
+  - Marketing
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+- namespace: env
+  keys:
+    PARCELLAB_API_TOKEN: PARCELLAB_API_TOKEN
+capability:
+  consumes:
+  - type: http
+    namespace: parcellab-campaigns
+    baseUri: https://api.parcellab.com
+    description: parcelLab Campaigns surface.
+    resources:
+    - name: campaign-evaluate
+      path: /v4/campaign/evaluate/
+      operations:
+      - name: evaluatecampaign
+        method: GET
+        description: Evaluate campaign targeting for a tracking.
+        outputRawFormat: json
+        outputParameters: [{ name: result, type: object, value: $. }]
+        inputParameters:
+        - { name: accountId, in: query, type: integer, required: false }
+        - { name: campaignId, in: query, type: string, required: false }
+        - { name: language, in: query, type: string, required: false }
+        - { name: medium, in: query, type: string, required: false }
+        - { name: message, in: query, type: string, required: false }
+        - { name: orderNumber, in: query, type: string, required: false }
+        - { name: preview, in: query, type: boolean, required: false }
+        - { name: status, in: query, type: string, required: false }
+        - { name: trackingId, in: query, type: string, required: false }
+    - name: campaign-redirect
+      path: /v4/campaign/redirect/
+      operations:
+      - name: campaignredirect
+        method: GET
+        description: Campaign redirect analytics endpoint.
+        outputRawFormat: json
+        outputParameters: [{ name: result, type: object, value: $. }]
+        inputParameters:
+        - { name: campaignId, in: query, type: string, required: false }
+        - { name: trackingId, in: query, type: string, required: false }
+        - { name: eventType, in: query, type: string, required: true }
+        - { name: medium, in: query, type: string, required: false }
+        - { name: redirectUrl, in: query, type: string, required: false }
+        - { name: customerSegmentationId, in: query, type: string, required: false }
+        - { name: emailId, in: query, type: string, required: false }
+        - { name: contentType, in: query, type: string, required: false }
+    authentication:
+      type: header
+      header: Authorization
+      value: 'Parcellab-API-Token {{env.PARCELLAB_API_TOKEN}}'
+  exposes:
+  - type: rest
+    namespace: parcellab-campaigns-rest
+    port: 8080
+    description: REST adapter for parcelLab Campaigns.
+    resources:
+    - path: /v1/campaigns/evaluate
+      name: campaign-evaluate
+      operations:
+      - method: GET
+        name: evaluatecampaign
+        description: Evaluate campaign targeting.
+        call: parcellab-campaigns.evaluatecampaign
+        with:
+          accountId: rest.accountId
+          campaignId: rest.campaignId
+          language: rest.language
+          medium: rest.medium
+          message: rest.message
+          orderNumber: rest.orderNumber
+          preview: rest.preview
+          status: rest.status
+          trackingId: rest.trackingId
+        outputParameters: [{ type: object, mapping: $. }]
+  - type: mcp
+    namespace: parcellab-campaigns-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for parcelLab Campaigns.
+    tools:
+    - name: evaluate-campaign
+      description: Evaluate campaign targeting for a tracking.
+      hints: { readOnly: true, destructive: false, idempotent: true }
+      call: parcellab-campaigns.evaluatecampaign
+      with:
+        accountId: tools.accountId
+        campaignId: tools.campaignId
+        language: tools.language
+        medium: tools.medium
+        message: tools.message
+        orderNumber: tools.orderNumber
+        preview: tools.preview
+        status: tools.status
+        trackingId: tools.trackingId
+      outputParameters: [{ type: object, mapping: $. }]

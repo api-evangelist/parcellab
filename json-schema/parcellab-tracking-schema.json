@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/parcellab/main/json-schema/parcellab-tracking-schema.json",
+  "title": "parcelLab Tracking",
+  "description": "A carrier tracking attached to a parcelLab order. Aggregates carrier checkpoints into a lifecycle state.",
+  "type": "object",
+  "required": ["tracking_number", "courier"],
+  "properties": {
+    "tracking_number": { "type": "string" },
+    "courier": { "type": "string", "description": "parcelLab courier code." },
+    "status": { "type": "string", "description": "Latest carrier status mapped to parcelLab's status model." },
+    "lifecycle": {
+      "type": "string",
+      "description": "Aggregated lifecycle state derived from precedence rules across checkpoints.",
+      "enum": ["pre_dispatch", "in_transit", "out_for_delivery", "delivered", "delivery_failed", "returned", "exception"]
+    },
+    "delivery_estimate": { "type": "string", "format": "date-time" },
+    "checkpoints": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "timestamp": { "type": "string", "format": "date-time" },
+          "status": { "type": "string" },
+          "status_details": { "type": "string" },
+          "location": { "type": "string" },
+          "courier": { "type": "string" }
+        },
+        "required": ["timestamp", "status"]
+      }
+    }
+  },
+  "additionalProperties": false
+}

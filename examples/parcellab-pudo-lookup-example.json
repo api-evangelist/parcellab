@@ -1,0 +1,41 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.parcellab.com/v4/track/place-info/lookup/?account=12345",
+    "headers": {
+      "Authorization": "Parcellab-API-Token MTIzNDU6c2VjcmV0",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "account": 12345,
+      "country_iso3": "DEU",
+      "lookups": [
+        { "courier": "dhl", "service_level": "paketshop" }
+      ],
+      "location": { "latitude": 48.1374, "longitude": 11.5755 }
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": [
+      {
+        "courier": "dhl",
+        "place_type": "partner",
+        "address": {
+          "name": "DHL Paketshop 410",
+          "street": "Sendlinger Str.",
+          "house_no": "12",
+          "city": "Munich",
+          "postal_code": "80331",
+          "country_iso3": "DEU"
+        },
+        "location": { "latitude": 48.1361, "longitude": 11.5705 },
+        "opening_hours": { "monday": "09:00-19:00" },
+        "distance_meters": 480,
+        "services": ["accept_returns", "drop_off"],
+        "phone": "+49 89 1234567",
+        "website": "https://www.dhl.de"
+      }
+    ]
+  }
+}

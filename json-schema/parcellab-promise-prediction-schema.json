@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/parcellab/main/json-schema/parcellab-promise-prediction-schema.json",
+  "title": "parcelLab Promise Prediction",
+  "description": "A pre-checkout delivery date prediction returned by the parcelLab Promise API.",
+  "type": "object",
+  "properties": {
+    "request_id": { "type": "string" },
+    "success": { "type": "boolean" },
+    "prediction": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "courier": { "type": "string" },
+          "service_level": { "type": "string" },
+          "date_min": { "type": "string", "format": "date" },
+          "date_max": { "type": "string", "format": "date" },
+          "date_likely": { "type": "string", "format": "date" },
+          "days_min": { "type": "integer" },
+          "days_max": { "type": "integer" },
+          "days_likely": { "type": "integer" },
+          "cutoff": { "type": "string", "format": "date-time" },
+          "localized": { "type": "object" }
+        }
+      }
+    }
+  }
+}

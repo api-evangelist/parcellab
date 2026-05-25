@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/parcellab/main/json-schema/parcellab-order-schema.json",
+  "title": "parcelLab Order",
+  "description": "An order tracked by the parcelLab post-purchase platform via the v4 Enhanced Orders API.",
+  "type": "object",
+  "required": ["account", "order_number"],
+  "properties": {
+    "external_id": { "type": "string", "format": "uuid", "description": "parcelLab-assigned external identifier." },
+    "account": { "type": "integer", "description": "parcelLab account ID." },
+    "order_number": { "type": "string", "description": "Retailer order number." },
+    "client_key": { "type": "string", "description": "Optional brand or client identifier." },
+    "order_date": { "type": "string", "format": "date-time" },
+    "destination_country_iso3": { "type": "string", "minLength": 3, "maxLength": 3 },
+    "recipient_name": { "type": "string" },
+    "recipient_email": { "type": "string", "format": "email" },
+    "shipping_address": { "$ref": "parcellab-address-schema.json" },
+    "articles_order": {
+      "type": "array",
+      "items": { "$ref": "parcellab-line-item-schema.json" }
+    },
+    "trackings": {
+      "type": "array",
+      "items": { "$ref": "parcellab-tracking-schema.json" }
+    }
+  },
+  "additionalProperties": false
+}

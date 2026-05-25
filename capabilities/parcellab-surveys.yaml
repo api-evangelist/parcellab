@@ -1,0 +1,113 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: parcelLab API — Surveys
+  description: parcelLab API — Surveys. Retrieve survey definitions, prefilled answers, and submit responses.
+  tags:
+  - ParcelLab
+  - Surveys
+  - Feedback
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+- namespace: env
+  keys:
+    PARCELLAB_API_TOKEN: PARCELLAB_API_TOKEN
+capability:
+  consumes:
+  - type: http
+    namespace: parcellab-surveys
+    baseUri: https://api.parcellab.com
+    description: parcelLab Surveys surface.
+    resources:
+    - name: survey
+      path: /v4/survey/survey/{id}/
+      operations:
+      - name: getsurvey
+        method: GET
+        description: Retrieve a survey by id.
+        outputRawFormat: json
+        outputParameters: [{ name: result, type: object, value: $. }]
+        inputParameters:
+        - { name: id, in: path, type: string, required: true }
+    - name: survey-answer
+      path: /v4/survey/survey/{id}/answer/
+      operations:
+      - name: getsurveyanswer
+        method: GET
+        description: Retrieve prefilled answers for a survey.
+        outputRawFormat: json
+        outputParameters: [{ name: result, type: object, value: $. }]
+        inputParameters:
+        - { name: id, in: path, type: string, required: true }
+        - { name: ref_id, in: query, type: string, required: true }
+        - { name: reference_type, in: query, type: string, required: false }
+      - name: submitsurveyanswer
+        method: POST
+        description: Submit survey responses.
+        outputRawFormat: json
+        outputParameters: [{ name: result, type: object, value: $. }]
+        inputParameters:
+        - { name: id, in: path, type: string, required: true }
+        - { name: body, in: body, type: object, required: true }
+    - name: survey-themes
+      path: /v4/survey/survey/themes/
+      operations:
+      - name: listsurveythemes
+        method: GET
+        description: List survey theme configurations.
+        outputRawFormat: json
+        outputParameters: [{ name: result, type: object, value: $. }]
+        inputParameters:
+        - { name: default, in: query, type: boolean, required: false }
+    authentication:
+      type: header
+      header: Authorization
+      value: 'Parcellab-API-Token {{env.PARCELLAB_API_TOKEN}}'
+  exposes:
+  - type: rest
+    namespace: parcellab-surveys-rest
+    port: 8080
+    description: REST adapter for parcelLab Surveys.
+    resources:
+    - path: /v1/surveys/{id}
+      name: survey
+      operations:
+      - method: GET
+        name: getsurvey
+        description: Get survey by id.
+        call: parcellab-surveys.getsurvey
+        with: { id: rest.id }
+        outputParameters: [{ type: object, mapping: $. }]
+    - path: /v1/surveys/{id}/answer
+      name: survey-answer
+      operations:
+      - method: GET
+        name: getsurveyanswer
+        description: Get survey answer.
+        call: parcellab-surveys.getsurveyanswer
+        with: { id: rest.id, ref_id: rest.ref_id, reference_type: rest.reference_type }
+        outputParameters: [{ type: object, mapping: $. }]
+      - method: POST
+        name: submitsurveyanswer
+        description: Submit survey answer.
+        call: parcellab-surveys.submitsurveyanswer
+        with: { id: rest.id, body: rest.body }
+        outputParameters: [{ type: object, mapping: $. }]
+  - type: mcp
+    namespace: parcellab-surveys-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for parcelLab Surveys.
+    tools:
+    - name: get-survey
+      description: Get survey by id.
+      hints: { readOnly: true, destructive: false, idempotent: true }
+      call: parcellab-surveys.getsurvey
+      with: { id: tools.id }
+      outputParameters: [{ type: object, mapping: $. }]
+    - name: submit-survey-answer
+      description: Submit survey responses.
+      hints: { readOnly: false, destructive: false, idempotent: false }
+      call: parcellab-surveys.submitsurveyanswer
+      with: { id: tools.id, body: tools.body }
+      outputParameters: [{ type: object, mapping: $. }]

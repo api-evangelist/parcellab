@@ -1,0 +1,278 @@
+aid: parcellab
+url: https://raw.githubusercontent.com/api-evangelist/parcellab/refs/heads/main/apis.yml
+name: parcelLab
+description: >-
+  parcelLab is a Munich-headquartered post-purchase experience platform
+  (parcelLab GmbH) used by retailers including IKEA, Hugo Boss, Dyson,
+  Puma, and John Lewis to turn delivery and returns into a branded,
+  revenue-generating part of the customer journey. The platform spans four
+  modules — Convert (pre-checkout delivery promise), Engage (multichannel
+  post-purchase communications), Retain (Returns Portal and returns
+  experience), and Insights (analytics, benchmarking, control tower) —
+  layered with AI agents (WISMO/R, Insights, Fraud & Abuse) and exposed via
+  the parcelLab API v4 Enhanced. Global, EU, and US regional endpoints are
+  available; the same data backs a Model Context Protocol server at
+  agents.parcellab.com/mcp/ for agentic clients.
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - Post-Purchase
+  - E-Commerce
+  - Tracking
+  - Returns
+  - Shipping
+  - Delivery
+  - Customer Experience
+  - Logistics
+  - Communications
+  - Germany
+created: '2026-05-25'
+modified: '2026-05-25'
+specificationVersion: '0.19'
+type: Index
+kind: contract
+access: 3rd-Party
+position: Producer
+apis:
+  - aid: parcellab:parcellab-api
+    name: parcelLab API
+    description: >-
+      parcelLab API v4 Enhanced — the unified REST API for ingesting orders
+      and trackings, retrieving order status, looking up pickup/drop-off
+      locations, predicting delivery dates (Promise), creating and managing
+      return registrations against returns configurations, evaluating
+      campaign targeting, and serving surveys back to customers.
+    humanURL: https://docs.parcellab.com/docs/developers/readme
+    baseURL: https://api.parcellab.com
+    tags:
+      - Orders
+      - Tracking
+      - Returns
+      - Promise
+      - Surveys
+      - Campaigns
+      - PUDO
+    properties:
+      - type: Documentation
+        url: https://docs.parcellab.com/docs/developers/readme
+      - type: APIReference
+        url: https://docs.parcellab.com/docs/developers/getting-started/api-reference
+      - type: Quickstart
+        url: https://docs.parcellab.com/docs/developers/getting-started/quickstart-guide
+      - type: Authentication
+        url: https://docs.parcellab.com/docs/developers/getting-started/authentication
+      - type: OpenAPI
+        url: openapi/parcellab-openapi.yml
+      - type: JSONSchema
+        url: json-schema/parcellab-order-schema.json
+      - type: JSONSchema
+        url: json-schema/parcellab-tracking-schema.json
+      - type: JSONSchema
+        url: json-schema/parcellab-return-registration-schema.json
+      - type: JSONSchema
+        url: json-schema/parcellab-address-schema.json
+      - type: JSONSchema
+        url: json-schema/parcellab-line-item-schema.json
+      - type: JSONSchema
+        url: json-schema/parcellab-promise-prediction-schema.json
+      - type: JSONStructure
+        url: json-structure/parcellab-order-structure.json
+      - type: JSONStructure
+        url: json-structure/parcellab-return-registration-structure.json
+      - type: JSONLD
+        url: json-ld/parcellab-context.jsonld
+      - type: Example
+        url: examples/parcellab-upsert-order-example.json
+      - type: Example
+        url: examples/parcellab-get-order-info-example.json
+      - type: Example
+        url: examples/parcellab-predict-delivery-example.json
+      - type: Example
+        url: examples/parcellab-create-return-registration-example.json
+      - type: Example
+        url: examples/parcellab-pudo-lookup-example.json
+      - type: NaftikoCapability
+        url: capabilities/parcellab-orders.yaml
+      - type: NaftikoCapability
+        url: capabilities/parcellab-events.yaml
+      - type: NaftikoCapability
+        url: capabilities/parcellab-promise.yaml
+      - type: NaftikoCapability
+        url: capabilities/parcellab-place-info.yaml
+      - type: NaftikoCapability
+        url: capabilities/parcellab-returns.yaml
+      - type: NaftikoCapability
+        url: capabilities/parcellab-surveys.yaml
+      - type: NaftikoCapability
+        url: capabilities/parcellab-campaigns.yaml
+  - aid: parcellab:parcellab-mcp
+    name: parcelLab MCP Server
+    description: >-
+      Hosted Model Context Protocol server exposing the parcelLab order
+      tracking and returns registration workflow to MCP-compatible agents,
+      authenticated via OAuth 2.1 bearer tokens with scopes such as
+      `track:orderinfo` and `returns:registration`.
+    humanURL: https://github.com/parcelLab/parcellab-mcp-server
+    baseURL: https://agents.parcellab.com/mcp/
+    tags:
+      - MCP
+      - AI
+      - Agents
+      - Tracking
+      - Returns
+    properties:
+      - type: GitHubRepository
+        url: https://github.com/parcelLab/parcellab-mcp-server
+      - type: Documentation
+        url: https://github.com/parcelLab/parcellab-mcp-server
+common:
+  - type: Website
+    url: https://parcellab.com
+  - type: DeveloperPortal
+    url: https://docs.parcellab.com/docs/developers/readme
+  - type: Documentation
+    url: https://docs.parcellab.com/docs/readme
+  - type: GettingStarted
+    url: https://docs.parcellab.com/docs/onboarding
+  - type: Authentication
+    url: https://docs.parcellab.com/docs/developers/getting-started/authentication
+  - type: APIReference
+    url: https://docs.parcellab.com/docs/developers/getting-started/api-reference
+  - type: ErrorCodes
+    url: https://docs.parcellab.com/docs/developers/getting-started/error-codes
+  - type: SignUp
+    url: https://app.parcellab.com/signin
+  - type: Console
+    url: https://app.parcellab.com
+  - type: StatusPage
+    url: https://status.parcellab.com
+  - type: Pricing
+    url: https://parcellab.com/contact-us
+  - type: Blog
+    url: https://parcellab.com/blog/
+  - type: TermsOfService
+    url: https://parcellab.com/legal/terms-of-service/
+  - type: Careers
+    url: https://parcellab.com/careers
+  - type: Support
+    url: https://parcellab.com/contact-us
+  - type: GitHubOrganization
+    url: https://github.com/parcelLab
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/parcellab
+  - type: SecurityCompliance
+    url: https://docs.parcellab.com/docs/platform/security-compliance
+  - type: SingleSignOn
+    url: https://docs.parcellab.com/docs/platform/security-compliance/single-sign-on
+  - type: DataRetentionPolicy
+    url: https://docs.parcellab.com/docs/platform/security-compliance/data-retention-policy
+  - type: SDK
+    url: https://github.com/parcelLab/parcelLab-js-plugin
+  - type: SDK
+    url: https://github.com/parcelLab/js-plugin-utils
+  - type: SDK
+    url: https://github.com/parcelLab/regionIdentifier
+  - type: SDK
+    url: https://github.com/parcelLab/parcellab-embedded-ui-snippets
+  - type: SDK
+    url: https://github.com/parcelLab/charts
+  - type: AgentSDK
+    url: https://github.com/parcelLab/parcellab-mcp-server
+  - type: Plans
+    url: plans/parcellab-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/parcellab-rate-limits.yml
+  - type: FinOps
+    url: finops/parcellab-finops.yml
+  - type: SpectralRules
+    url: rules/parcellab-rules.yml
+  - type: Vocabulary
+    url: vocabulary/parcellab-vocabulary.yml
+  - type: NaftikoCapabilities
+    url: capabilities/post-purchase-experience.yaml
+  - type: Features
+    data:
+      - name: Delivery Promise
+        description: Pre-checkout delivery date prediction (Promise API) to drive cart conversion.
+      - name: Order & Tracking Ingestion
+        description: Idempotent v4 Orders API with mutations to add/cancel trackings or amend line items.
+      - name: Carrier Network
+        description: Integrations with 450+ carriers worldwide via direct carrier interfaces.
+      - name: Returns Portal
+        description: Branded self-service returns portal with refund options, exchanges, retention offers, split returns, and claims.
+      - name: Multichannel Communications
+        description: Email, SMS, Push, Webhook, and Order Status Page delivery of branded post-purchase messages.
+      - name: Apple Wallet Tracking
+        description: Native Apple Wallet passes for order tracking.
+      - name: AI Agents
+        description: WISMO/R Agent, Insights Agent, and Fraud & Abuse Insights powered by ML over post-purchase data.
+      - name: Insights & Benchmarking
+        description: Trackings Insights, Communication Insights, Control Tower, Logistics Analysis, and Benchmarking dashboards.
+      - name: Surveys & NPS
+        description: Embedded surveys and NPS feedback tied to deliveries or return registrations.
+      - name: MCP Server
+        description: Hosted Model Context Protocol server (agents.parcellab.com/mcp/) for agentic order tracking and return registration workflows.
+  - type: UseCases
+    data:
+      - name: WISMO Reduction
+        description: Cut "Where Is My Order" support contacts by proactively communicating tracking updates.
+      - name: Returns as Retention
+        description: Convert returns into exchanges, store credit, or retention offers to keep revenue.
+      - name: Cart Conversion
+        description: Display a delivery promise at checkout to reduce abandonment.
+      - name: Cross-Border Returns
+        description: Provide customs handling and Global-e integration for unified cross-border returns.
+      - name: Carrier Performance Benchmarking
+        description: Compare lead-times, exceptions, and on-time rates across the carrier portfolio.
+      - name: Marketing in the Delivery Window
+        description: Embed branded campaigns and product recommendations in delivery communications.
+  - type: Integrations
+    data:
+      - name: Shopify
+        description: Native Shopify integration for tracking, communications, and returns.
+      - name: Magento 2
+        description: Webhook extension for Magento 2 storefronts.
+      - name: Shopware
+        description: Embedded Order Status Page for Shopware shops.
+      - name: Klaviyo
+        description: Route post-purchase email through Klaviyo journeys.
+      - name: Postscript
+        description: Route post-purchase SMS through Postscript.
+      - name: Zendesk
+        description: Customer service ticket sidebar with parcelLab tracking data.
+      - name: Gorgias
+        description: Helpdesk widget displaying order and tracking data.
+      - name: Kustomer
+        description: Helpdesk app for parcelLab delivery context.
+      - name: Salesforce Service Cloud
+        description: Customer Service Integration surfacing parcelLab data in SFSC.
+      - name: Global-e
+        description: Unified cross-border returns experience.
+      - name: Apple Wallet
+        description: Native order tracking passes in Apple Wallet.
+      - name: Poshmark
+        description: List non-returnable items directly from the Returns Portal onto Poshmark.
+  - type: Solutions
+    data:
+      - name: Convert
+        description: Pre-checkout delivery promise module.
+      - name: Engage
+        description: Multichannel post-purchase communication module.
+      - name: Retain
+        description: Returns Portal and returns experience module.
+      - name: Insights
+        description: Analytics, benchmarking, and control tower module.
+      - name: AI Agents
+        description: Add-on autonomous agents for WISMO/R, insights, and fraud.
+  - type: Offices
+    data:
+      - name: Munich (HQ)
+        description: parcelLab GmbH — Kapellenweg 6, 81371 Munich, Germany.
+      - name: Boston
+        description: 75 State Street, Boston, MA 02109, USA.
+      - name: London
+        description: Moor Place, 1 Fore Street Avenue, London EC2Y 9DT, UK.
+      - name: Paris
+        description: 24-26 Rue De la Pépinière, 75008 Paris, France.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

@@ -1,0 +1,43 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: parcelLab
+providerId: parcellab
+created: '2026-05-25'
+modified: '2026-05-25'
+reconciled: false
+tags:
+  - Rate Limiting
+  - Post-Purchase
+description: >-
+  parcelLab does not publish explicit numeric rate limits on its public
+  developer docs; account-specific rate limits are agreed during onboarding.
+  This file captures the policy surface that is publicly observable.
+sources:
+  - https://docs.parcellab.com/docs/developers/getting-started/api-reference
+  - https://docs.parcellab.com/docs/developers/getting-started/authentication
+responseCodes:
+  throttled: 429
+  badRequest: 400
+  unauthorized: 401
+  forbidden: 403
+limits:
+  - name: REST API (v4 Enhanced)
+    scope: token
+    metric: requests
+    limit: account_specific
+    timeFrame: minute
+    description: >-
+      Per-token throttling applies at the parcelLab edge; specific quotas are
+      provisioned per account. The Authentication docs note tokens are
+      account-scoped and revocable.
+  - name: Webhook delivery
+    scope: endpoint
+    metric: concurrent
+    limit: monitored
+    description: >-
+      Outbound webhook delivery success is monitored via the Webhooks Report
+      in Communication Insights. Failed deliveries are retried.
+notes:
+  - Rate-limit headers are not documented in public docs; clients should handle 429 with backoff.
+  - parcelLab maintains regional endpoints (api.eu.parcellab.com, api.us.parcellab.com) to spread load.

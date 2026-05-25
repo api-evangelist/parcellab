@@ -1,0 +1,69 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: parcelLab
+providerId: parcellab
+created: '2026-05-25'
+modified: '2026-05-25'
+reconciled: false
+tags:
+  - Post-Purchase
+  - Shipping
+  - Returns
+description: >-
+  parcelLab is sold as enterprise SaaS to retailers; commercial terms are
+  negotiated and disclosed under NDA rather than published on a public
+  pricing page. This document captures the publicly observable shape of the
+  commercial offering (product bundles + Convert / Engage / Retain / Insights
+  modules) as a placeholder until contract data is reconciled.
+sources:
+  - https://parcellab.com
+  - https://parcellab.com/contact-us
+plans:
+  - id: parcellab-convert
+    name: Convert
+    type: enterprise
+    description: >-
+      Pre-checkout module — delivery promise to drive cart conversion and
+      reduce delivery-driven cart abandonment.
+    entries:
+      - { label: Promise API, name: promise_api, type: feature }
+      - { label: Promise Insights dashboard, name: promise_insights, type: feature }
+  - id: parcellab-engage
+    name: Engage
+    type: enterprise
+    description: >-
+      Post-purchase communications — branded email/SMS/push journeys,
+      campaigns, A/B testing, NPS, order status page, on-demand messaging.
+    entries:
+      - { label: Messages & Journeys, name: messages_journeys, type: feature }
+      - { label: parcelLab SMS, name: parcellab_sms, type: feature }
+      - { label: Order Status Page, name: order_status_page, type: feature }
+      - { label: Campaigns, name: campaigns, type: feature }
+      - { label: Surveys & NPS, name: surveys, type: feature }
+  - id: parcellab-retain
+    name: Retain
+    type: enterprise
+    description: >-
+      Returns module — branded Returns Portal, return registrations, refund
+      and exchange flows, retention offers, claims, returns insights.
+    entries:
+      - { label: Returns Portal, name: returns_portal, type: feature }
+      - { label: Returns Registrations API, name: returns_api, type: feature }
+      - { label: Self-Service Claims, name: self_service_claims, type: feature }
+      - { label: Retention Offer, name: retention_offer, type: feature }
+  - id: parcellab-insights
+    name: Insights
+    type: enterprise
+    description: >-
+      Analytics module — trackings, communications, control tower,
+      benchmarking, logistics analysis, premium analytics.
+    entries:
+      - { label: Trackings Insights, name: trackings_insights, type: feature }
+      - { label: Control Tower, name: control_tower, type: feature }
+      - { label: Benchmarking, name: benchmarking, type: feature }
+      - { label: Premium Analytics, name: premium_analytics, type: feature }
+notes:
+  - parcelLab does not publish public pricing — Sales contact is required.
+  - Pricing is generally enterprise / volume-based across orders and shipments tracked.
+  - Add-on modules (AI Agents, WISMO/R Agent, Fraud & Abuse Insights, Apple Wallet) are listed separately on the platform.

@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/parcellab/main/json-schema/parcellab-return-registration-schema.json",
+  "title": "parcelLab Return Registration",
+  "description": "A customer-initiated return registration created through the parcelLab Returns Portal or API.",
+  "type": "object",
+  "required": ["account", "code", "reference", "customer_email"],
+  "properties": {
+    "external_id": { "type": "string", "format": "uuid", "readOnly": true },
+    "sequence_number": { "type": "string", "readOnly": true },
+    "account": { "type": "integer" },
+    "code": { "type": "string", "maxLength": 255, "description": "Configuration code linking to a returns configuration set." },
+    "reference": { "type": "string", "maxLength": 255, "description": "Retailer order number or reference." },
+    "customer_email": { "type": "string" },
+    "customer_address": { "$ref": "parcellab-address-schema.json" },
+    "status": {
+      "type": "string",
+      "enum": [
+        "created", "submitted", "pending_approval", "pending_label",
+        "approved", "rejected", "cancelled", "closed",
+        "processing_failed", "invalid"
+      ]
+    },
+    "order_date": { "type": "string", "format": "date-time" },
+    "order_delivery_date": { "type": "string", "format": "date-time" },
+    "order_shipping_date": { "type": "string", "format": "date-time" },
+    "order_total_amount": { "type": "number" },
+    "order_shipping_amount": { "type": "number" },
+    "order_tax_amount": { "type": "number" },
+    "order_currency": { "type": "string", "description": "ISO 4217 currency code." },
+    "articles_order": { "type": "array", "items": { "$ref": "parcellab-line-item-schema.json" } },
+    "articles_return": { "type": "array", "items": { "$ref": "parcellab-line-item-schema.json" } },
+    "return_labels": {
+      "type": "array",
+      "readOnly": true,
+      "items": { "type": "object" }
+    },
+    "tags": { "type": "array", "items": { "type": "string" } },
+    "metadata": { "type": "object" },
+    "created_at": { "type": "string", "format": "date-time", "readOnly": true },
+    "updated_at": { "type": "string", "format": "date-time", "readOnly": true }
+  },
+  "additionalProperties": false
+}

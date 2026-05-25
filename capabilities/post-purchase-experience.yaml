@@ -1,0 +1,33 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Post-Purchase Experience Workflow
+  description: >-
+    End-to-end post-purchase workflow composed from parcelLab capabilities —
+    predict a delivery date at checkout, ingest the order, push warehouse
+    events, expose order status, surface PUDO options, and let the customer
+    register a return.
+  tags:
+  - ParcelLab
+  - Workflow
+  - Post-Purchase
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+- namespace: env
+  keys:
+    PARCELLAB_API_TOKEN: PARCELLAB_API_TOKEN
+capability:
+  composes:
+  - capabilities/parcellab-promise.yaml
+  - capabilities/parcellab-orders.yaml
+  - capabilities/parcellab-events.yaml
+  - capabilities/parcellab-place-info.yaml
+  - capabilities/parcellab-returns.yaml
+  - capabilities/parcellab-surveys.yaml
+  - capabilities/parcellab-campaigns.yaml
+  exposes:
+  - type: mcp
+    namespace: parcellab-post-purchase
+    port: 9100
+    transport: http
+    description: Aggregated MCP surface covering the parcelLab post-purchase journey.

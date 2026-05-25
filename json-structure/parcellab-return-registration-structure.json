@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-structure.org/v0.1/schema",
+  "title": "parcelLab Return Registration",
+  "description": "Structural view of a parcelLab return registration — references the original order, its line items, and the chosen return labels.",
+  "type": "object",
+  "properties": {
+    "external_id": { "type": "string", "x-role": "system_id" },
+    "account": { "type": "integer", "x-role": "tenant" },
+    "reference": { "type": "string", "x-role": "natural_key", "x-references": "Order.order_number" },
+    "code": { "type": "string", "x-role": "configuration" },
+    "status": { "type": "string", "x-role": "lifecycle" },
+    "customer_email": { "type": "string", "x-role": "contact" },
+    "customer_address": { "type": "object", "x-role": "geo" },
+    "articles_order": { "type": "array", "x-role": "snapshot" },
+    "articles_return": { "type": "array", "x-role": "line_items" },
+    "return_labels": { "type": "array", "x-role": "documents" },
+    "created_at": { "type": "string", "x-role": "event_time" },
+    "updated_at": { "type": "string", "x-role": "event_time" }
+  }
+}

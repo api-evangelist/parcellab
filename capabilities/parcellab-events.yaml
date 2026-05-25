@@ -1,0 +1,73 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: parcelLab API — Shop & Warehouse Events
+  description: parcelLab API — Events. Push custom checkpoints into the order timeline.
+  tags:
+  - ParcelLab
+  - Events
+  - Tracking
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+- namespace: env
+  keys:
+    PARCELLAB_API_TOKEN: PARCELLAB_API_TOKEN
+capability:
+  consumes:
+  - type: http
+    namespace: parcellab-events
+    baseUri: https://api.parcellab.com
+    description: parcelLab Events ingestion.
+    resources:
+    - name: events
+      path: /v4/track/events/
+      operations:
+      - name: sendshopevent
+        method: POST
+        description: Send a custom shop or warehouse event into the order tracking timeline.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: ShopEvent payload.
+          required: true
+    authentication:
+      type: header
+      header: Authorization
+      value: 'Parcellab-API-Token {{env.PARCELLAB_API_TOKEN}}'
+  exposes:
+  - type: rest
+    namespace: parcellab-events-rest
+    port: 8080
+    description: REST adapter for parcelLab Events.
+    resources:
+    - path: /v1/events
+      name: events
+      operations:
+      - method: POST
+        name: sendshopevent
+        description: Send a shop event.
+        call: parcellab-events.sendshopevent
+        with: { body: rest.body }
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: parcellab-events-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for parcelLab Events.
+    tools:
+    - name: send-shop-event
+      description: Push a custom checkpoint into the order timeline.
+      hints: { readOnly: false, destructive: false, idempotent: false }
+      call: parcellab-events.sendshopevent
+      with: { body: tools.body }
+      outputParameters:
+      - type: object
+        mapping: $.

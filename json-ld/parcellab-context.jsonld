@@ -1,0 +1,32 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "parcellab": "https://parcellab.com/vocab/",
+    "Order": "schema:Order",
+    "ParcelDelivery": "schema:ParcelDelivery",
+    "ReturnAction": "schema:ReturnAction",
+    "PostalAddress": "schema:PostalAddress",
+    "DeliveryEvent": "schema:DeliveryEvent",
+    "order_number": "schema:orderNumber",
+    "order_date": "schema:orderDate",
+    "recipient_email": "schema:email",
+    "recipient_name": "schema:name",
+    "shipping_address": "schema:shippingDetails",
+    "destination_country_iso3": "schema:addressCountry",
+    "articles_order": "schema:orderedItem",
+    "articles_return": "parcellab:returnedItem",
+    "tracking_number": "schema:trackingNumber",
+    "courier": "schema:carrier",
+    "delivery_estimate": "schema:expectedArrivalUntil",
+    "checkpoints": "schema:deliveryEvent",
+    "status": "schema:orderStatus",
+    "lifecycle": "parcellab:lifecycleState",
+    "customer_email": "schema:email",
+    "customer_address": "schema:address",
+    "return_labels": "parcellab:returnLabel",
+    "reference": "schema:identifier",
+    "external_id": "schema:identifier",
+    "code": "parcellab:configurationCode"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/parcellab/main/json-schema/parcellab-line-item-schema.json",
+  "title": "parcelLab Line Item",
+  "description": "An ordered or returned line item, used by Orders and Return Registrations.",
+  "type": "object",
+  "properties": {
+    "sku": { "type": "string" },
+    "name": { "type": "string" },
+    "quantity": { "type": "integer", "minimum": 0 },
+    "price": { "type": "number" },
+    "currency": { "type": "string" },
+    "image_url": { "type": "string", "format": "uri" },
+    "return_reason": { "type": "string", "description": "Set on articles_return for return registrations." }
+  }
+}

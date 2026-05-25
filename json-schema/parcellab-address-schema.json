@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/parcellab/main/json-schema/parcellab-address-schema.json",
+  "title": "parcelLab Address",
+  "description": "A postal address used for shipping, return pickup, or PUDO lookup.",
+  "type": "object",
+  "properties": {
+    "name": { "type": "string" },
+    "street": { "type": "string" },
+    "house_no": { "type": "string" },
+    "city": { "type": "string" },
+    "postal_code": { "type": "string" },
+    "country_iso3": { "type": "string", "minLength": 3, "maxLength": 3 },
+    "state": { "type": "string" },
+    "phone": { "type": "string" },
+    "email": { "type": "string", "format": "email" }
+  }
+}

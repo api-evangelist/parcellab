@@ -1,0 +1,120 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: parcelLab API — Orders
+  description: parcelLab API — Orders. 2 operations covering order upsert and order info retrieval.
+  tags:
+  - ParcelLab
+  - Orders
+  - Tracking
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+- namespace: env
+  keys:
+    PARCELLAB_API_TOKEN: PARCELLAB_API_TOKEN
+capability:
+  consumes:
+  - type: http
+    namespace: parcellab-orders
+    baseUri: https://api.parcellab.com
+    description: parcelLab Orders business capability.
+    resources:
+    - name: orders
+      path: /v4/track/orders/
+      operations:
+      - name: upsertorder
+        method: PUT
+        description: Create or update a parcelLab order with optional mutations.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: OrderUpsertRequest payload.
+          required: true
+    - name: orders-info
+      path: /v4/track/orders/info/
+      operations:
+      - name: getorderinfo
+        method: GET
+        description: Get latest order, tracking, and checkpoint information.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - { name: account, in: query, type: integer, required: false }
+        - { name: order_number, in: query, type: string, required: false }
+        - { name: tracking_number, in: query, type: string, required: false }
+        - { name: recipient_email, in: query, type: string, required: false }
+        - { name: lang, in: query, type: string, required: false }
+    authentication:
+      type: header
+      header: Authorization
+      value: 'Parcellab-API-Token {{env.PARCELLAB_API_TOKEN}}'
+  exposes:
+  - type: rest
+    namespace: parcellab-orders-rest
+    port: 8080
+    description: REST adapter for parcelLab Orders.
+    resources:
+    - path: /v1/orders
+      name: orders
+      operations:
+      - method: PUT
+        name: upsertorder
+        description: Create or update a parcelLab order.
+        call: parcellab-orders.upsertorder
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/orders/info
+      name: orders-info
+      operations:
+      - method: GET
+        name: getorderinfo
+        description: Get order info.
+        call: parcellab-orders.getorderinfo
+        with:
+          account: rest.account
+          order_number: rest.order_number
+          tracking_number: rest.tracking_number
+          recipient_email: rest.recipient_email
+          lang: rest.lang
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: parcellab-orders-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for parcelLab Orders.
+    tools:
+    - name: upsert-order
+      description: Create or update a parcelLab order.
+      hints: { readOnly: false, destructive: false, idempotent: true }
+      call: parcellab-orders.upsertorder
+      with: { body: tools.body }
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-order-info
+      description: Get latest order, tracking, and checkpoint info.
+      hints: { readOnly: true, destructive: false, idempotent: true }
+      call: parcellab-orders.getorderinfo
+      with:
+        account: tools.account
+        order_number: tools.order_number
+        tracking_number: tools.tracking_number
+        recipient_email: tools.recipient_email
+        lang: tools.lang
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,69 @@
+name: parcelLab Vocabulary
+description: >-
+  Controlled vocabulary covering the operational and capability dimensions of
+  the parcelLab post-purchase experience platform.
+created: '2026-05-25'
+modified: '2026-05-25'
+dimensions:
+  - name: Lifecycle Stage
+    description: Position of the customer journey covered by parcelLab capabilities.
+    terms:
+      - Pre-Checkout
+      - Order Placed
+      - Pre-Dispatch
+      - In Transit
+      - Out For Delivery
+      - Delivered
+      - Returns
+      - Refund/Exchange
+  - name: Capability
+    description: Product capabilities offered by parcelLab.
+    terms:
+      - Promise (Delivery Date Prediction)
+      - Tracking Aggregation
+      - Carrier Integration
+      - Order Status Page
+      - Communications (Email/SMS/Push)
+      - Campaigns
+      - Surveys/NPS
+      - Returns Portal
+      - Returns Communications
+      - Self-Service Claims
+      - Insights & Analytics
+      - Benchmarking
+      - WISMO/R Agent
+      - Fraud & Abuse Insights
+  - name: Channel
+    description: Outbound channels used to engage customers post-purchase.
+    terms:
+      - Email
+      - SMS
+      - Push Notification
+      - Webhook
+      - Order Status Page
+      - Apple Wallet
+  - name: Carrier Class
+    description: Categories of logistics partners integrated by parcelLab.
+    terms:
+      - Global Express
+      - National Postal
+      - Regional Courier
+      - Last-Mile
+      - Marketplace Logistics
+  - name: Integration Surface
+    description: Platforms parcelLab connects with.
+    terms:
+      - eCommerce Platforms (Shopify, Magento, Shopware)
+      - Marketing Platforms (Klaviyo, Postscript)
+      - Helpdesks (Zendesk, Gorgias, Kustomer, Salesforce Service Cloud)
+      - Cross-Border (Global-e)
+      - Wallets (Apple Wallet)
+  - name: Returns Disposition
+    description: Outcomes available through the parcelLab Returns Portal.
+    terms:
+      - Refund (Original Payment)
+      - Refund (Store Credit)
+      - Exchange
+      - Retention Offer
+      - Keep & Refund (Partial)
+      - Reject

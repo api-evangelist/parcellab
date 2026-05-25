@@ -1,0 +1,41 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.parcellab.com/v4/returns/return-registrations",
+    "headers": {
+      "Authorization": "Parcellab-API-Token MTIzNDU6c2VjcmV0",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "account": 12345,
+      "code": "acme-default",
+      "reference": "WEB-2026-00871",
+      "customer_email": "anna.mueller@example.com",
+      "customer_address": {
+        "name": "Anna Mueller",
+        "street": "Marienplatz",
+        "house_no": "1",
+        "city": "Munich",
+        "postal_code": "80331",
+        "country_iso3": "DEU"
+      },
+      "order_currency": "EUR",
+      "order_total_amount": 128.80,
+      "articles_return": [
+        { "sku": "JEANS-32-32", "name": "Slim Jeans 32x32", "quantity": 1, "price": 79.00, "currency": "EUR", "return_reason": "size_too_large" }
+      ]
+    }
+  },
+  "response": {
+    "status": 201,
+    "body": {
+      "external_id": "0d3f9b65-1c14-4f8e-87bb-2a17a3a3c2b1",
+      "sequence_number": "RR-000482",
+      "status": "created",
+      "reference": "WEB-2026-00871",
+      "code": "acme-default",
+      "created_at": "2026-05-25T10:22:14Z",
+      "updated_at": "2026-05-25T10:22:14Z"
+    }
+  }
+}

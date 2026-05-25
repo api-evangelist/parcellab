@@ -1,0 +1,92 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: parcelLab API — Promise
+  description: parcelLab API — Promise. Pre-checkout delivery date prediction.
+  tags:
+  - ParcelLab
+  - Promise
+  - Delivery
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+- namespace: env
+  keys:
+    PARCELLAB_API_TOKEN: PARCELLAB_API_TOKEN
+capability:
+  consumes:
+  - type: http
+    namespace: parcellab-promise
+    baseUri: https://api.parcellab.com
+    description: parcelLab Promise delivery date prediction.
+    resources:
+    - name: promise
+      path: /v4/promise/prediction/predict/
+      operations:
+      - name: predictdelivery
+        method: GET
+        description: Return localized delivery date predictions.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - { name: account, in: query, type: integer, required: true }
+        - { name: destination_country_iso3, in: query, type: string, required: true }
+        - { name: destination_postal_code, in: query, type: string, required: false }
+        - { name: courier, in: query, type: string, required: false }
+        - { name: service_level, in: query, type: string, required: false }
+        - { name: warehouse, in: query, type: string, required: false }
+        - { name: language_iso2, in: query, type: string, required: false }
+        - { name: calibration, in: query, type: string, required: false }
+    authentication:
+      type: header
+      header: Authorization
+      value: 'Parcellab-API-Token {{env.PARCELLAB_API_TOKEN}}'
+  exposes:
+  - type: rest
+    namespace: parcellab-promise-rest
+    port: 8080
+    description: REST adapter for parcelLab Promise.
+    resources:
+    - path: /v1/promise/predict
+      name: predict
+      operations:
+      - method: GET
+        name: predictdelivery
+        description: Predict delivery date.
+        call: parcellab-promise.predictdelivery
+        with:
+          account: rest.account
+          destination_country_iso3: rest.destination_country_iso3
+          destination_postal_code: rest.destination_postal_code
+          courier: rest.courier
+          service_level: rest.service_level
+          warehouse: rest.warehouse
+          language_iso2: rest.language_iso2
+          calibration: rest.calibration
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: parcellab-promise-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for parcelLab Promise.
+    tools:
+    - name: predict-delivery
+      description: Predict delivery date for a destination.
+      hints: { readOnly: true, destructive: false, idempotent: true }
+      call: parcellab-promise.predictdelivery
+      with:
+        account: tools.account
+        destination_country_iso3: tools.destination_country_iso3
+        destination_postal_code: tools.destination_postal_code
+        courier: tools.courier
+        service_level: tools.service_level
+        warehouse: tools.warehouse
+        language_iso2: tools.language_iso2
+        calibration: tools.calibration
+      outputParameters:
+      - type: object
+        mapping: $.

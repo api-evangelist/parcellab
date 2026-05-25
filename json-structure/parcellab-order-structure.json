@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-structure.org/v0.1/schema",
+  "title": "parcelLab Order",
+  "description": "Structural view of a parcelLab order — root identifiers, recipient, shipping address, line items, and child trackings.",
+  "type": "object",
+  "properties": {
+    "external_id": { "type": "string", "x-role": "system_id" },
+    "account": { "type": "integer", "x-role": "tenant" },
+    "order_number": { "type": "string", "x-role": "natural_key" },
+    "order_date": { "type": "string", "x-role": "event_time" },
+    "destination_country_iso3": { "type": "string", "x-role": "geo" },
+    "recipient_name": { "type": "string", "x-role": "party" },
+    "recipient_email": { "type": "string", "x-role": "contact" },
+    "shipping_address": { "type": "object", "x-role": "geo" },
+    "articles_order": { "type": "array", "x-role": "line_items" },
+    "trackings": { "type": "array", "x-role": "children" }
+  }
+}

@@ -1,0 +1,70 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: parcelLab
+providerId: parcellab
+created: '2026-05-25'
+modified: '2026-05-25'
+reconciled: false
+tags:
+  - FinOps
+  - FOCUS
+  - Post-Purchase
+description: >-
+  FOCUS-aligned FinOps surface for parcelLab. Because parcelLab is sold as
+  enterprise SaaS with custom pricing, the FOCUS columns capture the shape
+  of the offering — modules, monitored meters, and known engagement
+  surfaces — pending reconciliation with an actual customer invoice.
+sources:
+  - https://parcellab.com
+  - https://docs.parcellab.com
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: parcelLab GmbH
+serviceCategory: Post-Purchase Experience SaaS
+billingModel:
+  pricingCategory: Enterprise / Custom
+  billingFrequency: Annual or Monthly Commitment
+  billingCurrency: EUR
+focusColumns:
+  ServiceName: parcelLab Platform
+  ServiceCategory: Post-Purchase Experience SaaS
+  ProviderName: parcelLab
+  PublisherName: parcelLab GmbH
+  BillingCurrency: EUR
+meters:
+  - name: orders_tracked
+    unit: order
+    aggregation: sum
+    dimensions: [client_key, destination_country_iso3, courier]
+    description: Orders ingested into parcelLab and tracked through their lifecycle.
+  - name: trackings_monitored
+    unit: tracking
+    aggregation: sum
+    dimensions: [courier, service_level]
+  - name: communications_sent
+    unit: message
+    aggregation: sum
+    dimensions: [channel, status, language]
+    description: Email / SMS / Push / Webhook outbound communications.
+  - name: return_registrations
+    unit: registration
+    aggregation: sum
+    dimensions: [code, status, country_iso3]
+  - name: promise_predictions
+    unit: prediction
+    aggregation: sum
+    dimensions: [destination_country_iso3, courier, calibration]
+modules:
+  - Convert (Promise)
+  - Engage (Messages & Journeys, SMS, Campaigns, Surveys)
+  - Retain (Returns Portal & Communications)
+  - Insights & Premium Analytics
+  - AI Agents (WISMO/R Agent, Insights Agent, Fraud & Abuse)
+notes:
+  - parcelLab serves >1,000 brands across 175 countries with data from 450+ carriers (per LinkedIn profile).
+  - Invoicing is enterprise contract; FOCUS reconciliation requires customer billing data.

@@ -1,0 +1,33 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://api.parcellab.com/v4/track/orders/info/?account=12345&order_number=WEB-2026-00871&lang=en&show_returns=true",
+    "headers": {
+      "Authorization": "Parcellab-API-Token MTIzNDU6c2VjcmV0"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "order_number": "WEB-2026-00871",
+      "client_key": "acme-fashion",
+      "order_date": "2026-05-20T14:11:32Z",
+      "recipient_name": "Anna Mueller",
+      "recipient_email": "anna.mueller@example.com",
+      "destination_country_iso3": "DEU",
+      "trackings": [
+        {
+          "tracking_number": "00340434292135100186",
+          "courier": "dhl",
+          "status": "InTransit",
+          "lifecycle": "in_transit",
+          "delivery_estimate": "2026-05-25T18:00:00Z",
+          "checkpoints": [
+            { "timestamp": "2026-05-21T09:14:00Z", "status": "Picked up", "location": "Bremen, DE", "courier": "dhl" },
+            { "timestamp": "2026-05-22T03:51:00Z", "status": "In transit", "location": "Hannover, DE", "courier": "dhl" }
+          ]
+        }
+      ]
+    }
+  }
+}
