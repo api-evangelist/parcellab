@@ -1,0 +1,108 @@
+arazzo: 1.0.1
+info:
+  title: parcelLab Evaluate Campaign and Log Redirect
+  summary: Evaluate campaign targeting for a tracking, then record a redirect analytics event.
+  description: >-
+    Powers a targeted post-purchase marketing placement. The workflow evaluates
+    campaign targeting for a tracking and campaign, then records a redirect
+    analytics event for the same campaign and tracking so engagement with the
+    placement is measured. Every step spells out its request inline so the flow
+    can be read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: parcellabApi
+  url: ../openapi/parcellab-openapi.yml
+  type: openapi
+workflows:
+- workflowId: evaluate-campaign-and-redirect
+  summary: Evaluate a campaign for a tracking, then log a redirect analytics event.
+  description: >-
+    Calls campaign evaluation for a tracking and campaign, then records a
+    redirect event of the given type for that campaign and tracking.
+  inputs:
+    type: object
+    required:
+    - authToken
+    - accountId
+    - campaignId
+    - trackingId
+    - eventType
+    properties:
+      authToken:
+        type: string
+        description: Authorization header value for the parcelLab API.
+      accountId:
+        type: integer
+        description: The parcelLab account id.
+      campaignId:
+        type: string
+        description: The campaign id to evaluate and record events for.
+      trackingId:
+        type: string
+        description: The tracking id the campaign is shown against.
+      medium:
+        type: string
+        description: The medium the campaign is rendered in (e.g. email, page).
+      eventType:
+        type: string
+        description: The redirect event type to record (e.g. click).
+      redirectUrl:
+        type: string
+        description: The target URL the redirect points to.
+  steps:
+  - stepId: evaluateCampaign
+    description: >-
+      Evaluate campaign targeting for the tracking and campaign to obtain the
+      content to render.
+    operationId: evaluateCampaign
+    parameters:
+    - name: Authorization
+      in: header
+      value: $inputs.authToken
+    - name: accountId
+      in: query
+      value: $inputs.accountId
+    - name: campaignId
+      in: query
+      value: $inputs.campaignId
+    - name: trackingId
+      in: query
+      value: $inputs.trackingId
+    - name: medium
+      in: query
+      value: $inputs.medium
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      campaignContent: $response.body
+  - stepId: logRedirect
+    description: >-
+      Record a redirect analytics event for the same campaign and tracking. The
+      endpoint responds with a redirect to the target URL.
+    operationId: campaignRedirect
+    parameters:
+    - name: Authorization
+      in: header
+      value: $inputs.authToken
+    - name: campaignId
+      in: query
+      value: $inputs.campaignId
+    - name: trackingId
+      in: query
+      value: $inputs.trackingId
+    - name: eventType
+      in: query
+      value: $inputs.eventType
+    - name: medium
+      in: query
+      value: $inputs.medium
+    - name: redirectUrl
+      in: query
+      value: $inputs.redirectUrl
+    successCriteria:
+    - condition: $statusCode == 302
+    outputs:
+      statusCode: $statusCode
+  outputs:
+    campaignContent: $steps.evaluateCampaign.outputs.campaignContent
+    redirectStatus: $steps.logRedirect.outputs.statusCode

@@ -1,0 +1,101 @@
+arazzo: 1.0.1
+info:
+  title: parcelLab Register Return and Collect Survey
+  summary: Create a return registration, then submit a survey response tied to it.
+  description: >-
+    Closes the loop between a return and post-return feedback. The workflow opens
+    a return registration, captures its external id, and then submits a survey
+    answer that references that registration so the feedback is attributed to the
+    correct return. Every step spells out its request inline so the flow can be
+    read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: parcellabApi
+  url: ../openapi/parcellab-openapi.yml
+  type: openapi
+workflows:
+- workflowId: register-return-and-survey
+  summary: Open a return and submit a survey response referencing it.
+  description: >-
+    Creates a return registration, then submits a survey answer keyed to that
+    registration via reference_id and reference_type.
+  inputs:
+    type: object
+    required:
+    - authToken
+    - account
+    - code
+    - reference
+    - customerEmail
+    - surveyId
+    - surveyData
+    properties:
+      authToken:
+        type: string
+        description: Authorization header value for the parcelLab API.
+      account:
+        type: integer
+        description: The parcelLab account id.
+      code:
+        type: string
+        description: Return configuration code for the return.
+      reference:
+        type: string
+        description: Order reference the return belongs to.
+      customerEmail:
+        type: string
+        description: Customer email for the return registration.
+      surveyId:
+        type: string
+        description: The survey id (uuid) to submit a response to.
+      surveyData:
+        type: object
+        description: The survey answer payload keyed by question.
+  steps:
+  - stepId: createReturn
+    description: >-
+      Open a new return registration that the survey response will reference.
+    operationId: createReturnRegistration
+    parameters:
+    - name: Authorization
+      in: header
+      value: $inputs.authToken
+    requestBody:
+      contentType: application/json
+      payload:
+        account: $inputs.account
+        code: $inputs.code
+        reference: $inputs.reference
+        customer_email: $inputs.customerEmail
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      externalId: $response.body#/external_id
+      status: $response.body#/status
+  - stepId: submitSurvey
+    description: >-
+      Submit the survey answer, referencing the newly created return
+      registration so the feedback is attributed to it.
+    operationId: submitSurveyAnswer
+    parameters:
+    - name: Authorization
+      in: header
+      value: $inputs.authToken
+    - name: id
+      in: path
+      value: $inputs.surveyId
+    requestBody:
+      contentType: application/json
+      payload:
+        data: $inputs.surveyData
+        is_complete: true
+        reference_id: $steps.createReturn.outputs.externalId
+        reference_type: return_registration
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      isComplete: $response.body#/isComplete
+      detail: $response.body#/detail
+  outputs:
+    returnExternalId: $steps.createReturn.outputs.externalId
+    surveyComplete: $steps.submitSurvey.outputs.isComplete

@@ -1,0 +1,118 @@
+arazzo: 1.0.1
+info:
+  title: parcelLab Create Order and Track
+  summary: Create or update an order, then retrieve its latest tracking and checkpoints.
+  description: >-
+    The core parcelLab post-purchase flow. The workflow pushes an order (with its
+    line items and shipping address) into parcelLab via the idempotent upsert
+    endpoint, captures the returned external order id and order number, and then
+    reads back the consolidated order status so the caller has the trackings and
+    courier checkpoints in a single pass. Every step spells out its request
+    inline so the flow can be read and executed without opening the underlying
+    OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: parcellabApi
+  url: ../openapi/parcellab-openapi.yml
+  type: openapi
+workflows:
+- workflowId: upsert-order-and-track
+  summary: Upsert an order and immediately read back its tracking status.
+  description: >-
+    Sends an order to parcelLab and then fetches the order info for the same
+    account and order number, surfacing the trackings and their checkpoints.
+  inputs:
+    type: object
+    required:
+    - authToken
+    - account
+    - orderNumber
+    properties:
+      authToken:
+        type: string
+        description: >-
+          Authorization header value, e.g. "Parcellab-API-Token
+          <base64(account_id:token)>" or "Bearer <token>".
+      account:
+        type: integer
+        description: The parcelLab account id that owns the order.
+      orderNumber:
+        type: string
+        description: The shop order number used to identify the order.
+      destinationCountryIso3:
+        type: string
+        description: ISO3 destination country code for the shipment.
+      recipientEmail:
+        type: string
+        description: Recipient email address for the order.
+      recipientName:
+        type: string
+        description: Recipient name for the order.
+      shippingAddress:
+        type: object
+        description: Shipping address object for the order.
+      articlesOrder:
+        type: array
+        description: Line items ordered.
+  steps:
+  - stepId: upsertOrder
+    description: >-
+      Create the order if it does not exist, or apply updates to an existing
+      order with the same account and order number.
+    operationId: upsertOrder
+    parameters:
+    - name: Authorization
+      in: header
+      value: $inputs.authToken
+    requestBody:
+      contentType: application/json
+      payload:
+        account: $inputs.account
+        order_number: $inputs.orderNumber
+        destination_country_iso3: $inputs.destinationCountryIso3
+        recipient_email: $inputs.recipientEmail
+        recipient_name: $inputs.recipientName
+        shipping_address: $inputs.shippingAddress
+        articles_order: $inputs.articlesOrder
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      externalId: $response.body#/external_id
+      orderNumber: $response.body#/order_number
+    onSuccess:
+    - name: created
+      type: goto
+      stepId: getOrderStatus
+      criteria:
+      - condition: $statusCode == 201
+    - name: updated
+      type: goto
+      stepId: getOrderStatus
+      criteria:
+      - condition: $statusCode == 200
+  - stepId: getOrderStatus
+    description: >-
+      Read the latest order, tracking, and checkpoint information for the order
+      that was just upserted.
+    operationId: getOrderInfo
+    parameters:
+    - name: Authorization
+      in: header
+      value: $inputs.authToken
+    - name: account
+      in: query
+      value: $inputs.account
+    - name: order_number
+      in: query
+      value: $steps.upsertOrder.outputs.orderNumber
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      trackings: $response.body#/trackings
+      firstTrackingNumber: $response.body#/trackings/0/tracking_number
+      firstTrackingStatus: $response.body#/trackings/0/status
+      firstCheckpoints: $response.body#/trackings/0/checkpoints
+  outputs:
+    externalId: $steps.upsertOrder.outputs.externalId
+    trackings: $steps.getOrderStatus.outputs.trackings
+    firstTrackingNumber: $steps.getOrderStatus.outputs.firstTrackingNumber

@@ -1,0 +1,111 @@
+arazzo: 1.0.1
+info:
+  title: parcelLab Track and Target Campaign
+  summary: Read an order's tracking status, then evaluate a campaign for that tracking.
+  description: >-
+    Connects the tracking page to a targeted marketing placement. The workflow
+    reads the order info to obtain the live tracking id, then evaluates campaign
+    targeting for that tracking so the right post-purchase content is selected for
+    the customer's tracking experience. Every step spells out its request inline
+    so the flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: parcellabApi
+  url: ../openapi/parcellab-openapi.yml
+  type: openapi
+workflows:
+- workflowId: track-and-target-campaign
+  summary: Fetch order tracking, then evaluate a campaign for the tracking id.
+  description: >-
+    Reads the order info for an account and order number, captures the tracking
+    id, and evaluates campaign targeting for that tracking.
+  inputs:
+    type: object
+    required:
+    - authToken
+    - account
+    - orderNumber
+    - campaignId
+    properties:
+      authToken:
+        type: string
+        description: Authorization header value for the parcelLab API.
+      account:
+        type: integer
+        description: The parcelLab account id.
+      orderNumber:
+        type: string
+        description: The shop order number to look up.
+      campaignId:
+        type: string
+        description: The campaign id to evaluate for the tracking.
+      medium:
+        type: string
+        description: The medium the campaign is rendered in.
+  steps:
+  - stepId: getOrderStatus
+    description: >-
+      Read the order info to obtain the tracking and its tracking id for campaign
+      targeting.
+    operationId: getOrderInfo
+    parameters:
+    - name: Authorization
+      in: header
+      value: $inputs.authToken
+    - name: account
+      in: query
+      value: $inputs.account
+    - name: order_number
+      in: query
+      value: $inputs.orderNumber
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      firstTrackingNumber: $response.body#/trackings/0/tracking_number
+      firstTrackingStatus: $response.body#/trackings/0/status
+    onSuccess:
+    - name: hasTracking
+      type: goto
+      stepId: evaluateCampaign
+      criteria:
+      - context: $response.body
+        condition: $.trackings.length > 0
+        type: jsonpath
+    - name: noTracking
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.trackings.length == 0
+        type: jsonpath
+  - stepId: evaluateCampaign
+    description: >-
+      Evaluate campaign targeting for the order's tracking so the right content is
+      shown on the tracking experience.
+    operationId: evaluateCampaign
+    parameters:
+    - name: Authorization
+      in: header
+      value: $inputs.authToken
+    - name: accountId
+      in: query
+      value: $inputs.account
+    - name: campaignId
+      in: query
+      value: $inputs.campaignId
+    - name: trackingId
+      in: query
+      value: $steps.getOrderStatus.outputs.firstTrackingNumber
+    - name: medium
+      in: query
+      value: $inputs.medium
+    - name: orderNumber
+      in: query
+      value: $inputs.orderNumber
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      campaignContent: $response.body
+  outputs:
+    trackingStatus: $steps.getOrderStatus.outputs.firstTrackingStatus
+    campaignContent: $steps.evaluateCampaign.outputs.campaignContent

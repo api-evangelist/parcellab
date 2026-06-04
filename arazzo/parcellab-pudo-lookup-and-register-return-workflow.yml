@@ -1,0 +1,122 @@
+arazzo: 1.0.1
+info:
+  title: parcelLab PUDO Lookup and Register Return
+  summary: Find a nearby drop-off point, then open a return registration for the order.
+  description: >-
+    Supports the self-service return journey. The workflow looks up nearby
+    pickup/drop-off (PUDO) locations for a courier near the customer, captures the
+    closest point, and then creates a return registration for the order so the
+    customer has a return label flow tied to a real drop-off location. Every step
+    spells out its request inline so the flow can be read and executed without
+    opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: parcellabApi
+  url: ../openapi/parcellab-openapi.yml
+  type: openapi
+workflows:
+- workflowId: pudo-lookup-and-register-return
+  summary: Look up a drop-off point and create a return registration.
+  description: >-
+    Resolves the nearest PUDO point for a courier and country, then opens a
+    return registration for the order against the same account.
+  inputs:
+    type: object
+    required:
+    - authToken
+    - account
+    - countryIso3
+    - courier
+    - code
+    - reference
+    - customerEmail
+    properties:
+      authToken:
+        type: string
+        description: Authorization header value for the parcelLab API.
+      account:
+        type: integer
+        description: The parcelLab account id.
+      countryIso3:
+        type: string
+        description: ISO3 country code for the PUDO search and return.
+      courier:
+        type: string
+        description: Courier code to look up drop-off points for.
+      latitude:
+        type: number
+        description: Latitude to rank drop-off points by distance.
+      longitude:
+        type: number
+        description: Longitude to rank drop-off points by distance.
+      code:
+        type: string
+        description: Return configuration code to register the return against.
+      reference:
+        type: string
+        description: Order reference the return belongs to.
+      customerEmail:
+        type: string
+        description: Customer email for the return registration.
+      articlesReturn:
+        type: array
+        description: Line items being returned.
+  steps:
+  - stepId: lookupPudo
+    description: >-
+      Find nearby pickup/drop-off points for the courier, ranked by distance
+      from the supplied coordinates.
+    operationId: lookupPlaceInfo
+    parameters:
+    - name: Authorization
+      in: header
+      value: $inputs.authToken
+    - name: account
+      in: query
+      value: $inputs.account
+    - name: ordering
+      in: query
+      value: distance
+    requestBody:
+      contentType: application/json
+      payload:
+        account: $inputs.account
+        country_iso3: $inputs.countryIso3
+        lookups:
+        - courier: $inputs.courier
+        location:
+          latitude: $inputs.latitude
+          longitude: $inputs.longitude
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      nearestPlaceType: $response.body#/0/place_type
+      nearestAddress: $response.body#/0/address
+      nearestDistance: $response.body#/0/distance_meters
+  - stepId: registerReturn
+    description: >-
+      Create a return registration for the order so the customer can drop the
+      parcel at the resolved location.
+    operationId: createReturnRegistration
+    parameters:
+    - name: Authorization
+      in: header
+      value: $inputs.authToken
+    requestBody:
+      contentType: application/json
+      payload:
+        account: $inputs.account
+        code: $inputs.code
+        reference: $inputs.reference
+        customer_email: $inputs.customerEmail
+        articles_return: $inputs.articlesReturn
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      externalId: $response.body#/external_id
+      sequenceNumber: $response.body#/sequence_number
+      status: $response.body#/status
+  outputs:
+    nearestAddress: $steps.lookupPudo.outputs.nearestAddress
+    returnExternalId: $steps.registerReturn.outputs.externalId
+    returnStatus: $steps.registerReturn.outputs.status

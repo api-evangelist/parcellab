@@ -1,0 +1,104 @@
+arazzo: 1.0.1
+info:
+  title: parcelLab List and Get Return
+  summary: List return registrations for an account, then fetch the first one in detail.
+  description: >-
+    A read-oriented returns flow. The workflow pages the return registrations for
+    an account, branches on whether any results came back, and when at least one
+    exists fetches that registration in full by its external id. When the page is
+    empty the flow ends cleanly without a detail call. Every step spells out its
+    request inline so the flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: parcellabApi
+  url: ../openapi/parcellab-openapi.yml
+  type: openapi
+workflows:
+- workflowId: list-and-get-return
+  summary: List return registrations and fetch the first result in detail.
+  description: >-
+    Reads a page of return registrations for an account and, when results exist,
+    retrieves the first registration by its external id.
+  inputs:
+    type: object
+    required:
+    - authToken
+    - account
+    properties:
+      authToken:
+        type: string
+        description: Authorization header value for the parcelLab API.
+      account:
+        type: integer
+        description: The parcelLab account id to list returns for.
+      limit:
+        type: integer
+        description: Maximum number of registrations to return.
+      offset:
+        type: integer
+        description: Pagination offset.
+      ordering:
+        type: string
+        description: Ordering expression for the result page.
+  steps:
+  - stepId: listReturns
+    description: >-
+      Read a page of return registrations for the account, ordered as requested.
+    operationId: listReturnRegistrations
+    parameters:
+    - name: Authorization
+      in: header
+      value: $inputs.authToken
+    - name: account
+      in: query
+      value: $inputs.account
+    - name: limit
+      in: query
+      value: $inputs.limit
+    - name: offset
+      in: query
+      value: $inputs.offset
+    - name: ordering
+      in: query
+      value: $inputs.ordering
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      count: $response.body#/count
+      firstExternalId: $response.body#/results/0/external_id
+    onSuccess:
+    - name: hasResults
+      type: goto
+      stepId: getReturn
+      criteria:
+      - context: $response.body
+        condition: $.results.length > 0
+        type: jsonpath
+    - name: noResults
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.results.length == 0
+        type: jsonpath
+  - stepId: getReturn
+    description: >-
+      Fetch the first return registration from the page in full by its external
+      id.
+    operationId: getReturnRegistration
+    parameters:
+    - name: Authorization
+      in: header
+      value: $inputs.authToken
+    - name: external_id
+      in: path
+      value: $steps.listReturns.outputs.firstExternalId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+      reference: $response.body#/reference
+      returnLabels: $response.body#/return_labels
+  outputs:
+    count: $steps.listReturns.outputs.count
+    firstReturnStatus: $steps.getReturn.outputs.status

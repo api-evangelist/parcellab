@@ -1,0 +1,116 @@
+arazzo: 1.0.1
+info:
+  title: parcelLab Predict Delivery and Create Order
+  summary: Get a pre-checkout delivery prediction, then create the order it describes.
+  description: >-
+    Combines the Promise prediction endpoint with order creation. The workflow
+    first asks parcelLab for a localized delivery date prediction for the
+    destination and courier, captures the likely delivery window, and then
+    upserts the order so the post-purchase tracking experience picks up where the
+    checkout promise left off. Every step spells out its request inline so the
+    flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: parcellabApi
+  url: ../openapi/parcellab-openapi.yml
+  type: openapi
+workflows:
+- workflowId: predict-then-create-order
+  summary: Predict a delivery date and then create the matching order.
+  description: >-
+    Calls the delivery date predictor for a destination and courier, then
+    upserts the order for the same account and destination country.
+  inputs:
+    type: object
+    required:
+    - authToken
+    - account
+    - destinationCountryIso3
+    - orderNumber
+    properties:
+      authToken:
+        type: string
+        description: Authorization header value for the parcelLab API.
+      account:
+        type: integer
+        description: The parcelLab account id.
+      destinationCountryIso3:
+        type: string
+        description: ISO3 destination country code.
+      destinationPostalCode:
+        type: string
+        description: Destination postal code to refine the prediction.
+      courier:
+        type: string
+        description: Courier code to constrain the prediction.
+      serviceLevel:
+        type: string
+        description: Service level to constrain the prediction.
+      orderNumber:
+        type: string
+        description: The shop order number for the order to create.
+      recipientEmail:
+        type: string
+        description: Recipient email for the order.
+      articlesOrder:
+        type: array
+        description: Line items ordered.
+  steps:
+  - stepId: predictDelivery
+    description: >-
+      Request a localized delivery date prediction for the destination, courier,
+      and service level.
+    operationId: predictDelivery
+    parameters:
+    - name: Authorization
+      in: header
+      value: $inputs.authToken
+    - name: account
+      in: query
+      value: $inputs.account
+    - name: destination_country_iso3
+      in: query
+      value: $inputs.destinationCountryIso3
+    - name: destination_postal_code
+      in: query
+      value: $inputs.destinationPostalCode
+    - name: courier
+      in: query
+      value: $inputs.courier
+    - name: service_level
+      in: query
+      value: $inputs.serviceLevel
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      requestId: $response.body#/request_id
+      dateLikely: $response.body#/prediction/0/date_likely
+      dateMin: $response.body#/prediction/0/date_min
+      dateMax: $response.body#/prediction/0/date_max
+  - stepId: createOrder
+    description: >-
+      Upsert the order for the same account and destination so its tracking
+      experience continues from the checkout promise.
+    operationId: upsertOrder
+    parameters:
+    - name: Authorization
+      in: header
+      value: $inputs.authToken
+    requestBody:
+      contentType: application/json
+      payload:
+        account: $inputs.account
+        order_number: $inputs.orderNumber
+        destination_country_iso3: $inputs.destinationCountryIso3
+        recipient_email: $inputs.recipientEmail
+        articles_order: $inputs.articlesOrder
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      externalId: $response.body#/external_id
+      orderNumber: $response.body#/order_number
+  outputs:
+    dateLikely: $steps.predictDelivery.outputs.dateLikely
+    externalId: $steps.createOrder.outputs.externalId
+    orderNumber: $steps.createOrder.outputs.orderNumber

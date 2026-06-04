@@ -1,0 +1,111 @@
+arazzo: 1.0.1
+info:
+  title: parcelLab Survey Fetch and Submit
+  summary: Load a survey, fetch its prefilled answers for a reference, then submit a response.
+  description: >-
+    Drives the customer survey experience end to end. The workflow loads the
+    survey definition by id, retrieves any prefilled answers for a given
+    reference (a tracking or return registration), and then submits the completed
+    response. Every step spells out its request inline so the flow can be read and
+    executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: parcellabApi
+  url: ../openapi/parcellab-openapi.yml
+  type: openapi
+workflows:
+- workflowId: survey-fetch-and-submit
+  summary: Fetch a survey, load its prefilled answers, and submit a response.
+  description: >-
+    Reads the survey definition, fetches prefilled answers for a reference, then
+    submits the customer's completed survey response.
+  inputs:
+    type: object
+    required:
+    - authToken
+    - surveyId
+    - refId
+    - surveyData
+    properties:
+      authToken:
+        type: string
+        description: Authorization header value for the parcelLab API.
+      surveyId:
+        type: string
+        description: The survey id (uuid).
+      refId:
+        type: string
+        description: Reference id (tracking or return registration) to prefill from.
+      referenceType:
+        type: string
+        description: Reference type, one of return_registration or tracking.
+      surveyData:
+        type: object
+        description: The completed survey answer payload.
+  steps:
+  - stepId: getSurvey
+    description: >-
+      Load the survey definition so the caller knows its status and config before
+      collecting answers.
+    operationId: getSurvey
+    parameters:
+    - name: Authorization
+      in: header
+      value: $inputs.authToken
+    - name: id
+      in: path
+      value: $inputs.surveyId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      surveyName: $response.body#/name
+      surveyStatus: $response.body#/status
+      surveyUrl: $response.body#/surveyUrl
+  - stepId: getPrefilled
+    description: >-
+      Fetch any prefilled answers for the survey scoped to the supplied
+      reference.
+    operationId: getSurveyAnswer
+    parameters:
+    - name: Authorization
+      in: header
+      value: $inputs.authToken
+    - name: id
+      in: path
+      value: $inputs.surveyId
+    - name: ref_id
+      in: query
+      value: $inputs.refId
+    - name: reference_type
+      in: query
+      value: $inputs.referenceType
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      editable: $response.body#/editable
+  - stepId: submitSurvey
+    description: >-
+      Submit the completed survey response for the same survey and reference.
+    operationId: submitSurveyAnswer
+    parameters:
+    - name: Authorization
+      in: header
+      value: $inputs.authToken
+    - name: id
+      in: path
+      value: $inputs.surveyId
+    requestBody:
+      contentType: application/json
+      payload:
+        data: $inputs.surveyData
+        is_complete: true
+        reference_id: $inputs.refId
+        reference_type: $inputs.referenceType
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      isComplete: $response.body#/isComplete
+      detail: $response.body#/detail
+  outputs:
+    surveyName: $steps.getSurvey.outputs.surveyName
+    surveyComplete: $steps.submitSurvey.outputs.isComplete

@@ -1,0 +1,99 @@
+arazzo: 1.0.1
+info:
+  title: parcelLab Create and Fetch Return
+  summary: Create a return registration and immediately read it back by external id.
+  description: >-
+    The canonical create-then-confirm pattern for returns. The workflow opens a
+    return registration for an order, captures the server-assigned external id
+    and sequence number, and then re-fetches the registration so the caller has
+    the authoritative record including any generated return labels and status.
+    Every step spells out its request inline so the flow can be read and executed
+    without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: parcellabApi
+  url: ../openapi/parcellab-openapi.yml
+  type: openapi
+workflows:
+- workflowId: create-and-fetch-return
+  summary: Create a return registration and fetch the persisted record.
+  description: >-
+    Posts a new return registration, then reads it back by its external id to
+    confirm persistence and surface the generated labels and status.
+  inputs:
+    type: object
+    required:
+    - authToken
+    - account
+    - code
+    - reference
+    - customerEmail
+    properties:
+      authToken:
+        type: string
+        description: Authorization header value for the parcelLab API.
+      account:
+        type: integer
+        description: The parcelLab account id.
+      code:
+        type: string
+        description: Return configuration code to register the return against.
+      reference:
+        type: string
+        description: Order reference the return belongs to.
+      customerEmail:
+        type: string
+        description: Customer email for the return registration.
+      articlesOrder:
+        type: array
+        description: Line items from the original order.
+      articlesReturn:
+        type: array
+        description: Line items being returned.
+  steps:
+  - stepId: createReturn
+    description: >-
+      Open a new return registration for the order against the supplied return
+      configuration code.
+    operationId: createReturnRegistration
+    parameters:
+    - name: Authorization
+      in: header
+      value: $inputs.authToken
+    requestBody:
+      contentType: application/json
+      payload:
+        account: $inputs.account
+        code: $inputs.code
+        reference: $inputs.reference
+        customer_email: $inputs.customerEmail
+        articles_order: $inputs.articlesOrder
+        articles_return: $inputs.articlesReturn
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      externalId: $response.body#/external_id
+      sequenceNumber: $response.body#/sequence_number
+      status: $response.body#/status
+  - stepId: fetchReturn
+    description: >-
+      Read the persisted return registration back by its external id to confirm
+      it was stored and to retrieve any generated return labels.
+    operationId: getReturnRegistration
+    parameters:
+    - name: Authorization
+      in: header
+      value: $inputs.authToken
+    - name: external_id
+      in: path
+      value: $steps.createReturn.outputs.externalId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+      returnLabels: $response.body#/return_labels
+      sequenceNumber: $response.body#/sequence_number
+  outputs:
+    externalId: $steps.createReturn.outputs.externalId
+    status: $steps.fetchReturn.outputs.status
+    returnLabels: $steps.fetchReturn.outputs.returnLabels
