@@ -1,0 +1,635 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "parcelLab API",
+    "version": "4"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Orders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create or Update Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.parcellab.com/v4/track/orders/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Idempotent endpoint that creates a new order or applies mutations to an existing one (add or cancel trackings, change line item quantity, add or replace line items, cancel order)."
+        },
+        {
+          "info": {
+            "name": "Get Order Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcellab.com/v4/track/orders/info/",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "order_number",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "tracking_number",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "courier",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "external_order_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "external_reference",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "customer_number",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "recipient_email",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "recipient_postal_code",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "client_key",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "lang",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "s",
+                "value": "",
+                "type": "query",
+                "description": "HMAC security signature."
+              },
+              {
+                "name": "live_refresh",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "show_returns",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "tracking_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "single_tracking",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve the latest order, tracking, and checkpoint information for an order identified by order_number, tracking_number, external_order_id, or recipient identifiers."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Send Shop or Warehouse Event",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.parcellab.com/v4/track/events/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Push a custom event/checkpoint (e.g., warehouse pick, pack, dispatch) into the order timeline. Identifies the order by courier+tracking, account+reference, or account+order_number."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Place Info",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Look Up Pickup/Drop-Off Locations",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.parcellab.com/v4/track/place-info/lookup/",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ordering",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Find nearby PUDO points for one or more couriers, ranked by distance from a geo-coordinate or address."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Promise",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Predict Delivery Date",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcellab.com/v4/promise/prediction/predict/",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "destination_country_iso3",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "destination_postal_code",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "courier",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "service_level",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "warehouse",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "language_iso2",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "calibration",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "dispatch_now",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "now_override",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "draft",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Return localized delivery date predictions for a destination, optionally constrained to a courier, service level, and warehouse."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Returns",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Return Registrations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcellab.com/v4/returns/return-registrations/",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ordering",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List Return Registrations"
+        },
+        {
+          "info": {
+            "name": "Create Return Registration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.parcellab.com/v4/returns/return-registrations/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Return Registration"
+        },
+        {
+          "info": {
+            "name": "Get Return Registration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcellab.com/v4/returns/return-registrations/:external_id/",
+            "params": [
+              {
+                "name": "external_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Return Registration"
+        },
+        {
+          "info": {
+            "name": "List Return Configurations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcellab.com/v4/returns/returns-configurations/",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ordering",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List Return Configurations"
+        },
+        {
+          "info": {
+            "name": "Get Return Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcellab.com/v4/returns/returns-configurations/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Return Configuration"
+        },
+        {
+          "info": {
+            "name": "List Document Templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcellab.com/v4/returns/document-templates/",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Document templates used for generating return labels and slips."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Campaigns",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Evaluate Campaign Targeting",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcellab.com/v4/campaign/evaluate/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "language",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "medium",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "message",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "orderNumber",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "preview",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "trackingId",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Evaluate Campaign Targeting"
+        },
+        {
+          "info": {
+            "name": "Campaign Redirect Analytics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcellab.com/v4/campaign/redirect/",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "trackingId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "eventType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "medium",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "redirectUrl",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "customerSegmentationId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "emailId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "contentType",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Campaign Redirect Analytics"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Surveys",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Survey",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcellab.com/v4/survey/survey/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Survey"
+        },
+        {
+          "info": {
+            "name": "Get Survey Answer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcellab.com/v4/survey/survey/:id/answer/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "ref_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "reference_type",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get Survey Answer"
+        },
+        {
+          "info": {
+            "name": "Submit Survey Answer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.parcellab.com/v4/survey/survey/:id/answer/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit Survey Answer"
+        },
+        {
+          "info": {
+            "name": "List Survey Themes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcellab.com/v4/survey/survey/themes/",
+            "params": [
+              {
+                "name": "default",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List Survey Themes"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

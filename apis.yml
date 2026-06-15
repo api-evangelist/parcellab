@@ -2,16 +2,12 @@ aid: parcellab
 url: https://raw.githubusercontent.com/api-evangelist/parcellab/refs/heads/main/apis.yml
 name: parcelLab
 description: >-
-  parcelLab is a Munich-headquartered post-purchase experience platform
-  (parcelLab GmbH) used by retailers including IKEA, Hugo Boss, Dyson,
-  Puma, and John Lewis to turn delivery and returns into a branded,
-  revenue-generating part of the customer journey. The platform spans four
-  modules — Convert (pre-checkout delivery promise), Engage (multichannel
-  post-purchase communications), Retain (Returns Portal and returns
-  experience), and Insights (analytics, benchmarking, control tower) —
-  layered with AI agents (WISMO/R, Insights, Fraud & Abuse) and exposed via
-  the parcelLab API v4 Enhanced. Global, EU, and US regional endpoints are
-  available; the same data backs a Model Context Protocol server at
+  parcelLab is a Munich-headquartered post-purchase experience platform (parcelLab GmbH) used by retailers including
+  IKEA, Hugo Boss, Dyson, Puma, and John Lewis to turn delivery and returns into a branded, revenue-generating part of
+  the customer journey. The platform spans four modules — Convert (pre-checkout delivery promise), Engage (multichannel
+  post-purchase communications), Retain (Returns Portal and returns experience), and Insights (analytics, benchmarking,
+  control tower) — layered with AI agents (WISMO/R, Insights, Fraud & Abuse) and exposed via the parcelLab API v4
+  Enhanced. Global, EU, and US regional endpoints are available; the same data backs a Model Context Protocol server at
   agents.parcellab.com/mcp/ for agentic clients.
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
@@ -36,11 +32,10 @@ apis:
   - aid: parcellab:parcellab-api
     name: parcelLab API
     description: >-
-      parcelLab API v4 Enhanced — the unified REST API for ingesting orders
-      and trackings, retrieving order status, looking up pickup/drop-off
-      locations, predicting delivery dates (Promise), creating and managing
-      return registrations against returns configurations, evaluating
-      campaign targeting, and serving surveys back to customers.
+      parcelLab API v4 Enhanced — the unified REST API for ingesting orders and trackings, retrieving order status,
+      looking up pickup/drop-off locations, predicting delivery dates (Promise), creating and managing return
+      registrations against returns configurations, evaluating campaign targeting, and serving surveys back to
+      customers.
     humanURL: https://docs.parcellab.com/docs/developers/readme
     baseURL: https://api.parcellab.com
     tags:
@@ -90,27 +85,12 @@ apis:
         url: examples/parcellab-create-return-registration-example.json
       - type: Example
         url: examples/parcellab-pudo-lookup-example.json
-      - type: NaftikoCapability
-        url: capabilities/parcellab-orders.yaml
-      - type: NaftikoCapability
-        url: capabilities/parcellab-events.yaml
-      - type: NaftikoCapability
-        url: capabilities/parcellab-promise.yaml
-      - type: NaftikoCapability
-        url: capabilities/parcellab-place-info.yaml
-      - type: NaftikoCapability
-        url: capabilities/parcellab-returns.yaml
-      - type: NaftikoCapability
-        url: capabilities/parcellab-surveys.yaml
-      - type: NaftikoCapability
-        url: capabilities/parcellab-campaigns.yaml
   - aid: parcellab:parcellab-mcp
     name: parcelLab MCP Server
     description: >-
-      Hosted Model Context Protocol server exposing the parcelLab order
-      tracking and returns registration workflow to MCP-compatible agents,
-      authenticated via OAuth 2.1 bearer tokens with scopes such as
-      `track:orderinfo` and `returns:registration`.
+      Hosted Model Context Protocol server exposing the parcelLab order tracking and returns registration workflow to
+      MCP-compatible agents, authenticated via OAuth 2.1 bearer tokens with scopes such as `track:orderinfo` and
+      `returns:registration`.
     humanURL: https://github.com/parcelLab/parcellab-mcp-server
     baseURL: https://agents.parcellab.com/mcp/
     tags:
@@ -125,42 +105,44 @@ apis:
       - type: Documentation
         url: https://github.com/parcelLab/parcellab-mcp-server
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/parcellab/overview
   - type: ArazzoWorkflows
     url: arazzo/
     workflows:
-    - url: arazzo/parcellab-create-and-fetch-return-workflow.yml
-      name: parcelLab Create and Fetch Return
-      summary: Create a return registration and immediately read it back by external id.
-    - url: arazzo/parcellab-evaluate-campaign-and-redirect-workflow.yml
-      name: parcelLab Evaluate Campaign and Log Redirect
-      summary: Evaluate campaign targeting for a tracking, then record a redirect analytics event.
-    - url: arazzo/parcellab-list-and-get-return-workflow.yml
-      name: parcelLab List and Get Return
-      summary: List return registrations for an account, then fetch the first one in detail.
-    - url: arazzo/parcellab-predict-then-create-order-workflow.yml
-      name: parcelLab Predict Delivery and Create Order
-      summary: Get a pre-checkout delivery prediction, then create the order it describes.
-    - url: arazzo/parcellab-pudo-lookup-and-register-return-workflow.yml
-      name: parcelLab PUDO Lookup and Register Return
-      summary: Find a nearby drop-off point, then open a return registration for the order.
-    - url: arazzo/parcellab-register-return-and-survey-workflow.yml
-      name: parcelLab Register Return and Collect Survey
-      summary: Create a return registration, then submit a survey response tied to it.
-    - url: arazzo/parcellab-resolve-config-and-register-return-workflow.yml
-      name: parcelLab Resolve Config and Register Return
-      summary: Resolve a return configuration for an account, then register a return with it.
-    - url: arazzo/parcellab-send-event-and-refresh-workflow.yml
-      name: parcelLab Send Event and Refresh Status
-      summary: Push a warehouse or shop event into the timeline, then refresh the order status.
-    - url: arazzo/parcellab-survey-fetch-and-submit-workflow.yml
-      name: parcelLab Survey Fetch and Submit
-      summary: Load a survey, fetch its prefilled answers for a reference, then submit a response.
-    - url: arazzo/parcellab-track-and-target-campaign-workflow.yml
-      name: parcelLab Track and Target Campaign
-      summary: Read an order's tracking status, then evaluate a campaign for that tracking.
-    - url: arazzo/parcellab-upsert-order-and-track-workflow.yml
-      name: parcelLab Create Order and Track
-      summary: Create or update an order, then retrieve its latest tracking and checkpoints.
+      - url: arazzo/parcellab-create-and-fetch-return-workflow.yml
+        name: parcelLab Create and Fetch Return
+        summary: Create a return registration and immediately read it back by external id.
+      - url: arazzo/parcellab-evaluate-campaign-and-redirect-workflow.yml
+        name: parcelLab Evaluate Campaign and Log Redirect
+        summary: Evaluate campaign targeting for a tracking, then record a redirect analytics event.
+      - url: arazzo/parcellab-list-and-get-return-workflow.yml
+        name: parcelLab List and Get Return
+        summary: List return registrations for an account, then fetch the first one in detail.
+      - url: arazzo/parcellab-predict-then-create-order-workflow.yml
+        name: parcelLab Predict Delivery and Create Order
+        summary: Get a pre-checkout delivery prediction, then create the order it describes.
+      - url: arazzo/parcellab-pudo-lookup-and-register-return-workflow.yml
+        name: parcelLab PUDO Lookup and Register Return
+        summary: Find a nearby drop-off point, then open a return registration for the order.
+      - url: arazzo/parcellab-register-return-and-survey-workflow.yml
+        name: parcelLab Register Return and Collect Survey
+        summary: Create a return registration, then submit a survey response tied to it.
+      - url: arazzo/parcellab-resolve-config-and-register-return-workflow.yml
+        name: parcelLab Resolve Config and Register Return
+        summary: Resolve a return configuration for an account, then register a return with it.
+      - url: arazzo/parcellab-send-event-and-refresh-workflow.yml
+        name: parcelLab Send Event and Refresh Status
+        summary: Push a warehouse or shop event into the timeline, then refresh the order status.
+      - url: arazzo/parcellab-survey-fetch-and-submit-workflow.yml
+        name: parcelLab Survey Fetch and Submit
+        summary: Load a survey, fetch its prefilled answers for a reference, then submit a response.
+      - url: arazzo/parcellab-track-and-target-campaign-workflow.yml
+        name: parcelLab Track and Target Campaign
+        summary: Read an order's tracking status, then evaluate a campaign for that tracking.
+      - url: arazzo/parcellab-upsert-order-and-track-workflow.yml
+        name: parcelLab Create Order and Track
+        summary: Create or update an order, then retrieve its latest tracking and checkpoints.
   - type: Website
     url: https://parcellab.com
   - type: DeveloperPortal
@@ -223,8 +205,6 @@ common:
     url: rules/parcellab-rules.yml
   - type: Vocabulary
     url: vocabulary/parcellab-vocabulary.yml
-  - type: NaftikoCapabilities
-    url: capabilities/post-purchase-experience.yaml
   - type: Features
     data:
       - name: Delivery Promise
@@ -234,7 +214,9 @@ common:
       - name: Carrier Network
         description: Integrations with 450+ carriers worldwide via direct carrier interfaces.
       - name: Returns Portal
-        description: Branded self-service returns portal with refund options, exchanges, retention offers, split returns, and claims.
+        description: >-
+          Branded self-service returns portal with refund options, exchanges, retention offers, split returns, and
+          claims.
       - name: Multichannel Communications
         description: Email, SMS, Push, Webhook, and Order Status Page delivery of branded post-purchase messages.
       - name: Apple Wallet Tracking
@@ -246,7 +228,9 @@ common:
       - name: Surveys & NPS
         description: Embedded surveys and NPS feedback tied to deliveries or return registrations.
       - name: MCP Server
-        description: Hosted Model Context Protocol server (agents.parcellab.com/mcp/) for agentic order tracking and return registration workflows.
+        description: >-
+          Hosted Model Context Protocol server (agents.parcellab.com/mcp/) for agentic order tracking and return
+          registration workflows.
   - type: UseCases
     data:
       - name: WISMO Reduction
