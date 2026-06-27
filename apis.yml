@@ -51,7 +51,7 @@ apis:
         url: https://docs.parcellab.com/docs/developers/readme
       - type: APIReference
         url: https://docs.parcellab.com/docs/developers/getting-started/api-reference
-      - type: Quickstart
+      - type: GettingStarted
         url: https://docs.parcellab.com/docs/developers/getting-started/quickstart-guide
       - type: Authentication
         url: https://docs.parcellab.com/docs/developers/getting-started/authentication
@@ -75,15 +75,15 @@ apis:
         url: json-structure/parcellab-return-registration-structure.json
       - type: JSONLD
         url: json-ld/parcellab-context.jsonld
-      - type: Example
+      - type: Examples
         url: examples/parcellab-upsert-order-example.json
-      - type: Example
+      - type: Examples
         url: examples/parcellab-get-order-info-example.json
-      - type: Example
+      - type: Examples
         url: examples/parcellab-predict-delivery-example.json
-      - type: Example
+      - type: Examples
         url: examples/parcellab-create-return-registration-example.json
-      - type: Example
+      - type: Examples
         url: examples/parcellab-pudo-lookup-example.json
   - aid: parcellab:parcellab-mcp
     name: parcelLab MCP Server
@@ -107,42 +107,39 @@ apis:
 common:
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/parcellab/overview
-  - type: ArazzoWorkflows
-    url: arazzo/
-    workflows:
-      - url: arazzo/parcellab-create-and-fetch-return-workflow.yml
-        name: parcelLab Create and Fetch Return
-        summary: Create a return registration and immediately read it back by external id.
-      - url: arazzo/parcellab-evaluate-campaign-and-redirect-workflow.yml
-        name: parcelLab Evaluate Campaign and Log Redirect
-        summary: Evaluate campaign targeting for a tracking, then record a redirect analytics event.
-      - url: arazzo/parcellab-list-and-get-return-workflow.yml
-        name: parcelLab List and Get Return
-        summary: List return registrations for an account, then fetch the first one in detail.
-      - url: arazzo/parcellab-predict-then-create-order-workflow.yml
-        name: parcelLab Predict Delivery and Create Order
-        summary: Get a pre-checkout delivery prediction, then create the order it describes.
-      - url: arazzo/parcellab-pudo-lookup-and-register-return-workflow.yml
-        name: parcelLab PUDO Lookup and Register Return
-        summary: Find a nearby drop-off point, then open a return registration for the order.
-      - url: arazzo/parcellab-register-return-and-survey-workflow.yml
-        name: parcelLab Register Return and Collect Survey
-        summary: Create a return registration, then submit a survey response tied to it.
-      - url: arazzo/parcellab-resolve-config-and-register-return-workflow.yml
-        name: parcelLab Resolve Config and Register Return
-        summary: Resolve a return configuration for an account, then register a return with it.
-      - url: arazzo/parcellab-send-event-and-refresh-workflow.yml
-        name: parcelLab Send Event and Refresh Status
-        summary: Push a warehouse or shop event into the timeline, then refresh the order status.
-      - url: arazzo/parcellab-survey-fetch-and-submit-workflow.yml
-        name: parcelLab Survey Fetch and Submit
-        summary: Load a survey, fetch its prefilled answers for a reference, then submit a response.
-      - url: arazzo/parcellab-track-and-target-campaign-workflow.yml
-        name: parcelLab Track and Target Campaign
-        summary: Read an order's tracking status, then evaluate a campaign for that tracking.
-      - url: arazzo/parcellab-upsert-order-and-track-workflow.yml
-        name: parcelLab Create Order and Track
-        summary: Create or update an order, then retrieve its latest tracking and checkpoints.
+  - type: Arazzo
+    url: arazzo/parcellab-create-and-fetch-return-workflow.yml
+    name: parcelLab Create and Fetch Return
+  - type: Arazzo
+    url: arazzo/parcellab-evaluate-campaign-and-redirect-workflow.yml
+    name: parcelLab Evaluate Campaign and Log Redirect
+  - type: Arazzo
+    url: arazzo/parcellab-list-and-get-return-workflow.yml
+    name: parcelLab List and Get Return
+  - type: Arazzo
+    url: arazzo/parcellab-predict-then-create-order-workflow.yml
+    name: parcelLab Predict Delivery and Create Order
+  - type: Arazzo
+    url: arazzo/parcellab-pudo-lookup-and-register-return-workflow.yml
+    name: parcelLab PUDO Lookup and Register Return
+  - type: Arazzo
+    url: arazzo/parcellab-register-return-and-survey-workflow.yml
+    name: parcelLab Register Return and Collect Survey
+  - type: Arazzo
+    url: arazzo/parcellab-resolve-config-and-register-return-workflow.yml
+    name: parcelLab Resolve Config and Register Return
+  - type: Arazzo
+    url: arazzo/parcellab-send-event-and-refresh-workflow.yml
+    name: parcelLab Send Event and Refresh Status
+  - type: Arazzo
+    url: arazzo/parcellab-survey-fetch-and-submit-workflow.yml
+    name: parcelLab Survey Fetch and Submit
+  - type: Arazzo
+    url: arazzo/parcellab-track-and-target-campaign-workflow.yml
+    name: parcelLab Track and Target Campaign
+  - type: Arazzo
+    url: arazzo/parcellab-upsert-order-and-track-workflow.yml
+    name: parcelLab Create Order and Track
   - type: Website
     url: https://parcellab.com
   - type: DeveloperPortal
@@ -157,7 +154,7 @@ common:
     url: https://docs.parcellab.com/docs/developers/getting-started/api-reference
   - type: ErrorCodes
     url: https://docs.parcellab.com/docs/developers/getting-started/error-codes
-  - type: SignUp
+  - type: Signup
     url: https://app.parcellab.com/signin
   - type: Console
     url: https://app.parcellab.com
@@ -183,15 +180,15 @@ common:
     url: https://docs.parcellab.com/docs/platform/security-compliance/single-sign-on
   - type: DataRetentionPolicy
     url: https://docs.parcellab.com/docs/platform/security-compliance/data-retention-policy
-  - type: SDK
+  - type: SDKs
     url: https://github.com/parcelLab/parcelLab-js-plugin
-  - type: SDK
+  - type: SDKs
     url: https://github.com/parcelLab/js-plugin-utils
-  - type: SDK
+  - type: SDKs
     url: https://github.com/parcelLab/regionIdentifier
-  - type: SDK
+  - type: SDKs
     url: https://github.com/parcelLab/parcellab-embedded-ui-snippets
-  - type: SDK
+  - type: SDKs
     url: https://github.com/parcelLab/charts
   - type: AgentSDK
     url: https://github.com/parcelLab/parcellab-mcp-server
