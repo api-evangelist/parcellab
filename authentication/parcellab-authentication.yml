@@ -1,0 +1,17 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/parcellab-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: parcellabApiToken
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: '`Authorization: Parcellab-API-Token <base64(account_id:token)>`. App- generated
+    tokens may instead use the `Bearer <token>` scheme.'
+  sources:
+  - openapi/parcellab-openapi.yml

@@ -105,6 +105,12 @@ apis:
       - type: Documentation
         url: https://github.com/parcelLab/parcellab-mcp-server
 common:
+  - type: VulnerabilityDisclosure
+    url: security/parcellab-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/parcellab-domain-security.yml
+  - type: Authentication
+    url: authentication/parcellab-authentication.yml
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/parcellab/overview
   - type: Arazzo
