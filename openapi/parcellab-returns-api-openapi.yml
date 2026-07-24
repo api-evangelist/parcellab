@@ -1,0 +1,398 @@
+openapi: 3.0.3
+info:
+  title: parcelLab Campaigns Returns API
+  description: 'parcelLab API v4 Enhanced — the REST API for the parcelLab post-purchase
+
+    experience platform. Send orders and trackings, retrieve order status,
+
+    look up pickup/drop-off locations, predict delivery dates, manage return
+
+    registrations and configurations, evaluate marketing campaigns, and
+
+    publish surveys to your customers.
+
+
+    Regional base URLs are available for EU and US workloads in addition to
+
+    the global endpoint.
+
+    '
+  version: '4'
+  contact:
+    name: parcelLab Developer Support
+    url: https://docs.parcellab.com/docs/developers/readme
+  license:
+    name: Proprietary
+    url: https://parcellab.com/legal/terms-of-service/
+servers:
+- url: https://api.parcellab.com
+  description: Global production endpoint
+- url: https://api.eu.parcellab.com
+  description: EU regional endpoint
+- url: https://api.us.parcellab.com
+  description: US regional endpoint
+security:
+- parcellabApiToken: []
+tags:
+- name: Returns
+  description: Return registrations, configurations, and document templates.
+paths:
+  /v4/returns/return-registrations/:
+    get:
+      tags:
+      - Returns
+      summary: List Return Registrations
+      operationId: listReturnRegistrations
+      parameters:
+      - in: query
+        name: account
+        schema:
+          type: integer
+      - in: query
+        name: limit
+        schema:
+          type: integer
+      - in: query
+        name: offset
+        schema:
+          type: integer
+      - in: query
+        name: ordering
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Page of return registrations.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReturnRegistrationList'
+    post:
+      tags:
+      - Returns
+      summary: Create Return Registration
+      operationId: createReturnRegistration
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReturnRegistration'
+      responses:
+        '201':
+          description: Created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReturnRegistration'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /v4/returns/return-registrations/{external_id}/:
+    get:
+      tags:
+      - Returns
+      summary: Get Return Registration
+      operationId: getReturnRegistration
+      parameters:
+      - in: path
+        name: external_id
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Return registration.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReturnRegistration'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /v4/returns/returns-configurations/:
+    get:
+      tags:
+      - Returns
+      summary: List Return Configurations
+      operationId: listReturnConfigurations
+      parameters:
+      - in: query
+        name: account
+        schema:
+          type: integer
+      - in: query
+        name: limit
+        schema:
+          type: integer
+      - in: query
+        name: offset
+        schema:
+          type: integer
+      - in: query
+        name: ordering
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Return configuration sets.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ReturnConfiguration'
+  /v4/returns/returns-configurations/{id}/:
+    get:
+      tags:
+      - Returns
+      summary: Get Return Configuration
+      operationId: getReturnConfiguration
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Return configuration.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReturnConfiguration'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /v4/returns/document-templates/:
+    get:
+      tags:
+      - Returns
+      summary: List Document Templates
+      operationId: listDocumentTemplates
+      description: Document templates used for generating return labels and slips.
+      parameters:
+      - in: query
+        name: account
+        schema:
+          type: integer
+      - in: query
+        name: limit
+        schema:
+          type: integer
+      - in: query
+        name: offset
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Document templates.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  additionalProperties: true
+components:
+  schemas:
+    LineItem:
+      type: object
+      properties:
+        sku:
+          type: string
+        name:
+          type: string
+        quantity:
+          type: integer
+        price:
+          type: number
+        currency:
+          type: string
+        image_url:
+          type: string
+          format: uri
+    Address:
+      type: object
+      properties:
+        name:
+          type: string
+        street:
+          type: string
+        house_no:
+          type: string
+        city:
+          type: string
+        postal_code:
+          type: string
+        country_iso3:
+          type: string
+        state:
+          type: string
+        phone:
+          type: string
+        email:
+          type: string
+          format: email
+    ReturnRegistrationList:
+      type: object
+      properties:
+        count:
+          type: integer
+        next:
+          type: string
+          format: uri
+          nullable: true
+        previous:
+          type: string
+          format: uri
+          nullable: true
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReturnRegistration'
+    ReturnRegistration:
+      type: object
+      required:
+      - account
+      - code
+      - reference
+      - customer_email
+      properties:
+        external_id:
+          type: string
+          format: uuid
+          readOnly: true
+        sequence_number:
+          type: string
+          readOnly: true
+        account:
+          type: integer
+        code:
+          type: string
+          maxLength: 255
+        reference:
+          type: string
+          maxLength: 255
+        customer_email:
+          type: string
+        customer_address:
+          $ref: '#/components/schemas/Address'
+        status:
+          type: string
+          enum:
+          - created
+          - submitted
+          - pending_approval
+          - pending_label
+          - approved
+          - rejected
+          - cancelled
+          - closed
+          - processing_failed
+          - invalid
+        order_date:
+          type: string
+          format: date-time
+        order_delivery_date:
+          type: string
+          format: date-time
+        order_shipping_date:
+          type: string
+          format: date-time
+        order_total_amount:
+          type: number
+        order_shipping_amount:
+          type: number
+        order_tax_amount:
+          type: number
+        order_currency:
+          type: string
+        articles_order:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItem'
+        articles_return:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItem'
+        return_labels:
+          type: array
+          readOnly: true
+          items:
+            type: object
+            additionalProperties: true
+        tags:
+          type: array
+          items:
+            type: string
+        metadata:
+          type: object
+          additionalProperties: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+    ReturnConfiguration:
+      type: object
+      properties:
+        id:
+          type: string
+        account:
+          type: integer
+        code:
+          type: string
+        name:
+          type: string
+        return_periods:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+        return_reasons:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+        compensation_methods:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+        carrier_options:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+    ErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: false
+        message:
+          type: string
+        errors:
+          type: object
+          additionalProperties: true
+  responses:
+    BadRequest:
+      description: Invalid payload or query parameters.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    parcellabApiToken:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: '`Authorization: Parcellab-API-Token <base64(account_id:token)>`. App- generated tokens may instead use the `Bearer <token>` scheme.'

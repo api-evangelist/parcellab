@@ -1,0 +1,141 @@
+openapi: 3.0.3
+info:
+  title: parcelLab Campaigns API
+  description: 'parcelLab API v4 Enhanced — the REST API for the parcelLab post-purchase
+
+    experience platform. Send orders and trackings, retrieve order status,
+
+    look up pickup/drop-off locations, predict delivery dates, manage return
+
+    registrations and configurations, evaluate marketing campaigns, and
+
+    publish surveys to your customers.
+
+
+    Regional base URLs are available for EU and US workloads in addition to
+
+    the global endpoint.
+
+    '
+  version: '4'
+  contact:
+    name: parcelLab Developer Support
+    url: https://docs.parcellab.com/docs/developers/readme
+  license:
+    name: Proprietary
+    url: https://parcellab.com/legal/terms-of-service/
+servers:
+- url: https://api.parcellab.com
+  description: Global production endpoint
+- url: https://api.eu.parcellab.com
+  description: EU regional endpoint
+- url: https://api.us.parcellab.com
+  description: US regional endpoint
+security:
+- parcellabApiToken: []
+tags:
+- name: Campaigns
+  description: Evaluate campaign targeting and redirect analytics events.
+paths:
+  /v4/campaign/evaluate/:
+    get:
+      tags:
+      - Campaigns
+      summary: Evaluate Campaign Targeting
+      operationId: evaluateCampaign
+      parameters:
+      - in: query
+        name: accountId
+        schema:
+          type: integer
+      - in: query
+        name: campaignId
+        schema:
+          type: string
+      - in: query
+        name: language
+        schema:
+          type: string
+      - in: query
+        name: medium
+        schema:
+          type: string
+      - in: query
+        name: message
+        schema:
+          type: string
+      - in: query
+        name: orderNumber
+        schema:
+          type: string
+      - in: query
+        name: preview
+        schema:
+          type: boolean
+      - in: query
+        name: status
+        schema:
+          type: string
+      - in: query
+        name: trackingId
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Evaluated campaign content.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /v4/campaign/redirect/:
+    get:
+      tags:
+      - Campaigns
+      summary: Campaign Redirect Analytics
+      operationId: campaignRedirect
+      parameters:
+      - in: query
+        name: campaignId
+        schema:
+          type: string
+      - in: query
+        name: trackingId
+        schema:
+          type: string
+      - in: query
+        name: eventType
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: medium
+        schema:
+          type: string
+      - in: query
+        name: redirectUrl
+        schema:
+          type: string
+          format: uri
+      - in: query
+        name: customerSegmentationId
+        schema:
+          type: string
+      - in: query
+        name: emailId
+        schema:
+          type: string
+      - in: query
+        name: contentType
+        schema:
+          type: string
+      responses:
+        '302':
+          description: Redirect to target URL.
+components:
+  securitySchemes:
+    parcellabApiToken:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: '`Authorization: Parcellab-API-Token <base64(account_id:token)>`. App- generated tokens may instead use the `Bearer <token>` scheme.'

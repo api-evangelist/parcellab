@@ -1,0 +1,213 @@
+openapi: 3.0.3
+info:
+  title: parcelLab Campaigns Surveys API
+  description: 'parcelLab API v4 Enhanced — the REST API for the parcelLab post-purchase
+
+    experience platform. Send orders and trackings, retrieve order status,
+
+    look up pickup/drop-off locations, predict delivery dates, manage return
+
+    registrations and configurations, evaluate marketing campaigns, and
+
+    publish surveys to your customers.
+
+
+    Regional base URLs are available for EU and US workloads in addition to
+
+    the global endpoint.
+
+    '
+  version: '4'
+  contact:
+    name: parcelLab Developer Support
+    url: https://docs.parcellab.com/docs/developers/readme
+  license:
+    name: Proprietary
+    url: https://parcellab.com/legal/terms-of-service/
+servers:
+- url: https://api.parcellab.com
+  description: Global production endpoint
+- url: https://api.eu.parcellab.com
+  description: EU regional endpoint
+- url: https://api.us.parcellab.com
+  description: US regional endpoint
+security:
+- parcellabApiToken: []
+tags:
+- name: Surveys
+  description: Retrieve survey definitions and submit responses.
+paths:
+  /v4/survey/survey/{id}/:
+    get:
+      tags:
+      - Surveys
+      summary: Get Survey
+      operationId: getSurvey
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Survey definition.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PublicSurvey'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /v4/survey/survey/{id}/answer/:
+    get:
+      tags:
+      - Surveys
+      summary: Get Survey Answer
+      operationId: getSurveyAnswer
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - in: query
+        name: ref_id
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: reference_type
+        schema:
+          type: string
+          enum:
+          - return_registration
+          - tracking
+      responses:
+        '200':
+          description: Survey with prefilled answers.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PublicSurvey'
+    post:
+      tags:
+      - Surveys
+      summary: Submit Survey Answer
+      operationId: submitSurveyAnswer
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SurveyResponseRequest'
+      responses:
+        '200':
+          description: Submission accepted.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SurveyResponseResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /v4/survey/survey/themes/:
+    get:
+      tags:
+      - Surveys
+      summary: List Survey Themes
+      operationId: listSurveyThemes
+      parameters:
+      - in: query
+        name: default
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Survey theme configurations.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+components:
+  schemas:
+    PublicSurvey:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        status:
+          type: string
+        type:
+          type: string
+        surveyUrl:
+          type: string
+          format: uri
+        config:
+          type: object
+          additionalProperties: true
+        editable:
+          type: boolean
+    SurveyResponseRequest:
+      type: object
+      properties:
+        data:
+          type: object
+          additionalProperties: true
+        is_complete:
+          type: boolean
+        reference_id:
+          type: string
+        reference_type:
+          type: string
+          enum:
+          - return_registration
+          - tracking
+    SurveyResponseResponse:
+      type: object
+      properties:
+        isComplete:
+          type: boolean
+        detail:
+          type: string
+    ErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: false
+        message:
+          type: string
+        errors:
+          type: object
+          additionalProperties: true
+  responses:
+    BadRequest:
+      description: Invalid payload or query parameters.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    parcellabApiToken:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: '`Authorization: Parcellab-API-Token <base64(account_id:token)>`. App- generated tokens may instead use the `Bearer <token>` scheme.'

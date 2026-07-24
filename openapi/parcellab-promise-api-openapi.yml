@@ -1,0 +1,170 @@
+openapi: 3.0.3
+info:
+  title: parcelLab Campaigns Promise API
+  description: 'parcelLab API v4 Enhanced — the REST API for the parcelLab post-purchase
+
+    experience platform. Send orders and trackings, retrieve order status,
+
+    look up pickup/drop-off locations, predict delivery dates, manage return
+
+    registrations and configurations, evaluate marketing campaigns, and
+
+    publish surveys to your customers.
+
+
+    Regional base URLs are available for EU and US workloads in addition to
+
+    the global endpoint.
+
+    '
+  version: '4'
+  contact:
+    name: parcelLab Developer Support
+    url: https://docs.parcellab.com/docs/developers/readme
+  license:
+    name: Proprietary
+    url: https://parcellab.com/legal/terms-of-service/
+servers:
+- url: https://api.parcellab.com
+  description: Global production endpoint
+- url: https://api.eu.parcellab.com
+  description: EU regional endpoint
+- url: https://api.us.parcellab.com
+  description: US regional endpoint
+security:
+- parcellabApiToken: []
+tags:
+- name: Promise
+  description: Pre-checkout delivery date predictions.
+paths:
+  /v4/promise/prediction/predict/:
+    get:
+      tags:
+      - Promise
+      summary: Predict Delivery Date
+      operationId: predictDelivery
+      description: Return localized delivery date predictions for a destination, optionally constrained to a courier, service level, and warehouse.
+      parameters:
+      - in: query
+        name: account
+        required: true
+        schema:
+          type: integer
+      - in: query
+        name: destination_country_iso3
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: destination_postal_code
+        schema:
+          type: string
+      - in: query
+        name: courier
+        schema:
+          type: string
+      - in: query
+        name: service_level
+        schema:
+          type: string
+      - in: query
+        name: warehouse
+        schema:
+          type: string
+      - in: query
+        name: language_iso2
+        schema:
+          type: string
+      - in: query
+        name: calibration
+        schema:
+          type: string
+          enum:
+          - conservative
+          - balanced
+          - aggressive
+      - in: query
+        name: dispatch_now
+        schema:
+          type: boolean
+      - in: query
+        name: now_override
+        schema:
+          type: string
+          format: date-time
+      - in: query
+        name: draft
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Delivery date predictions.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PromisePrediction'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+components:
+  responses:
+    BadRequest:
+      description: Invalid payload or query parameters.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    PromisePrediction:
+      type: object
+      properties:
+        request_id:
+          type: string
+        success:
+          type: boolean
+        prediction:
+          type: array
+          items:
+            type: object
+            properties:
+              courier:
+                type: string
+              service_level:
+                type: string
+              date_min:
+                type: string
+                format: date
+              date_max:
+                type: string
+                format: date
+              date_likely:
+                type: string
+                format: date
+              days_min:
+                type: integer
+              days_max:
+                type: integer
+              days_likely:
+                type: integer
+              cutoff:
+                type: string
+                format: date-time
+              localized:
+                type: object
+                additionalProperties: true
+    ErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: false
+        message:
+          type: string
+        errors:
+          type: object
+          additionalProperties: true
+  securitySchemes:
+    parcellabApiToken:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: '`Authorization: Parcellab-API-Token <base64(account_id:token)>`. App- generated tokens may instead use the `Bearer <token>` scheme.'

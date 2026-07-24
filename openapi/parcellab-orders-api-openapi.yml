@@ -1,0 +1,358 @@
+openapi: 3.0.3
+info:
+  title: parcelLab Campaigns Orders API
+  description: 'parcelLab API v4 Enhanced — the REST API for the parcelLab post-purchase
+
+    experience platform. Send orders and trackings, retrieve order status,
+
+    look up pickup/drop-off locations, predict delivery dates, manage return
+
+    registrations and configurations, evaluate marketing campaigns, and
+
+    publish surveys to your customers.
+
+
+    Regional base URLs are available for EU and US workloads in addition to
+
+    the global endpoint.
+
+    '
+  version: '4'
+  contact:
+    name: parcelLab Developer Support
+    url: https://docs.parcellab.com/docs/developers/readme
+  license:
+    name: Proprietary
+    url: https://parcellab.com/legal/terms-of-service/
+servers:
+- url: https://api.parcellab.com
+  description: Global production endpoint
+- url: https://api.eu.parcellab.com
+  description: EU regional endpoint
+- url: https://api.us.parcellab.com
+  description: US regional endpoint
+security:
+- parcellabApiToken: []
+tags:
+- name: Orders
+  description: Create, update, and inspect orders and their trackings.
+paths:
+  /v4/track/orders/:
+    put:
+      tags:
+      - Orders
+      summary: Create or Update Order
+      operationId: upsertOrder
+      description: Idempotent endpoint that creates a new order or applies mutations to an existing one (add or cancel trackings, change line item quantity, add or replace line items, cancel order).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderUpsertRequest'
+      responses:
+        '200':
+          description: Order updated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderUpsertResponse'
+        '201':
+          description: New order created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderUpsertResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /v4/track/orders/info/:
+    get:
+      tags:
+      - Orders
+      summary: Get Order Status
+      operationId: getOrderInfo
+      description: Retrieve the latest order, tracking, and checkpoint information for an order identified by order_number, tracking_number, external_order_id, or recipient identifiers.
+      parameters:
+      - in: query
+        name: account
+        schema:
+          type: integer
+      - in: query
+        name: order_number
+        schema:
+          type: string
+      - in: query
+        name: tracking_number
+        schema:
+          type: string
+      - in: query
+        name: courier
+        schema:
+          type: string
+      - in: query
+        name: external_order_id
+        schema:
+          type: string
+          format: uuid
+      - in: query
+        name: external_reference
+        schema:
+          type: string
+      - in: query
+        name: customer_number
+        schema:
+          type: string
+      - in: query
+        name: recipient_email
+        schema:
+          type: string
+          format: email
+      - in: query
+        name: recipient_postal_code
+        schema:
+          type: string
+      - in: query
+        name: client_key
+        schema:
+          type: string
+      - in: query
+        name: lang
+        schema:
+          type: string
+          default: en
+      - in: query
+        name: s
+        schema:
+          type: string
+        description: HMAC security signature.
+      - in: query
+        name: live_refresh
+        schema:
+          type: boolean
+      - in: query
+        name: show_returns
+        schema:
+          type: boolean
+      - in: query
+        name: tracking_id
+        schema:
+          type: string
+      - in: query
+        name: single_tracking
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Order info.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderInfo'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  responses:
+    Forbidden:
+      description: Token lacks required permissions.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Missing or invalid API token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Invalid payload or query parameters.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    LineItem:
+      type: object
+      properties:
+        sku:
+          type: string
+        name:
+          type: string
+        quantity:
+          type: integer
+        price:
+          type: number
+        currency:
+          type: string
+        image_url:
+          type: string
+          format: uri
+    Tracking:
+      type: object
+      properties:
+        tracking_number:
+          type: string
+        courier:
+          type: string
+        status:
+          type: string
+        lifecycle:
+          type: string
+        delivery_estimate:
+          type: string
+          format: date-time
+        checkpoints:
+          type: array
+          items:
+            $ref: '#/components/schemas/Checkpoint'
+    Address:
+      type: object
+      properties:
+        name:
+          type: string
+        street:
+          type: string
+        house_no:
+          type: string
+        city:
+          type: string
+        postal_code:
+          type: string
+        country_iso3:
+          type: string
+        state:
+          type: string
+        phone:
+          type: string
+        email:
+          type: string
+          format: email
+    Checkpoint:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        status:
+          type: string
+        status_details:
+          type: string
+        location:
+          type: string
+        courier:
+          type: string
+    OrderUpsertRequest:
+      type: object
+      required:
+      - account
+      - order_number
+      properties:
+        account:
+          type: integer
+        order_number:
+          type: string
+        destination_country_iso3:
+          type: string
+        recipient_email:
+          type: string
+          format: email
+        recipient_name:
+          type: string
+        shipping_address:
+          $ref: '#/components/schemas/Address'
+        articles_order:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItem'
+        mutations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Mutation'
+    OrderInfo:
+      type: object
+      properties:
+        order_number:
+          type: string
+        client_key:
+          type: string
+        order_date:
+          type: string
+          format: date-time
+        recipient_name:
+          type: string
+        recipient_email:
+          type: string
+          format: email
+        destination_country_iso3:
+          type: string
+        trackings:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tracking'
+    Mutation:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - add_tracking
+          - cancel_tracking
+          - cancel_order
+          - change_line_item_quantity
+          - add_line_item
+          - replace_line_item
+        payload:
+          type: object
+          additionalProperties: true
+    ErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: false
+        message:
+          type: string
+        errors:
+          type: object
+          additionalProperties: true
+    OrderUpsertResponse:
+      type: object
+      properties:
+        external_id:
+          type: string
+          format: uuid
+        order_number:
+          type: string
+        mutations:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+              result:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  errors:
+                    type: object
+                    additionalProperties: true
+                  warnings:
+                    type: array
+                    items:
+                      type: string
+  securitySchemes:
+    parcellabApiToken:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: '`Authorization: Parcellab-API-Token <base64(account_id:token)>`. App- generated tokens may instead use the `Bearer <token>` scheme.'
