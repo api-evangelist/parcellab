@@ -9,7 +9,20 @@ description: >-
   control tower) — layered with AI agents (WISMO/R, Insights, Fraud & Abuse) and exposed via the parcelLab API v4
   Enhanced. Global, EU, and US regional endpoints are available; the same data backs a Model Context Protocol server at
   agents.parcellab.com/mcp/ for agentic clients.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/parcellab.png
 tags:
   - Post-Purchase
   - E-Commerce
@@ -29,81 +42,347 @@ kind: contract
 access: 3rd-Party
 position: Producer
 apis:
-  - aid: parcellab:parcellab-api
-    name: parcelLab API
-    description: >-
-      parcelLab API v4 Enhanced — the unified REST API for ingesting orders and trackings, retrieving order status,
-      looking up pickup/drop-off locations, predicting delivery dates (Promise), creating and managing return
-      registrations against returns configurations, evaluating campaign targeting, and serving surveys back to
-      customers.
-    humanURL: https://docs.parcellab.com/docs/developers/readme
-    baseURL: https://api.parcellab.com
-    tags:
-      - Orders
-      - Tracking
-      - Returns
-      - Promise
-      - Surveys
-      - Campaigns
-      - PUDO
-    properties:
-      - type: Documentation
-        url: https://docs.parcellab.com/docs/developers/readme
-      - type: APIReference
-        url: https://docs.parcellab.com/docs/developers/getting-started/api-reference
-      - type: GettingStarted
-        url: https://docs.parcellab.com/docs/developers/getting-started/quickstart-guide
-      - type: Authentication
-        url: https://docs.parcellab.com/docs/developers/getting-started/authentication
-      - type: OpenAPI
-        url: openapi/parcellab-openapi.yml
-      - type: JSONSchema
-        url: json-schema/parcellab-order-schema.json
-      - type: JSONSchema
-        url: json-schema/parcellab-tracking-schema.json
-      - type: JSONSchema
-        url: json-schema/parcellab-return-registration-schema.json
-      - type: JSONSchema
-        url: json-schema/parcellab-address-schema.json
-      - type: JSONSchema
-        url: json-schema/parcellab-line-item-schema.json
-      - type: JSONSchema
-        url: json-schema/parcellab-promise-prediction-schema.json
-      - type: JSONStructure
-        url: json-structure/parcellab-order-structure.json
-      - type: JSONStructure
-        url: json-structure/parcellab-return-registration-structure.json
-      - type: JSONLD
-        url: json-ld/parcellab-context.jsonld
-      - type: Examples
-        url: examples/parcellab-upsert-order-example.json
-      - type: Examples
-        url: examples/parcellab-get-order-info-example.json
-      - type: Examples
-        url: examples/parcellab-predict-delivery-example.json
-      - type: Examples
-        url: examples/parcellab-create-return-registration-example.json
-      - type: Examples
-        url: examples/parcellab-pudo-lookup-example.json
-  - aid: parcellab:parcellab-mcp
-    name: parcelLab MCP Server
-    description: >-
-      Hosted Model Context Protocol server exposing the parcelLab order tracking and returns registration workflow to
-      MCP-compatible agents, authenticated via OAuth 2.1 bearer tokens with scopes such as `track:orderinfo` and
-      `returns:registration`.
-    humanURL: https://github.com/parcelLab/parcellab-mcp-server
-    baseURL: https://agents.parcellab.com/mcp/
-    tags:
-      - MCP
-      - AI
-      - Agents
-      - Tracking
-      - Returns
-    properties:
-      - type: GitHubRepository
-        url: https://github.com/parcelLab/parcellab-mcp-server
-      - type: Documentation
-        url: https://github.com/parcelLab/parcellab-mcp-server
+- aid: parcellab:parcellab-mcp
+  name: parcelLab MCP Server
+  description: >-
+    Hosted Model Context Protocol server exposing the parcelLab order tracking and returns registration
+    workflow to MCP-compatible agents, authenticated via OAuth 2.1 bearer tokens with scopes such as `track:orderinfo`
+    and `returns:registration`.
+  humanURL: https://github.com/parcelLab/parcellab-mcp-server
+  baseURL: https://agents.parcellab.com/mcp/
+  tags:
+  - MCP
+  - AI
+  - Agents
+  - Tracking
+  - Returns
+  properties:
+  - type: GitHubRepository
+    url: https://github.com/parcelLab/parcellab-mcp-server
+  - type: Documentation
+    url: https://github.com/parcelLab/parcellab-mcp-server
+- aid: parcellab:parcellab-campaigns-api
+  name: parcelLab Campaigns API
+  description: Evaluate campaign targeting and redirect analytics events.
+  humanURL: https://docs.parcellab.com/docs/developers/readme
+  baseURL: https://api.parcellab.com
+  tags:
+  - Campaigns
+  properties:
+  - type: OpenAPI
+    url: openapi/parcellab-campaigns-api-openapi.yml
+  - type: Documentation
+    url: https://docs.parcellab.com/docs/developers/readme
+  - type: APIReference
+    url: https://docs.parcellab.com/docs/developers/getting-started/api-reference
+  - type: GettingStarted
+    url: https://docs.parcellab.com/docs/developers/getting-started/quickstart-guide
+  - type: Authentication
+    url: https://docs.parcellab.com/docs/developers/getting-started/authentication
+  - type: JSONSchema
+    url: json-schema/parcellab-order-schema.json
+  - type: JSONSchema
+    url: json-schema/parcellab-tracking-schema.json
+  - type: JSONSchema
+    url: json-schema/parcellab-return-registration-schema.json
+  - type: JSONSchema
+    url: json-schema/parcellab-address-schema.json
+  - type: JSONSchema
+    url: json-schema/parcellab-line-item-schema.json
+  - type: JSONSchema
+    url: json-schema/parcellab-promise-prediction-schema.json
+  - type: JSONStructure
+    url: json-structure/parcellab-order-structure.json
+  - type: JSONStructure
+    url: json-structure/parcellab-return-registration-structure.json
+  - type: JSONLD
+    url: json-ld/parcellab-context.jsonld
+  - type: Examples
+    url: examples/parcellab-upsert-order-example.json
+  - type: Examples
+    url: examples/parcellab-get-order-info-example.json
+  - type: Examples
+    url: examples/parcellab-predict-delivery-example.json
+  - type: Examples
+    url: examples/parcellab-create-return-registration-example.json
+  - type: Examples
+    url: examples/parcellab-pudo-lookup-example.json
+- aid: parcellab:parcellab-events-api
+  name: parcelLab Events API
+  description: Send custom shop or warehouse events into the tracking timeline.
+  humanURL: https://docs.parcellab.com/docs/developers/readme
+  baseURL: https://api.parcellab.com
+  tags:
+  - Events
+  properties:
+  - type: OpenAPI
+    url: openapi/parcellab-events-api-openapi.yml
+  - type: Documentation
+    url: https://docs.parcellab.com/docs/developers/readme
+  - type: APIReference
+    url: https://docs.parcellab.com/docs/developers/getting-started/api-reference
+  - type: GettingStarted
+    url: https://docs.parcellab.com/docs/developers/getting-started/quickstart-guide
+  - type: Authentication
+    url: https://docs.parcellab.com/docs/developers/getting-started/authentication
+  - type: JSONSchema
+    url: json-schema/parcellab-order-schema.json
+  - type: JSONSchema
+    url: json-schema/parcellab-tracking-schema.json
+  - type: JSONSchema
+    url: json-schema/parcellab-return-registration-schema.json
+  - type: JSONSchema
+    url: json-schema/parcellab-address-schema.json
+  - type: JSONSchema
+    url: json-schema/parcellab-line-item-schema.json
+  - type: JSONSchema
+    url: json-schema/parcellab-promise-prediction-schema.json
+  - type: JSONStructure
+    url: json-structure/parcellab-order-structure.json
+  - type: JSONStructure
+    url: json-structure/parcellab-return-registration-structure.json
+  - type: JSONLD
+    url: json-ld/parcellab-context.jsonld
+  - type: Examples
+    url: examples/parcellab-upsert-order-example.json
+  - type: Examples
+    url: examples/parcellab-get-order-info-example.json
+  - type: Examples
+    url: examples/parcellab-predict-delivery-example.json
+  - type: Examples
+    url: examples/parcellab-create-return-registration-example.json
+  - type: Examples
+    url: examples/parcellab-pudo-lookup-example.json
+- aid: parcellab:parcellab-orders-api
+  name: parcelLab Orders API
+  description: Create, update, and inspect orders and their trackings.
+  humanURL: https://docs.parcellab.com/docs/developers/readme
+  baseURL: https://api.parcellab.com
+  tags:
+  - Orders
+  properties:
+  - type: OpenAPI
+    url: openapi/parcellab-orders-api-openapi.yml
+  - type: Documentation
+    url: https://docs.parcellab.com/docs/developers/readme
+  - type: APIReference
+    url: https://docs.parcellab.com/docs/developers/getting-started/api-reference
+  - type: GettingStarted
+    url: https://docs.parcellab.com/docs/developers/getting-started/quickstart-guide
+  - type: Authentication
+    url: https://docs.parcellab.com/docs/developers/getting-started/authentication
+  - type: JSONSchema
+    url: json-schema/parcellab-order-schema.json
+  - type: JSONSchema
+    url: json-schema/parcellab-tracking-schema.json
+  - type: JSONSchema
+    url: json-schema/parcellab-return-registration-schema.json
+  - type: JSONSchema
+    url: json-schema/parcellab-address-schema.json
+  - type: JSONSchema
+    url: json-schema/parcellab-line-item-schema.json
+  - type: JSONSchema
+    url: json-schema/parcellab-promise-prediction-schema.json
+  - type: JSONStructure
+    url: json-structure/parcellab-order-structure.json
+  - type: JSONStructure
+    url: json-structure/parcellab-return-registration-structure.json
+  - type: JSONLD
+    url: json-ld/parcellab-context.jsonld
+  - type: Examples
+    url: examples/parcellab-upsert-order-example.json
+  - type: Examples
+    url: examples/parcellab-get-order-info-example.json
+  - type: Examples
+    url: examples/parcellab-predict-delivery-example.json
+  - type: Examples
+    url: examples/parcellab-create-return-registration-example.json
+  - type: Examples
+    url: examples/parcellab-pudo-lookup-example.json
+- aid: parcellab:parcellab-place-info-api
+  name: parcelLab Place Info API
+  description: Look up nearby pickup and drop-off (PUDO) locations.
+  humanURL: https://docs.parcellab.com/docs/developers/readme
+  baseURL: https://api.parcellab.com
+  tags:
+  - Place Info
+  properties:
+  - type: OpenAPI
+    url: openapi/parcellab-place-info-api-openapi.yml
+  - type: Documentation
+    url: https://docs.parcellab.com/docs/developers/readme
+  - type: APIReference
+    url: https://docs.parcellab.com/docs/developers/getting-started/api-reference
+  - type: GettingStarted
+    url: https://docs.parcellab.com/docs/developers/getting-started/quickstart-guide
+  - type: Authentication
+    url: https://docs.parcellab.com/docs/developers/getting-started/authentication
+  - type: JSONSchema
+    url: json-schema/parcellab-order-schema.json
+  - type: JSONSchema
+    url: json-schema/parcellab-tracking-schema.json
+  - type: JSONSchema
+    url: json-schema/parcellab-return-registration-schema.json
+  - type: JSONSchema
+    url: json-schema/parcellab-address-schema.json
+  - type: JSONSchema
+    url: json-schema/parcellab-line-item-schema.json
+  - type: JSONSchema
+    url: json-schema/parcellab-promise-prediction-schema.json
+  - type: JSONStructure
+    url: json-structure/parcellab-order-structure.json
+  - type: JSONStructure
+    url: json-structure/parcellab-return-registration-structure.json
+  - type: JSONLD
+    url: json-ld/parcellab-context.jsonld
+  - type: Examples
+    url: examples/parcellab-upsert-order-example.json
+  - type: Examples
+    url: examples/parcellab-get-order-info-example.json
+  - type: Examples
+    url: examples/parcellab-predict-delivery-example.json
+  - type: Examples
+    url: examples/parcellab-create-return-registration-example.json
+  - type: Examples
+    url: examples/parcellab-pudo-lookup-example.json
+- aid: parcellab:parcellab-promise-api
+  name: parcelLab Promise API
+  description: Pre-checkout delivery date predictions.
+  humanURL: https://docs.parcellab.com/docs/developers/readme
+  baseURL: https://api.parcellab.com
+  tags:
+  - Promise
+  properties:
+  - type: OpenAPI
+    url: openapi/parcellab-promise-api-openapi.yml
+  - type: Documentation
+    url: https://docs.parcellab.com/docs/developers/readme
+  - type: APIReference
+    url: https://docs.parcellab.com/docs/developers/getting-started/api-reference
+  - type: GettingStarted
+    url: https://docs.parcellab.com/docs/developers/getting-started/quickstart-guide
+  - type: Authentication
+    url: https://docs.parcellab.com/docs/developers/getting-started/authentication
+  - type: JSONSchema
+    url: json-schema/parcellab-order-schema.json
+  - type: JSONSchema
+    url: json-schema/parcellab-tracking-schema.json
+  - type: JSONSchema
+    url: json-schema/parcellab-return-registration-schema.json
+  - type: JSONSchema
+    url: json-schema/parcellab-address-schema.json
+  - type: JSONSchema
+    url: json-schema/parcellab-line-item-schema.json
+  - type: JSONSchema
+    url: json-schema/parcellab-promise-prediction-schema.json
+  - type: JSONStructure
+    url: json-structure/parcellab-order-structure.json
+  - type: JSONStructure
+    url: json-structure/parcellab-return-registration-structure.json
+  - type: JSONLD
+    url: json-ld/parcellab-context.jsonld
+  - type: Examples
+    url: examples/parcellab-upsert-order-example.json
+  - type: Examples
+    url: examples/parcellab-get-order-info-example.json
+  - type: Examples
+    url: examples/parcellab-predict-delivery-example.json
+  - type: Examples
+    url: examples/parcellab-create-return-registration-example.json
+  - type: Examples
+    url: examples/parcellab-pudo-lookup-example.json
+- aid: parcellab:parcellab-returns-api
+  name: parcelLab Returns API
+  description: Return registrations, configurations, and document templates.
+  humanURL: https://docs.parcellab.com/docs/developers/readme
+  baseURL: https://api.parcellab.com
+  tags:
+  - Returns
+  properties:
+  - type: OpenAPI
+    url: openapi/parcellab-returns-api-openapi.yml
+  - type: Documentation
+    url: https://docs.parcellab.com/docs/developers/readme
+  - type: APIReference
+    url: https://docs.parcellab.com/docs/developers/getting-started/api-reference
+  - type: GettingStarted
+    url: https://docs.parcellab.com/docs/developers/getting-started/quickstart-guide
+  - type: Authentication
+    url: https://docs.parcellab.com/docs/developers/getting-started/authentication
+  - type: JSONSchema
+    url: json-schema/parcellab-order-schema.json
+  - type: JSONSchema
+    url: json-schema/parcellab-tracking-schema.json
+  - type: JSONSchema
+    url: json-schema/parcellab-return-registration-schema.json
+  - type: JSONSchema
+    url: json-schema/parcellab-address-schema.json
+  - type: JSONSchema
+    url: json-schema/parcellab-line-item-schema.json
+  - type: JSONSchema
+    url: json-schema/parcellab-promise-prediction-schema.json
+  - type: JSONStructure
+    url: json-structure/parcellab-order-structure.json
+  - type: JSONStructure
+    url: json-structure/parcellab-return-registration-structure.json
+  - type: JSONLD
+    url: json-ld/parcellab-context.jsonld
+  - type: Examples
+    url: examples/parcellab-upsert-order-example.json
+  - type: Examples
+    url: examples/parcellab-get-order-info-example.json
+  - type: Examples
+    url: examples/parcellab-predict-delivery-example.json
+  - type: Examples
+    url: examples/parcellab-create-return-registration-example.json
+  - type: Examples
+    url: examples/parcellab-pudo-lookup-example.json
+- aid: parcellab:parcellab-surveys-api
+  name: parcelLab Surveys API
+  description: Retrieve survey definitions and submit responses.
+  humanURL: https://docs.parcellab.com/docs/developers/readme
+  baseURL: https://api.parcellab.com
+  tags:
+  - Surveys
+  properties:
+  - type: OpenAPI
+    url: openapi/parcellab-surveys-api-openapi.yml
+  - type: Documentation
+    url: https://docs.parcellab.com/docs/developers/readme
+  - type: APIReference
+    url: https://docs.parcellab.com/docs/developers/getting-started/api-reference
+  - type: GettingStarted
+    url: https://docs.parcellab.com/docs/developers/getting-started/quickstart-guide
+  - type: Authentication
+    url: https://docs.parcellab.com/docs/developers/getting-started/authentication
+  - type: JSONSchema
+    url: json-schema/parcellab-order-schema.json
+  - type: JSONSchema
+    url: json-schema/parcellab-tracking-schema.json
+  - type: JSONSchema
+    url: json-schema/parcellab-return-registration-schema.json
+  - type: JSONSchema
+    url: json-schema/parcellab-address-schema.json
+  - type: JSONSchema
+    url: json-schema/parcellab-line-item-schema.json
+  - type: JSONSchema
+    url: json-schema/parcellab-promise-prediction-schema.json
+  - type: JSONStructure
+    url: json-structure/parcellab-order-structure.json
+  - type: JSONStructure
+    url: json-structure/parcellab-return-registration-structure.json
+  - type: JSONLD
+    url: json-ld/parcellab-context.jsonld
+  - type: Examples
+    url: examples/parcellab-upsert-order-example.json
+  - type: Examples
+    url: examples/parcellab-get-order-info-example.json
+  - type: Examples
+    url: examples/parcellab-predict-delivery-example.json
+  - type: Examples
+    url: examples/parcellab-create-return-registration-example.json
+  - type: Examples
+    url: examples/parcellab-pudo-lookup-example.json
 common:
   - type: AgenticAccess
     url: agentic-access/parcellab-agentic-access.yml
