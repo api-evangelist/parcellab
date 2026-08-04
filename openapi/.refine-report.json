@@ -1,0 +1,26 @@
+{
+  "provider": "parcellab",
+  "sources": [
+    "parcellab-campaigns-api-openapi.yml",
+    "parcellab-events-api-openapi.yml",
+    "parcellab-orders-api-openapi.yml",
+    "parcellab-place-info-api-openapi.yml",
+    "parcellab-promise-api-openapi.yml",
+    "parcellab-returns-api-openapi.yml",
+    "parcellab-surveys-api-openapi.yml"
+  ],
+  "outputs": [
+    "parcellab-campaigns-api-openapi.yml",
+    "parcellab-events-api-openapi.yml",
+    "parcellab-orders-api-openapi.yml",
+    "parcellab-place-info-api-openapi.yml",
+    "parcellab-promise-api-openapi.yml",
+    "parcellab-returns-api-openapi.yml",
+    "parcellab-surveys-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
