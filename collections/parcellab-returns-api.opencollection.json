@@ -1,0 +1,171 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "parcelLab Campaigns Returns API",
+    "version": "4"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Returns",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Return Registrations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcellab.com/v4/returns/return-registrations/",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ordering",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List Return Registrations"
+        },
+        {
+          "info": {
+            "name": "Create Return Registration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.parcellab.com/v4/returns/return-registrations/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Return Registration"
+        },
+        {
+          "info": {
+            "name": "Get Return Registration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcellab.com/v4/returns/return-registrations/:external_id/",
+            "params": [
+              {
+                "name": "external_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Return Registration"
+        },
+        {
+          "info": {
+            "name": "List Return Configurations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcellab.com/v4/returns/returns-configurations/",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ordering",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List Return Configurations"
+        },
+        {
+          "info": {
+            "name": "Get Return Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcellab.com/v4/returns/returns-configurations/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Return Configuration"
+        },
+        {
+          "info": {
+            "name": "List Document Templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcellab.com/v4/returns/document-templates/",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Document templates used for generating return labels and slips."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

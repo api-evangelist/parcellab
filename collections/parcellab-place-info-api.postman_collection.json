@@ -1,0 +1,321 @@
+{
+  "item": [
+    {
+      "id": "93b2529f-e589-46df-9054-1207f492c20a",
+      "name": "Place Info",
+      "description": {
+        "content": "Look up nearby pickup and drop-off (PUDO) locations.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8a0f3449-4a65-4304-b27b-c1e11345155f",
+          "name": "Look Up Pickup/Drop-Off Locations",
+          "request": {
+            "name": "Look Up Pickup/Drop-Off Locations",
+            "description": {
+              "content": "Find nearby PUDO points for one or more couriers, ranked by distance from a geo-coordinate or address.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v4",
+                "track",
+                "place-info",
+                "lookup",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "account",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "account",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "ordering",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"account\": \"<integer>\",\n  \"lookups\": [\n    {\n      \"courier\": \"<string>\",\n      \"service_level\": \"<string>\",\n      \"query\": \"<string>\"\n    }\n  ],\n  \"country_iso3\": \"<string>\",\n  \"location\": {\n    \"latitude\": \"<number>\",\n    \"longitude\": \"<number>\"\n  },\n  \"external_reference\": \"<string>\",\n  \"location_address\": {\n    \"name\": \"<string>\",\n    \"street\": \"<string>\",\n    \"house_no\": \"<string>\",\n    \"city\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country_iso3\": \"<string>\",\n    \"state\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"email\": \"<email>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "dd5d0cf4-b77f-4799-abbc-c1bc6968ca30",
+              "name": "Matching PUDO points.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "track",
+                    "place-info",
+                    "lookup",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "account",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "account",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "ordering",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account\": \"<integer>\",\n  \"lookups\": [\n    {\n      \"courier\": \"<string>\",\n      \"service_level\": \"<string>\",\n      \"query\": \"<string>\"\n    }\n  ],\n  \"country_iso3\": \"<string>\",\n  \"location\": {\n    \"latitude\": \"<number>\",\n    \"longitude\": \"<number>\"\n  },\n  \"external_reference\": \"<string>\",\n  \"location_address\": {\n    \"name\": \"<string>\",\n    \"street\": \"<string>\",\n    \"house_no\": \"<string>\",\n    \"city\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country_iso3\": \"<string>\",\n    \"state\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"email\": \"<email>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"courier\": \"string\",\n    \"place_type\": \"self-service\",\n    \"address\": {\n      \"name\": \"<string>\",\n      \"street\": \"<string>\",\n      \"house_no\": \"<string>\",\n      \"city\": \"<string>\",\n      \"postal_code\": \"<string>\",\n      \"country_iso3\": \"<string>\",\n      \"state\": \"<string>\",\n      \"phone\": \"<string>\",\n      \"email\": \"<email>\"\n    },\n    \"location\": {\n      \"latitude\": 9136.668108573273,\n      \"longitude\": 7930.540446813563\n    },\n    \"opening_hours\": {\n      \"key_0\": 5335.747306549039,\n      \"key_1\": 9643.785997447474,\n      \"key_2\": 7203\n    },\n    \"distance_meters\": 5880,\n    \"services\": [\n      \"string\",\n      \"string\"\n    ],\n    \"phone\": \"string\",\n    \"website\": \"https://KYeaYTGMeIHxYuGAPKcfUxoULDIahh.hglmQTG..+Ets4F2bY7gNRD\",\n    \"external_reference\": \"string\"\n  },\n  {\n    \"courier\": \"string\",\n    \"place_type\": \"store\",\n    \"address\": {\n      \"name\": \"<string>\",\n      \"street\": \"<string>\",\n      \"house_no\": \"<string>\",\n      \"city\": \"<string>\",\n      \"postal_code\": \"<string>\",\n      \"country_iso3\": \"<string>\",\n      \"state\": \"<string>\",\n      \"phone\": \"<string>\",\n      \"email\": \"<email>\"\n    },\n    \"location\": {\n      \"latitude\": 8914.137667120494,\n      \"longitude\": 1212.0294324021074\n    },\n    \"opening_hours\": {\n      \"key_0\": 570,\n      \"key_1\": \"string\"\n    },\n    \"distance_meters\": 2451,\n    \"services\": [\n      \"string\",\n      \"string\"\n    ],\n    \"phone\": \"string\",\n    \"website\": \"https://Wq.hrX42FrPnWad\",\n    \"external_reference\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "57fef99a-91bc-4c12-b880-e6f56780ef30",
+              "name": "Invalid payload or query parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "track",
+                    "place-info",
+                    "lookup",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "account",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "account",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "ordering",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account\": \"<integer>\",\n  \"lookups\": [\n    {\n      \"courier\": \"<string>\",\n      \"service_level\": \"<string>\",\n      \"query\": \"<string>\"\n    }\n  ],\n  \"country_iso3\": \"<string>\",\n  \"location\": {\n    \"latitude\": \"<number>\",\n    \"longitude\": \"<number>\"\n  },\n  \"external_reference\": \"<string>\",\n  \"location_address\": {\n    \"name\": \"<string>\",\n    \"street\": \"<string>\",\n    \"house_no\": \"<string>\",\n    \"city\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country_iso3\": \"<string>\",\n    \"state\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"email\": \"<email>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"string\",\n  \"errors\": {\n    \"key_0\": 5467,\n    \"key_1\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "41680481-b66a-4431-9554-12c782a620e3",
+              "name": "Token lacks required permissions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "track",
+                    "place-info",
+                    "lookup",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "account",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "account",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "ordering",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account\": \"<integer>\",\n  \"lookups\": [\n    {\n      \"courier\": \"<string>\",\n      \"service_level\": \"<string>\",\n      \"query\": \"<string>\"\n    }\n  ],\n  \"country_iso3\": \"<string>\",\n  \"location\": {\n    \"latitude\": \"<number>\",\n    \"longitude\": \"<number>\"\n  },\n  \"external_reference\": \"<string>\",\n  \"location_address\": {\n    \"name\": \"<string>\",\n    \"street\": \"<string>\",\n    \"house_no\": \"<string>\",\n    \"city\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country_iso3\": \"<string>\",\n    \"state\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"email\": \"<email>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"string\",\n  \"errors\": {\n    \"key_0\": 5467,\n    \"key_1\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.parcellab.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "118ac4e4-5f73-4d8a-9e8a-b55fb2742a2a",
+    "name": "parcelLab Campaigns Place Info API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "parcelLab API v4 Enhanced — the REST API for the parcelLab post-purchase\nexperience platform. Send orders and trackings, retrieve order status,\nlook up pickup/drop-off locations, predict delivery dates, manage return\nregistrations and configurations, evaluate marketing campaigns, and\npublish surveys to your customers.\n\nRegional base URLs are available for EU and US workloads in addition to\nthe global endpoint.\n\n\nContact Support:\n Name: parcelLab Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

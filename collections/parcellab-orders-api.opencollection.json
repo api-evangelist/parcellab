@@ -1,0 +1,135 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "parcelLab Campaigns Orders API",
+    "version": "4"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Orders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create or Update Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.parcellab.com/v4/track/orders/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Idempotent endpoint that creates a new order or applies mutations to an existing one (add or cancel trackings, change line item quantity, add or replace line items, cancel order)."
+        },
+        {
+          "info": {
+            "name": "Get Order Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcellab.com/v4/track/orders/info/",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "order_number",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "tracking_number",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "courier",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "external_order_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "external_reference",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "customer_number",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "recipient_email",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "recipient_postal_code",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "client_key",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "lang",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "s",
+                "value": "",
+                "type": "query",
+                "description": "HMAC security signature."
+              },
+              {
+                "name": "live_refresh",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "show_returns",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "tracking_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "single_tracking",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve the latest order, tracking, and checkpoint information for an order identified by order_number, tracking_number, external_order_id, or recipient identifiers."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

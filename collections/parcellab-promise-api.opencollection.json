@@ -1,0 +1,94 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "parcelLab Campaigns Promise API",
+    "version": "4"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Promise",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Predict Delivery Date",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcellab.com/v4/promise/prediction/predict/",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "destination_country_iso3",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "destination_postal_code",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "courier",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "service_level",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "warehouse",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "language_iso2",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "calibration",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "dispatch_now",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "now_override",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "draft",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Return localized delivery date predictions for a destination, optionally constrained to a courier, service level, and warehouse."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

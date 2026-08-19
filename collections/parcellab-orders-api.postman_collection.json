@@ -1,0 +1,827 @@
+{
+  "item": [
+    {
+      "id": "faee7037-ccbe-4f05-ada8-a1faf50ddfa3",
+      "name": "Orders",
+      "description": {
+        "content": "Create, update, and inspect orders and their trackings.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "39f8b90e-e00f-4089-9d4a-7ab6357cee9c",
+          "name": "Create or Update Order",
+          "request": {
+            "name": "Create or Update Order",
+            "description": {
+              "content": "Idempotent endpoint that creates a new order or applies mutations to an existing one (add or cancel trackings, change line item quantity, add or replace line items, cancel order).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v4",
+                "track",
+                "orders",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"account\": \"<integer>\",\n  \"order_number\": \"<string>\",\n  \"destination_country_iso3\": \"<string>\",\n  \"recipient_email\": \"<email>\",\n  \"recipient_name\": \"<string>\",\n  \"shipping_address\": {\n    \"name\": \"<string>\",\n    \"street\": \"<string>\",\n    \"house_no\": \"<string>\",\n    \"city\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country_iso3\": \"<string>\",\n    \"state\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"email\": \"<email>\"\n  },\n  \"articles_order\": [\n    {\n      \"sku\": \"<string>\",\n      \"name\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"price\": \"<number>\",\n      \"currency\": \"<string>\",\n      \"image_url\": \"<uri>\"\n    },\n    {\n      \"sku\": \"<string>\",\n      \"name\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"price\": \"<number>\",\n      \"currency\": \"<string>\",\n      \"image_url\": \"<uri>\"\n    }\n  ],\n  \"mutations\": [\n    {\n      \"type\": \"<string>\",\n      \"payload\": {\n        \"key_0\": 2288,\n        \"key_1\": \"string\",\n        \"key_2\": true\n      }\n    },\n    {\n      \"type\": \"<string>\",\n      \"payload\": {\n        \"key_0\": 8151\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "dde1cac8-c0f1-473c-838a-cf5c07e47f88",
+              "name": "Order updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "track",
+                    "orders",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account\": \"<integer>\",\n  \"order_number\": \"<string>\",\n  \"destination_country_iso3\": \"<string>\",\n  \"recipient_email\": \"<email>\",\n  \"recipient_name\": \"<string>\",\n  \"shipping_address\": {\n    \"name\": \"<string>\",\n    \"street\": \"<string>\",\n    \"house_no\": \"<string>\",\n    \"city\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country_iso3\": \"<string>\",\n    \"state\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"email\": \"<email>\"\n  },\n  \"articles_order\": [\n    {\n      \"sku\": \"<string>\",\n      \"name\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"price\": \"<number>\",\n      \"currency\": \"<string>\",\n      \"image_url\": \"<uri>\"\n    },\n    {\n      \"sku\": \"<string>\",\n      \"name\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"price\": \"<number>\",\n      \"currency\": \"<string>\",\n      \"image_url\": \"<uri>\"\n    }\n  ],\n  \"mutations\": [\n    {\n      \"type\": \"<string>\",\n      \"payload\": {\n        \"key_0\": 1151,\n        \"key_1\": true,\n        \"key_2\": true\n      }\n    },\n    {\n      \"type\": \"<string>\",\n      \"payload\": {\n        \"key_0\": 6993.207902212594,\n        \"key_1\": 4033,\n        \"key_2\": \"string\",\n        \"key_3\": \"string\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"external_id\": \"a1828b7b-fa30-c250-2f9f-81b24c786f11\",\n  \"order_number\": \"string\",\n  \"mutations\": [\n    {\n      \"type\": \"string\",\n      \"result\": {\n        \"success\": true,\n        \"message\": \"string\",\n        \"errors\": {\n          \"key_0\": 2157.83876870294\n        },\n        \"warnings\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    },\n    {\n      \"type\": \"string\",\n      \"result\": {\n        \"success\": true,\n        \"message\": \"string\",\n        \"errors\": {\n          \"key_0\": true,\n          \"key_1\": 1821.2553190163194,\n          \"key_2\": 6587.706355919693\n        },\n        \"warnings\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fd9c44b6-313e-487c-b626-ab81de4d3b1c",
+              "name": "New order created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "track",
+                    "orders",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account\": \"<integer>\",\n  \"order_number\": \"<string>\",\n  \"destination_country_iso3\": \"<string>\",\n  \"recipient_email\": \"<email>\",\n  \"recipient_name\": \"<string>\",\n  \"shipping_address\": {\n    \"name\": \"<string>\",\n    \"street\": \"<string>\",\n    \"house_no\": \"<string>\",\n    \"city\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country_iso3\": \"<string>\",\n    \"state\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"email\": \"<email>\"\n  },\n  \"articles_order\": [\n    {\n      \"sku\": \"<string>\",\n      \"name\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"price\": \"<number>\",\n      \"currency\": \"<string>\",\n      \"image_url\": \"<uri>\"\n    },\n    {\n      \"sku\": \"<string>\",\n      \"name\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"price\": \"<number>\",\n      \"currency\": \"<string>\",\n      \"image_url\": \"<uri>\"\n    }\n  ],\n  \"mutations\": [\n    {\n      \"type\": \"<string>\",\n      \"payload\": {\n        \"key_0\": 1151,\n        \"key_1\": true,\n        \"key_2\": true\n      }\n    },\n    {\n      \"type\": \"<string>\",\n      \"payload\": {\n        \"key_0\": 6993.207902212594,\n        \"key_1\": 4033,\n        \"key_2\": \"string\",\n        \"key_3\": \"string\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"external_id\": \"b1612012-0370-a043-43d9-a1502929bc22\",\n  \"order_number\": \"string\",\n  \"mutations\": [\n    {\n      \"type\": \"string\",\n      \"result\": {\n        \"success\": false,\n        \"message\": \"string\",\n        \"errors\": {\n          \"key_0\": \"string\",\n          \"key_1\": 7776,\n          \"key_2\": true\n        },\n        \"warnings\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    },\n    {\n      \"type\": \"string\",\n      \"result\": {\n        \"success\": false,\n        \"message\": \"string\",\n        \"errors\": {\n          \"key_0\": 400.7253225480567,\n          \"key_1\": true\n        },\n        \"warnings\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c96e196d-9e6b-48a4-ae2b-2f4d88bd862c",
+              "name": "Invalid payload or query parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "track",
+                    "orders",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account\": \"<integer>\",\n  \"order_number\": \"<string>\",\n  \"destination_country_iso3\": \"<string>\",\n  \"recipient_email\": \"<email>\",\n  \"recipient_name\": \"<string>\",\n  \"shipping_address\": {\n    \"name\": \"<string>\",\n    \"street\": \"<string>\",\n    \"house_no\": \"<string>\",\n    \"city\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country_iso3\": \"<string>\",\n    \"state\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"email\": \"<email>\"\n  },\n  \"articles_order\": [\n    {\n      \"sku\": \"<string>\",\n      \"name\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"price\": \"<number>\",\n      \"currency\": \"<string>\",\n      \"image_url\": \"<uri>\"\n    },\n    {\n      \"sku\": \"<string>\",\n      \"name\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"price\": \"<number>\",\n      \"currency\": \"<string>\",\n      \"image_url\": \"<uri>\"\n    }\n  ],\n  \"mutations\": [\n    {\n      \"type\": \"<string>\",\n      \"payload\": {\n        \"key_0\": 1151,\n        \"key_1\": true,\n        \"key_2\": true\n      }\n    },\n    {\n      \"type\": \"<string>\",\n      \"payload\": {\n        \"key_0\": 6993.207902212594,\n        \"key_1\": 4033,\n        \"key_2\": \"string\",\n        \"key_3\": \"string\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"string\",\n  \"errors\": {\n    \"key_0\": 7857\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "887b80fd-2991-4fba-8d9d-b6a92fc8d29e",
+              "name": "Missing or invalid API token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "track",
+                    "orders",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account\": \"<integer>\",\n  \"order_number\": \"<string>\",\n  \"destination_country_iso3\": \"<string>\",\n  \"recipient_email\": \"<email>\",\n  \"recipient_name\": \"<string>\",\n  \"shipping_address\": {\n    \"name\": \"<string>\",\n    \"street\": \"<string>\",\n    \"house_no\": \"<string>\",\n    \"city\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country_iso3\": \"<string>\",\n    \"state\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"email\": \"<email>\"\n  },\n  \"articles_order\": [\n    {\n      \"sku\": \"<string>\",\n      \"name\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"price\": \"<number>\",\n      \"currency\": \"<string>\",\n      \"image_url\": \"<uri>\"\n    },\n    {\n      \"sku\": \"<string>\",\n      \"name\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"price\": \"<number>\",\n      \"currency\": \"<string>\",\n      \"image_url\": \"<uri>\"\n    }\n  ],\n  \"mutations\": [\n    {\n      \"type\": \"<string>\",\n      \"payload\": {\n        \"key_0\": 1151,\n        \"key_1\": true,\n        \"key_2\": true\n      }\n    },\n    {\n      \"type\": \"<string>\",\n      \"payload\": {\n        \"key_0\": 6993.207902212594,\n        \"key_1\": 4033,\n        \"key_2\": \"string\",\n        \"key_3\": \"string\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"string\",\n  \"errors\": {\n    \"key_0\": 7857\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6369e140-95d2-4958-8b0c-54042fa85a20",
+              "name": "Token lacks required permissions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "track",
+                    "orders",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account\": \"<integer>\",\n  \"order_number\": \"<string>\",\n  \"destination_country_iso3\": \"<string>\",\n  \"recipient_email\": \"<email>\",\n  \"recipient_name\": \"<string>\",\n  \"shipping_address\": {\n    \"name\": \"<string>\",\n    \"street\": \"<string>\",\n    \"house_no\": \"<string>\",\n    \"city\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country_iso3\": \"<string>\",\n    \"state\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"email\": \"<email>\"\n  },\n  \"articles_order\": [\n    {\n      \"sku\": \"<string>\",\n      \"name\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"price\": \"<number>\",\n      \"currency\": \"<string>\",\n      \"image_url\": \"<uri>\"\n    },\n    {\n      \"sku\": \"<string>\",\n      \"name\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"price\": \"<number>\",\n      \"currency\": \"<string>\",\n      \"image_url\": \"<uri>\"\n    }\n  ],\n  \"mutations\": [\n    {\n      \"type\": \"<string>\",\n      \"payload\": {\n        \"key_0\": 1151,\n        \"key_1\": true,\n        \"key_2\": true\n      }\n    },\n    {\n      \"type\": \"<string>\",\n      \"payload\": {\n        \"key_0\": 6993.207902212594,\n        \"key_1\": 4033,\n        \"key_2\": \"string\",\n        \"key_3\": \"string\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"string\",\n  \"errors\": {\n    \"key_0\": 7857\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7c9e6069-a085-45ca-938b-97e3b09b6756",
+          "name": "Get Order Status",
+          "request": {
+            "name": "Get Order Status",
+            "description": {
+              "content": "Retrieve the latest order, tracking, and checkpoint information for an order identified by order_number, tracking_number, external_order_id, or recipient identifiers.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v4",
+                "track",
+                "orders",
+                "info",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "account",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "order_number",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "tracking_number",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "courier",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "external_order_id",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "external_reference",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "customer_number",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "recipient_email",
+                  "value": "<email>"
+                },
+                {
+                  "disabled": false,
+                  "key": "recipient_postal_code",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "client_key",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "lang",
+                  "value": "en"
+                },
+                {
+                  "disabled": false,
+                  "key": "s",
+                  "value": "<string>",
+                  "description": "HMAC security signature."
+                },
+                {
+                  "disabled": false,
+                  "key": "live_refresh",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "show_returns",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "tracking_id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "single_tracking",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d25e3339-8c3c-4d16-b790-7f23394e4d9c",
+              "name": "Order info.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "track",
+                    "orders",
+                    "info",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "account",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "order_number",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tracking_number",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "courier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "external_order_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "external_reference",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer_number",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "recipient_email",
+                      "value": "<email>"
+                    },
+                    {
+                      "key": "recipient_postal_code",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "lang",
+                      "value": "en"
+                    },
+                    {
+                      "key": "s",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "live_refresh",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "show_returns",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "tracking_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "single_tracking",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"order_number\": \"string\",\n  \"client_key\": \"string\",\n  \"order_date\": \"1991-02-18T11:10:54.496Z\",\n  \"recipient_name\": \"string\",\n  \"recipient_email\": \"Dg4X12BtkApxMG@aBZCPbVtEqStfDyLKb.io\",\n  \"destination_country_iso3\": \"string\",\n  \"trackings\": [\n    {\n      \"tracking_number\": \"string\",\n      \"courier\": \"string\",\n      \"status\": \"string\",\n      \"lifecycle\": \"string\",\n      \"delivery_estimate\": \"1962-01-26T10:34:55.437Z\",\n      \"checkpoints\": [\n        {\n          \"timestamp\": \"2003-01-06T05:13:16.870Z\",\n          \"status\": \"string\",\n          \"status_details\": \"string\",\n          \"location\": \"string\",\n          \"courier\": \"string\"\n        },\n        {\n          \"timestamp\": \"2010-09-23T11:09:06.636Z\",\n          \"status\": \"string\",\n          \"status_details\": \"string\",\n          \"location\": \"string\",\n          \"courier\": \"string\"\n        }\n      ]\n    },\n    {\n      \"tracking_number\": \"string\",\n      \"courier\": \"string\",\n      \"status\": \"string\",\n      \"lifecycle\": \"string\",\n      \"delivery_estimate\": \"1961-03-26T07:37:32.914Z\",\n      \"checkpoints\": [\n        {\n          \"timestamp\": \"1995-08-29T05:08:33.799Z\",\n          \"status\": \"string\",\n          \"status_details\": \"string\",\n          \"location\": \"string\",\n          \"courier\": \"string\"\n        },\n        {\n          \"timestamp\": \"2010-05-24T06:55:06.518Z\",\n          \"status\": \"string\",\n          \"status_details\": \"string\",\n          \"location\": \"string\",\n          \"courier\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cb2a41de-59ae-4a26-9a43-37866902983d",
+              "name": "Invalid payload or query parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "track",
+                    "orders",
+                    "info",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "account",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "order_number",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tracking_number",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "courier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "external_order_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "external_reference",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer_number",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "recipient_email",
+                      "value": "<email>"
+                    },
+                    {
+                      "key": "recipient_postal_code",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "lang",
+                      "value": "en"
+                    },
+                    {
+                      "key": "s",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "live_refresh",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "show_returns",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "tracking_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "single_tracking",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"string\",\n  \"errors\": {\n    \"key_0\": 7857\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0a9b3cd5-ae96-4219-a80e-aea19d1ff151",
+              "name": "Missing or invalid API token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "track",
+                    "orders",
+                    "info",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "account",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "order_number",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tracking_number",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "courier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "external_order_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "external_reference",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer_number",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "recipient_email",
+                      "value": "<email>"
+                    },
+                    {
+                      "key": "recipient_postal_code",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "lang",
+                      "value": "en"
+                    },
+                    {
+                      "key": "s",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "live_refresh",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "show_returns",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "tracking_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "single_tracking",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"string\",\n  \"errors\": {\n    \"key_0\": 7857\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.parcellab.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d5d1212b-86eb-464d-bb8e-6259c0de8e88",
+    "name": "parcelLab Campaigns Orders API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "parcelLab API v4 Enhanced — the REST API for the parcelLab post-purchase\nexperience platform. Send orders and trackings, retrieve order status,\nlook up pickup/drop-off locations, predict delivery dates, manage return\nregistrations and configurations, evaluate marketing campaigns, and\npublish surveys to your customers.\n\nRegional base URLs are available for EU and US workloads in addition to\nthe global endpoint.\n\n\nContact Support:\n Name: parcelLab Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,330 @@
+{
+  "item": [
+    {
+      "id": "78f5d1d6-c3da-4dbb-a2de-b1c09f8f0c9a",
+      "name": "Promise",
+      "description": {
+        "content": "Pre-checkout delivery date predictions.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0d6aeb73-e1e4-46c3-aa0f-ba73dc54524d",
+          "name": "Predict Delivery Date",
+          "request": {
+            "name": "Predict Delivery Date",
+            "description": {
+              "content": "Return localized delivery date predictions for a destination, optionally constrained to a courier, service level, and warehouse.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v4",
+                "promise",
+                "prediction",
+                "predict",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "account",
+                  "value": "<integer>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "destination_country_iso3",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "destination_postal_code",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "courier",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "service_level",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "warehouse",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "language_iso2",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "calibration",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "dispatch_now",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "now_override",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "draft",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "55c60232-5537-49e3-a1d6-822f6bca2baa",
+              "name": "Delivery date predictions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "promise",
+                    "prediction",
+                    "predict",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "account",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "destination_country_iso3",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "destination_postal_code",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "courier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "service_level",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "warehouse",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "language_iso2",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "calibration",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dispatch_now",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "now_override",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "draft",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_id\": \"string\",\n  \"success\": false,\n  \"prediction\": [\n    {\n      \"courier\": \"string\",\n      \"service_level\": \"string\",\n      \"date_min\": \"1991-08-07\",\n      \"date_max\": \"1963-06-01\",\n      \"date_likely\": \"1996-09-19\",\n      \"days_min\": 8374,\n      \"days_max\": 8723,\n      \"days_likely\": 4287,\n      \"cutoff\": \"1991-12-11T13:57:41.423Z\",\n      \"localized\": {\n        \"key_0\": 590.3996909815568,\n        \"key_1\": \"string\",\n        \"key_2\": \"string\"\n      }\n    },\n    {\n      \"courier\": \"string\",\n      \"service_level\": \"string\",\n      \"date_min\": \"1953-05-11\",\n      \"date_max\": \"1976-08-06\",\n      \"date_likely\": \"2011-09-13\",\n      \"days_min\": 83,\n      \"days_max\": 5861,\n      \"days_likely\": 639,\n      \"cutoff\": \"1978-05-10T04:54:56.483Z\",\n      \"localized\": {\n        \"key_0\": 8108,\n        \"key_1\": 3533\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6c221878-e738-42ad-8376-11d604c755ff",
+              "name": "Invalid payload or query parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "promise",
+                    "prediction",
+                    "predict",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "account",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "destination_country_iso3",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "destination_postal_code",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "courier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "service_level",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "warehouse",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "language_iso2",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "calibration",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dispatch_now",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "now_override",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "draft",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"string\",\n  \"errors\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.parcellab.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f60f0487-6793-4182-9d63-1b54e5b2264e",
+    "name": "parcelLab Campaigns Promise API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "parcelLab API v4 Enhanced — the REST API for the parcelLab post-purchase\nexperience platform. Send orders and trackings, retrieve order status,\nlook up pickup/drop-off locations, predict delivery dates, manage return\nregistrations and configurations, evaluate marketing campaigns, and\npublish surveys to your customers.\n\nRegional base URLs are available for EU and US workloads in addition to\nthe global endpoint.\n\n\nContact Support:\n Name: parcelLab Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

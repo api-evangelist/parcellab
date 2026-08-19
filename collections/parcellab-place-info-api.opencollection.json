@@ -1,0 +1,53 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "parcelLab Campaigns Place Info API",
+    "version": "4"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Place Info",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Look Up Pickup/Drop-Off Locations",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.parcellab.com/v4/track/place-info/lookup/",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ordering",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Find nearby PUDO points for one or more couriers, ranked by distance from a geo-coordinate or address."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,359 @@
+{
+  "item": [
+    {
+      "id": "708207ad-ab7b-4bef-b95f-656d2d86493d",
+      "name": "Campaigns",
+      "description": {
+        "content": "Evaluate campaign targeting and redirect analytics events.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a43165ec-fcdd-4337-a039-a534e5b672ea",
+          "name": "Evaluate Campaign Targeting",
+          "request": {
+            "name": "Evaluate Campaign Targeting",
+            "description": {},
+            "url": {
+              "path": [
+                "v4",
+                "campaign",
+                "evaluate",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "accountId",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "campaignId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "language",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "medium",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "message",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "orderNumber",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "preview",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "trackingId",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4f393975-d0e4-493c-91fe-3794fc09c55e",
+              "name": "Evaluated campaign content.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "campaign",
+                    "evaluate",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "accountId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "campaignId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "language",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "medium",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "message",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "preview",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "trackingId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": 7673\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3ab1e5ce-6610-48fc-b34d-8627c3215fee",
+          "name": "Campaign Redirect Analytics",
+          "request": {
+            "name": "Campaign Redirect Analytics",
+            "description": {},
+            "url": {
+              "path": [
+                "v4",
+                "campaign",
+                "redirect",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "campaignId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "trackingId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "eventType",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "medium",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "redirectUrl",
+                  "value": "<uri>"
+                },
+                {
+                  "disabled": false,
+                  "key": "customerSegmentationId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "emailId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "contentType",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3ae432f5-ff42-42d4-a2b1-7f5beda062a2",
+              "name": "Redirect to target URL.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "campaign",
+                    "redirect",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "campaignId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "trackingId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "eventType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "medium",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "redirectUrl",
+                      "value": "<uri>"
+                    },
+                    {
+                      "key": "customerSegmentationId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "emailId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "contentType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Found",
+              "code": 302,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.parcellab.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "530fa210-f92d-4a51-b6b1-2b0ac3f898ab",
+    "name": "parcelLab Campaigns API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "parcelLab API v4 Enhanced — the REST API for the parcelLab post-purchase\nexperience platform. Send orders and trackings, retrieve order status,\nlook up pickup/drop-off locations, predict delivery dates, manage return\nregistrations and configurations, evaluate marketing campaigns, and\npublish surveys to your customers.\n\nRegional base URLs are available for EU and US workloads in addition to\nthe global endpoint.\n\n\nContact Support:\n Name: parcelLab Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

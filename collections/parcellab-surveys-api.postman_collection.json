@@ -1,0 +1,605 @@
+{
+  "item": [
+    {
+      "id": "65b7a770-e9d4-4fde-b345-2619d6e3f15d",
+      "name": "Surveys",
+      "description": {
+        "content": "Retrieve survey definitions and submit responses.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "94db4b92-c399-494d-accd-50b93a1cfd6c",
+          "name": "Get Survey",
+          "request": {
+            "name": "Get Survey",
+            "description": {},
+            "url": {
+              "path": [
+                "v4",
+                "survey",
+                "survey",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4f41c303-19c7-4567-88e7-89213f968b66",
+              "name": "Survey definition.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "survey",
+                    "survey",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"39e4cd19-cfc2-e4e1-0a5c-720304862da8\",\n  \"name\": \"string\",\n  \"status\": \"string\",\n  \"type\": \"string\",\n  \"surveyUrl\": \"https://EHfWsIwafhSncvcVLRHTYAxkRlEav.zktlmAsXYGAijCyyjmwUVtCAwVTYSj,uLNR8kwOTQ,Qww2tIeWLxksDThqx\",\n  \"config\": {\n    \"key_0\": \"string\"\n  },\n  \"editable\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d2341217-04ba-4fe5-94a8-2bc15537e744",
+              "name": "Resource not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "survey",
+                    "survey",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"string\",\n  \"errors\": {\n    \"key_0\": 7672,\n    \"key_1\": 2669.076519435809,\n    \"key_2\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0c06f7a1-0402-43fd-a191-1f0042ef549c",
+          "name": "Get Survey Answer",
+          "request": {
+            "name": "Get Survey Answer",
+            "description": {},
+            "url": {
+              "path": [
+                "v4",
+                "survey",
+                "survey",
+                ":id",
+                "answer",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "ref_id",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "reference_type",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c2aa88d0-542f-4cc6-a226-0c2201bff4d6",
+              "name": "Survey with prefilled answers.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "survey",
+                    "survey",
+                    ":id",
+                    "answer",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ref_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "reference_type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"39e4cd19-cfc2-e4e1-0a5c-720304862da8\",\n  \"name\": \"string\",\n  \"status\": \"string\",\n  \"type\": \"string\",\n  \"surveyUrl\": \"https://EHfWsIwafhSncvcVLRHTYAxkRlEav.zktlmAsXYGAijCyyjmwUVtCAwVTYSj,uLNR8kwOTQ,Qww2tIeWLxksDThqx\",\n  \"config\": {\n    \"key_0\": \"string\"\n  },\n  \"editable\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "461796c8-3d81-4187-80ec-e3cfd79081e9",
+          "name": "Submit Survey Answer",
+          "request": {
+            "name": "Submit Survey Answer",
+            "description": {},
+            "url": {
+              "path": [
+                "v4",
+                "survey",
+                "survey",
+                ":id",
+                "answer",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"key_0\": 1227.9625513792037\n  },\n  \"is_complete\": \"<boolean>\",\n  \"reference_id\": \"<string>\",\n  \"reference_type\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7a72e476-dc34-43c5-a599-e4ff73f6abad",
+              "name": "Submission accepted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "survey",
+                    "survey",
+                    ":id",
+                    "answer",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"key_0\": \"string\",\n    \"key_1\": 5367\n  },\n  \"is_complete\": \"<boolean>\",\n  \"reference_id\": \"<string>\",\n  \"reference_type\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"isComplete\": false,\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "552fddcf-9291-48a0-8b56-24fa1f243e2b",
+              "name": "Invalid payload or query parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "survey",
+                    "survey",
+                    ":id",
+                    "answer",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"key_0\": \"string\",\n    \"key_1\": 5367\n  },\n  \"is_complete\": \"<boolean>\",\n  \"reference_id\": \"<string>\",\n  \"reference_type\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"string\",\n  \"errors\": {\n    \"key_0\": 7672,\n    \"key_1\": 2669.076519435809,\n    \"key_2\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "383e772e-cbd0-47fc-be0a-e4f4d7420cd0",
+          "name": "List Survey Themes",
+          "request": {
+            "name": "List Survey Themes",
+            "description": {},
+            "url": {
+              "path": [
+                "v4",
+                "survey",
+                "survey",
+                "themes",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "default",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1d02f7a0-46dc-4a22-84a7-141a932fd763",
+              "name": "Survey theme configurations.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "survey",
+                    "survey",
+                    "themes",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "default",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": 3537.2146152743853\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.parcellab.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6954a857-a73d-4f0f-9f0b-de2445a96780",
+    "name": "parcelLab Campaigns Surveys API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "parcelLab API v4 Enhanced — the REST API for the parcelLab post-purchase\nexperience platform. Send orders and trackings, retrieve order status,\nlook up pickup/drop-off locations, predict delivery dates, manage return\nregistrations and configurations, evaluate marketing campaigns, and\npublish surveys to your customers.\n\nRegional base URLs are available for EU and US workloads in addition to\nthe global endpoint.\n\n\nContact Support:\n Name: parcelLab Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

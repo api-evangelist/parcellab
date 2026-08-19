@@ -1,0 +1,112 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "parcelLab Campaigns Surveys API",
+    "version": "4"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Surveys",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Survey",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcellab.com/v4/survey/survey/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Survey"
+        },
+        {
+          "info": {
+            "name": "Get Survey Answer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcellab.com/v4/survey/survey/:id/answer/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "ref_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "reference_type",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get Survey Answer"
+        },
+        {
+          "info": {
+            "name": "Submit Survey Answer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.parcellab.com/v4/survey/survey/:id/answer/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit Survey Answer"
+        },
+        {
+          "info": {
+            "name": "List Survey Themes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcellab.com/v4/survey/survey/themes/",
+            "params": [
+              {
+                "name": "default",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List Survey Themes"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

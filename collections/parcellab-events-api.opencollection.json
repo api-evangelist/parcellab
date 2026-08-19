@@ -1,0 +1,41 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "parcelLab Campaigns Events API",
+    "version": "4"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Send Shop or Warehouse Event",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.parcellab.com/v4/track/events/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Push a custom event/checkpoint (e.g., warehouse pick, pack, dispatch) into the order timeline. Identifies the order by courier+tracking, account+reference, or account+order_number."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

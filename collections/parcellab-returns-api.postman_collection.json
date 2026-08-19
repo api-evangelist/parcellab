@@ -1,0 +1,864 @@
+{
+  "item": [
+    {
+      "id": "1c10c589-f9ef-40d9-9f51-a790966bede8",
+      "name": "Returns",
+      "description": {
+        "content": "Return registrations, configurations, and document templates.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "28887e06-b881-43b8-8340-790f3051ae45",
+          "name": "List Return Registrations",
+          "request": {
+            "name": "List Return Registrations",
+            "description": {},
+            "url": {
+              "path": [
+                "v4",
+                "returns",
+                "return-registrations",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "account",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "ordering",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c2998e1c-287d-4d54-b387-c11b597a9a4d",
+              "name": "Page of return registrations.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "returns",
+                    "return-registrations",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "account",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "ordering",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 1474,\n  \"next\": \"http://TmBRbybGiZBiRgfJywkNv.gceqepH+d3b9ha\",\n  \"previous\": \"http://SaTGEEIcQULtiVCzmCT.uqBJlVKJrtLn\",\n  \"results\": [\n    {\n      \"account\": 9753,\n      \"code\": \"string\",\n      \"reference\": \"string\",\n      \"customer_email\": \"string\",\n      \"external_id\": \"0777bec5-3acc-582d-f724-76f88c93b328\",\n      \"sequence_number\": \"string\",\n      \"customer_address\": {\n        \"name\": \"string\",\n        \"street\": \"string\",\n        \"house_no\": \"string\",\n        \"city\": \"string\",\n        \"postal_code\": \"string\",\n        \"country_iso3\": \"string\",\n        \"state\": \"string\",\n        \"phone\": \"string\",\n        \"email\": \"WD5Tn2zKC1@mTDXFKGqqdfKlUJqpVWCNKGCHrlQaE.cuo\"\n      },\n      \"status\": \"invalid\",\n      \"order_date\": \"2017-04-14T21:48:35.688Z\",\n      \"order_delivery_date\": \"2016-04-30T15:50:45.675Z\",\n      \"order_shipping_date\": \"1953-07-01T08:28:57.419Z\",\n      \"order_total_amount\": 9692.439742537897,\n      \"order_shipping_amount\": 2488.0980604232727,\n      \"order_tax_amount\": 3284.606571230316,\n      \"order_currency\": \"string\",\n      \"articles_order\": [\n        {\n          \"sku\": \"string\",\n          \"name\": \"string\",\n          \"quantity\": 9544,\n          \"price\": 4756.199382660584,\n          \"currency\": \"string\",\n          \"image_url\": \"http://STdBZ.ohnqXOD1FmNjZju.YRVkdOU4MgLOUYB1CDbdyNP3ZJoC\"\n        },\n        {\n          \"sku\": \"string\",\n          \"name\": \"string\",\n          \"quantity\": 1311,\n          \"price\": 8365.607509042986,\n          \"currency\": \"string\",\n          \"image_url\": \"https://MZwAvfrduLyWkQYeUURZbpgBj.fwpurcFoo,QdWz\"\n        }\n      ],\n      \"articles_return\": [\n        {\n          \"sku\": \"string\",\n          \"name\": \"string\",\n          \"quantity\": 1613,\n          \"price\": 9034.775736845566,\n          \"currency\": \"string\",\n          \"image_url\": \"https://exhb.ucxOZw9X0NVNYb1qgP,GXwudgqZS\"\n        },\n        {\n          \"sku\": \"string\",\n          \"name\": \"string\",\n          \"quantity\": 7837,\n          \"price\": 4309.4102781431975,\n          \"currency\": \"string\",\n          \"image_url\": \"http://rlfrbMlYWSX.xndsrH8LgIs5Q7E6F-1-F16h98w6CiMgWvJL3x9s5aDcVda.9\"\n        }\n      ],\n      \"return_labels\": [\n        {\n          \"key_0\": 3539.5112718593346\n        },\n        {\n          \"key_0\": 1534.911053108633,\n          \"key_1\": 7770,\n          \"key_2\": 5300\n        }\n      ],\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"metadata\": {\n        \"key_0\": 7562\n      },\n      \"created_at\": \"1968-09-25T00:19:08.090Z\",\n      \"updated_at\": \"1992-02-11T03:16:58.640Z\"\n    },\n    {\n      \"account\": 469,\n      \"code\": \"string\",\n      \"reference\": \"string\",\n      \"customer_email\": \"string\",\n      \"external_id\": \"5a0e270d-db40-0e53-da3f-122b6edc2bdd\",\n      \"sequence_number\": \"string\",\n      \"customer_address\": {\n        \"name\": \"string\",\n        \"street\": \"string\",\n        \"house_no\": \"string\",\n        \"city\": \"string\",\n        \"postal_code\": \"string\",\n        \"country_iso3\": \"string\",\n        \"state\": \"string\",\n        \"phone\": \"string\",\n        \"email\": \"HLfQfvMVjt@rmPmTnoVTsJkTDKfytAgbZUeD.hhub\"\n      },\n      \"status\": \"approved\",\n      \"order_date\": \"1970-08-05T03:12:32.290Z\",\n      \"order_delivery_date\": \"1948-07-16T16:57:54.592Z\",\n      \"order_shipping_date\": \"1951-04-05T14:12:05.189Z\",\n      \"order_total_amount\": 4176.892245307207,\n      \"order_shipping_amount\": 879.755055752126,\n      \"order_tax_amount\": 7100.1848611370515,\n      \"order_currency\": \"string\",\n      \"articles_order\": [\n        {\n          \"sku\": \"string\",\n          \"name\": \"string\",\n          \"quantity\": 3650,\n          \"price\": 5752.556954071043,\n          \"currency\": \"string\",\n          \"image_url\": \"http://rqiWXNMbMtnQulxMQjsKPJNnGLurW.svgXmDasCqdI6Trxc0Q6yCOWu2nl+b9C0FeRtAtp9MKnSqlgZhbpIrjT\"\n        },\n        {\n          \"sku\": \"string\",\n          \"name\": \"string\",\n          \"quantity\": 9655,\n          \"price\": 515.6899300124674,\n          \"currency\": \"string\",\n          \"image_url\": \"https://x.hhlaNFui-acm2JkLUDrglhfdIFICyaQ+G4Eb5oZDb\"\n        }\n      ],\n      \"articles_return\": [\n        {\n          \"sku\": \"string\",\n          \"name\": \"string\",\n          \"quantity\": 7064,\n          \"price\": 1422.81233905189,\n          \"currency\": \"string\",\n          \"image_url\": \"http://UHJqTwoueyUYToXJp.huqeaBMs8ZpklAYf8dJHv4eYhqx6oEaSKCTjldOmlAxP\"\n        },\n        {\n          \"sku\": \"string\",\n          \"name\": \"string\",\n          \"quantity\": 9825,\n          \"price\": 9920.99741435308,\n          \"currency\": \"string\",\n          \"image_url\": \"https://lzzoqkDLzcVyZgYAaBBJsFfAemyIlOlB.aidCWOTlNH8hu6wayloSOFYgxLBgf9gJqQZtGnWzGhSOmExQefv0mtt.aeKtXAHqkYOwm4SvCIpWX\"\n        }\n      ],\n      \"return_labels\": [\n        {\n          \"key_0\": \"string\"\n        },\n        {\n          \"key_0\": 5725.640624435934,\n          \"key_1\": \"string\"\n        }\n      ],\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"metadata\": {\n        \"key_0\": true\n      },\n      \"created_at\": \"2014-01-18T23:09:57.190Z\",\n      \"updated_at\": \"1992-01-27T13:18:37.768Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2570819e-c872-4388-b39d-973445a22ace",
+          "name": "Create Return Registration",
+          "request": {
+            "name": "Create Return Registration",
+            "description": {},
+            "url": {
+              "path": [
+                "v4",
+                "returns",
+                "return-registrations",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"account\": \"<integer>\",\n  \"code\": \"<string>\",\n  \"reference\": \"<string>\",\n  \"customer_email\": \"<string>\",\n  \"customer_address\": {\n    \"name\": \"<string>\",\n    \"street\": \"<string>\",\n    \"house_no\": \"<string>\",\n    \"city\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country_iso3\": \"<string>\",\n    \"state\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"email\": \"<email>\"\n  },\n  \"status\": \"<string>\",\n  \"order_date\": \"<dateTime>\",\n  \"order_delivery_date\": \"<dateTime>\",\n  \"order_shipping_date\": \"<dateTime>\",\n  \"order_total_amount\": \"<number>\",\n  \"order_shipping_amount\": \"<number>\",\n  \"order_tax_amount\": \"<number>\",\n  \"order_currency\": \"<string>\",\n  \"articles_order\": [\n    {\n      \"sku\": \"<string>\",\n      \"name\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"price\": \"<number>\",\n      \"currency\": \"<string>\",\n      \"image_url\": \"<uri>\"\n    },\n    {\n      \"sku\": \"<string>\",\n      \"name\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"price\": \"<number>\",\n      \"currency\": \"<string>\",\n      \"image_url\": \"<uri>\"\n    }\n  ],\n  \"articles_return\": [\n    {\n      \"sku\": \"<string>\",\n      \"name\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"price\": \"<number>\",\n      \"currency\": \"<string>\",\n      \"image_url\": \"<uri>\"\n    },\n    {\n      \"sku\": \"<string>\",\n      \"name\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"price\": \"<number>\",\n      \"currency\": \"<string>\",\n      \"image_url\": \"<uri>\"\n    }\n  ],\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"metadata\": {\n    \"key_0\": \"string\",\n    \"key_1\": 1391.0805290305673\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "081f46a8-de9d-482f-a6a9-fac4fa3f1c9a",
+              "name": "Created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "returns",
+                    "return-registrations",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account\": \"<integer>\",\n  \"code\": \"<string>\",\n  \"reference\": \"<string>\",\n  \"customer_email\": \"<string>\",\n  \"customer_address\": {\n    \"name\": \"<string>\",\n    \"street\": \"<string>\",\n    \"house_no\": \"<string>\",\n    \"city\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country_iso3\": \"<string>\",\n    \"state\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"email\": \"<email>\"\n  },\n  \"status\": \"<string>\",\n  \"order_date\": \"<dateTime>\",\n  \"order_delivery_date\": \"<dateTime>\",\n  \"order_shipping_date\": \"<dateTime>\",\n  \"order_total_amount\": \"<number>\",\n  \"order_shipping_amount\": \"<number>\",\n  \"order_tax_amount\": \"<number>\",\n  \"order_currency\": \"<string>\",\n  \"articles_order\": [\n    {\n      \"sku\": \"<string>\",\n      \"name\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"price\": \"<number>\",\n      \"currency\": \"<string>\",\n      \"image_url\": \"<uri>\"\n    },\n    {\n      \"sku\": \"<string>\",\n      \"name\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"price\": \"<number>\",\n      \"currency\": \"<string>\",\n      \"image_url\": \"<uri>\"\n    }\n  ],\n  \"articles_return\": [\n    {\n      \"sku\": \"<string>\",\n      \"name\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"price\": \"<number>\",\n      \"currency\": \"<string>\",\n      \"image_url\": \"<uri>\"\n    },\n    {\n      \"sku\": \"<string>\",\n      \"name\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"price\": \"<number>\",\n      \"currency\": \"<string>\",\n      \"image_url\": \"<uri>\"\n    }\n  ],\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"metadata\": {\n    \"key_0\": \"string\",\n    \"key_1\": false\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"account\": \"<integer>\",\n  \"code\": \"<string>\",\n  \"reference\": \"<string>\",\n  \"customer_email\": \"<string>\",\n  \"external_id\": \"ab61dea4-2122-948a-ac08-517e6d11de07\",\n  \"sequence_number\": \"string\",\n  \"customer_address\": {\n    \"name\": \"<string>\",\n    \"street\": \"<string>\",\n    \"house_no\": \"<string>\",\n    \"city\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country_iso3\": \"<string>\",\n    \"state\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"email\": \"<email>\"\n  },\n  \"status\": \"<string>\",\n  \"order_date\": \"<dateTime>\",\n  \"order_delivery_date\": \"<dateTime>\",\n  \"order_shipping_date\": \"<dateTime>\",\n  \"order_total_amount\": \"<number>\",\n  \"order_shipping_amount\": \"<number>\",\n  \"order_tax_amount\": \"<number>\",\n  \"order_currency\": \"<string>\",\n  \"articles_order\": [\n    {\n      \"sku\": \"<string>\",\n      \"name\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"price\": \"<number>\",\n      \"currency\": \"<string>\",\n      \"image_url\": \"<uri>\"\n    },\n    {\n      \"sku\": \"<string>\",\n      \"name\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"price\": \"<number>\",\n      \"currency\": \"<string>\",\n      \"image_url\": \"<uri>\"\n    }\n  ],\n  \"articles_return\": [\n    {\n      \"sku\": \"<string>\",\n      \"name\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"price\": \"<number>\",\n      \"currency\": \"<string>\",\n      \"image_url\": \"<uri>\"\n    },\n    {\n      \"sku\": \"<string>\",\n      \"name\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"price\": \"<number>\",\n      \"currency\": \"<string>\",\n      \"image_url\": \"<uri>\"\n    }\n  ],\n  \"return_labels\": [\n    {\n      \"key_0\": 7398\n    },\n    {\n      \"key_0\": 8243,\n      \"key_1\": false\n    }\n  ],\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"metadata\": {\n    \"key_0\": 1163.2664522089376\n  },\n  \"created_at\": \"2017-10-26T21:52:32.713Z\",\n  \"updated_at\": \"1983-04-29T12:00:11.059Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c4d10811-3554-4bf9-b014-2f8ee8ab2b7b",
+              "name": "Invalid payload or query parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "returns",
+                    "return-registrations",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account\": \"<integer>\",\n  \"code\": \"<string>\",\n  \"reference\": \"<string>\",\n  \"customer_email\": \"<string>\",\n  \"customer_address\": {\n    \"name\": \"<string>\",\n    \"street\": \"<string>\",\n    \"house_no\": \"<string>\",\n    \"city\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country_iso3\": \"<string>\",\n    \"state\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"email\": \"<email>\"\n  },\n  \"status\": \"<string>\",\n  \"order_date\": \"<dateTime>\",\n  \"order_delivery_date\": \"<dateTime>\",\n  \"order_shipping_date\": \"<dateTime>\",\n  \"order_total_amount\": \"<number>\",\n  \"order_shipping_amount\": \"<number>\",\n  \"order_tax_amount\": \"<number>\",\n  \"order_currency\": \"<string>\",\n  \"articles_order\": [\n    {\n      \"sku\": \"<string>\",\n      \"name\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"price\": \"<number>\",\n      \"currency\": \"<string>\",\n      \"image_url\": \"<uri>\"\n    },\n    {\n      \"sku\": \"<string>\",\n      \"name\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"price\": \"<number>\",\n      \"currency\": \"<string>\",\n      \"image_url\": \"<uri>\"\n    }\n  ],\n  \"articles_return\": [\n    {\n      \"sku\": \"<string>\",\n      \"name\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"price\": \"<number>\",\n      \"currency\": \"<string>\",\n      \"image_url\": \"<uri>\"\n    },\n    {\n      \"sku\": \"<string>\",\n      \"name\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"price\": \"<number>\",\n      \"currency\": \"<string>\",\n      \"image_url\": \"<uri>\"\n    }\n  ],\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"metadata\": {\n    \"key_0\": \"string\",\n    \"key_1\": false\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"string\",\n  \"errors\": {\n    \"key_0\": 5693,\n    \"key_1\": 4263,\n    \"key_2\": \"string\",\n    \"key_3\": 5634\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e94eb316-8c55-4b39-83f8-0c5d2a2ce893",
+          "name": "Get Return Registration",
+          "request": {
+            "name": "Get Return Registration",
+            "description": {},
+            "url": {
+              "path": [
+                "v4",
+                "returns",
+                "return-registrations",
+                ":external_id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "external_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "578bb764-44ea-4749-96a7-9e92d7f79461",
+              "name": "Return registration.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "returns",
+                    "return-registrations",
+                    ":external_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "external_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"account\": \"<integer>\",\n  \"code\": \"<string>\",\n  \"reference\": \"<string>\",\n  \"customer_email\": \"<string>\",\n  \"external_id\": \"ab61dea4-2122-948a-ac08-517e6d11de07\",\n  \"sequence_number\": \"string\",\n  \"customer_address\": {\n    \"name\": \"<string>\",\n    \"street\": \"<string>\",\n    \"house_no\": \"<string>\",\n    \"city\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country_iso3\": \"<string>\",\n    \"state\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"email\": \"<email>\"\n  },\n  \"status\": \"<string>\",\n  \"order_date\": \"<dateTime>\",\n  \"order_delivery_date\": \"<dateTime>\",\n  \"order_shipping_date\": \"<dateTime>\",\n  \"order_total_amount\": \"<number>\",\n  \"order_shipping_amount\": \"<number>\",\n  \"order_tax_amount\": \"<number>\",\n  \"order_currency\": \"<string>\",\n  \"articles_order\": [\n    {\n      \"sku\": \"<string>\",\n      \"name\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"price\": \"<number>\",\n      \"currency\": \"<string>\",\n      \"image_url\": \"<uri>\"\n    },\n    {\n      \"sku\": \"<string>\",\n      \"name\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"price\": \"<number>\",\n      \"currency\": \"<string>\",\n      \"image_url\": \"<uri>\"\n    }\n  ],\n  \"articles_return\": [\n    {\n      \"sku\": \"<string>\",\n      \"name\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"price\": \"<number>\",\n      \"currency\": \"<string>\",\n      \"image_url\": \"<uri>\"\n    },\n    {\n      \"sku\": \"<string>\",\n      \"name\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"price\": \"<number>\",\n      \"currency\": \"<string>\",\n      \"image_url\": \"<uri>\"\n    }\n  ],\n  \"return_labels\": [\n    {\n      \"key_0\": 7398\n    },\n    {\n      \"key_0\": 8243,\n      \"key_1\": false\n    }\n  ],\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"metadata\": {\n    \"key_0\": 1163.2664522089376\n  },\n  \"created_at\": \"2017-10-26T21:52:32.713Z\",\n  \"updated_at\": \"1983-04-29T12:00:11.059Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "67dfb43d-8f6c-49ce-ba43-da7d8befb5a8",
+              "name": "Resource not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "returns",
+                    "return-registrations",
+                    ":external_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "external_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"string\",\n  \"errors\": {\n    \"key_0\": 5693,\n    \"key_1\": 4263,\n    \"key_2\": \"string\",\n    \"key_3\": 5634\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "248b8fd2-66d9-42be-b611-acbf232049b9",
+          "name": "List Return Configurations",
+          "request": {
+            "name": "List Return Configurations",
+            "description": {},
+            "url": {
+              "path": [
+                "v4",
+                "returns",
+                "returns-configurations",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "account",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "ordering",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "52e9409b-8660-40bc-b77c-6171962a9a16",
+              "name": "Return configuration sets.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "returns",
+                    "returns-configurations",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "account",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "ordering",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"account\": 299,\n    \"code\": \"string\",\n    \"name\": \"string\",\n    \"return_periods\": [\n      {\n        \"key_0\": \"string\",\n        \"key_1\": true\n      },\n      {\n        \"key_0\": 4451\n      }\n    ],\n    \"return_reasons\": [\n      {\n        \"key_0\": true,\n        \"key_1\": 879.8433345325307,\n        \"key_2\": 6465\n      },\n      {\n        \"key_0\": \"string\"\n      }\n    ],\n    \"compensation_methods\": [\n      {\n        \"key_0\": 7541.993972660678\n      },\n      {\n        \"key_0\": 7361,\n        \"key_1\": 4747.421598466281,\n        \"key_2\": 4041.5984198110386,\n        \"key_3\": 1432.6939887857536\n      }\n    ],\n    \"carrier_options\": [\n      {\n        \"key_0\": true\n      },\n      {\n        \"key_0\": 9382.29351588722,\n        \"key_1\": 1657.3732129921925,\n        \"key_2\": 3177\n      }\n    ]\n  },\n  {\n    \"id\": \"string\",\n    \"account\": 5898,\n    \"code\": \"string\",\n    \"name\": \"string\",\n    \"return_periods\": [\n      {\n        \"key_0\": 4547,\n        \"key_1\": 7921.765503615662\n      },\n      {\n        \"key_0\": false,\n        \"key_1\": true,\n        \"key_2\": false\n      }\n    ],\n    \"return_reasons\": [\n      {\n        \"key_0\": true\n      },\n      {\n        \"key_0\": 63.86490183110216,\n        \"key_1\": 7258\n      }\n    ],\n    \"compensation_methods\": [\n      {\n        \"key_0\": 4925.167842486454\n      },\n      {\n        \"key_0\": 7735,\n        \"key_1\": 5099.555180764462,\n        \"key_2\": false\n      }\n    ],\n    \"carrier_options\": [\n      {\n        \"key_0\": \"string\",\n        \"key_1\": false\n      },\n      {\n        \"key_0\": 8846.046176334525,\n        \"key_1\": \"string\",\n        \"key_2\": 4420.664789951501\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "31814e12-fca7-4fe8-ae7a-5f065bf44965",
+          "name": "Get Return Configuration",
+          "request": {
+            "name": "Get Return Configuration",
+            "description": {},
+            "url": {
+              "path": [
+                "v4",
+                "returns",
+                "returns-configurations",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3b4c43a4-71c1-4e2f-b39a-22322afd0799",
+              "name": "Return configuration.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "returns",
+                    "returns-configurations",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"account\": 5617,\n  \"code\": \"string\",\n  \"name\": \"string\",\n  \"return_periods\": [\n    {\n      \"key_0\": \"string\",\n      \"key_1\": 6388.449568502691,\n      \"key_2\": false\n    },\n    {\n      \"key_0\": 1225\n    }\n  ],\n  \"return_reasons\": [\n    {\n      \"key_0\": false\n    },\n    {\n      \"key_0\": false\n    }\n  ],\n  \"compensation_methods\": [\n    {\n      \"key_0\": false\n    },\n    {\n      \"key_0\": 5457.9776868288445,\n      \"key_1\": \"string\"\n    }\n  ],\n  \"carrier_options\": [\n    {\n      \"key_0\": \"string\"\n    },\n    {\n      \"key_0\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "29893573-1caf-4c34-83f8-f86089f64a04",
+              "name": "Resource not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "returns",
+                    "returns-configurations",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"string\",\n  \"errors\": {\n    \"key_0\": 5693,\n    \"key_1\": 4263,\n    \"key_2\": \"string\",\n    \"key_3\": 5634\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5a488b02-4d01-494c-931c-fe07aeb1e8be",
+          "name": "List Document Templates",
+          "request": {
+            "name": "List Document Templates",
+            "description": {
+              "content": "Document templates used for generating return labels and slips.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v4",
+                "returns",
+                "document-templates",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "account",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fe01cf81-0a6d-420d-8c7e-7dc2f6fe3bc5",
+              "name": "Document templates.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "returns",
+                    "document-templates",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "account",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"key_0\": \"string\"\n  },\n  {\n    \"key_0\": 7051,\n    \"key_1\": false\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.parcellab.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "14457abb-5719-4503-a7aa-a42155f221cb",
+    "name": "parcelLab Campaigns Returns API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "parcelLab API v4 Enhanced — the REST API for the parcelLab post-purchase\nexperience platform. Send orders and trackings, retrieve order status,\nlook up pickup/drop-off locations, predict delivery dates, manage return\nregistrations and configurations, evaluate marketing campaigns, and\npublish surveys to your customers.\n\nRegional base URLs are available for EU and US workloads in addition to\nthe global endpoint.\n\n\nContact Support:\n Name: parcelLab Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

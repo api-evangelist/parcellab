@@ -1,0 +1,137 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "parcelLab Campaigns API",
+    "version": "4"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Campaigns",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Evaluate Campaign Targeting",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcellab.com/v4/campaign/evaluate/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "language",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "medium",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "message",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "orderNumber",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "preview",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "trackingId",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Evaluate Campaign Targeting"
+        },
+        {
+          "info": {
+            "name": "Campaign Redirect Analytics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parcellab.com/v4/campaign/redirect/",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "trackingId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "eventType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "medium",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "redirectUrl",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "customerSegmentationId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "emailId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "contentType",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Campaign Redirect Analytics"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
