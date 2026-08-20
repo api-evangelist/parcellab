@@ -52,6 +52,12 @@ apis:
   baseURL: https://agents.parcellab.com/mcp/
   tags:
   - MCP
+  - Artificial Intelligence
+  - Agents
+  - Tracking
+  - Returns
+  tags_raw:
+  - MCP
   - AI
   - Agents
   - Tracking
@@ -113,6 +119,8 @@ apis:
   humanURL: https://docs.parcellab.com/docs/developers/readme
   baseURL: https://api.parcellab.com
   tags:
+  - Event
+  tags_raw:
   - Events
   properties:
   - type: OpenAPI
@@ -159,6 +167,8 @@ apis:
   humanURL: https://docs.parcellab.com/docs/developers/readme
   baseURL: https://api.parcellab.com
   tags:
+  - Order
+  tags_raw:
   - Orders
   properties:
   - type: OpenAPI
