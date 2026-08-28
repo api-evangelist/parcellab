@@ -12,8 +12,8 @@ info:
     OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: parcellabApi
-  url: ../openapi/parcellab-openapi.yml
+- name: ordersApi
+  url: ../openapi/parcellab-orders-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: upsert-order-and-track

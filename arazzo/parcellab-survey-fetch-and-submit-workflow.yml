@@ -10,8 +10,8 @@ info:
     executed without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: parcellabApi
-  url: ../openapi/parcellab-openapi.yml
+- name: surveysApi
+  url: ../openapi/parcellab-surveys-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: survey-fetch-and-submit

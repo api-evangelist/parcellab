@@ -11,8 +11,11 @@ info:
     description.
   version: 1.0.0
 sourceDescriptions:
-- name: parcellabApi
-  url: ../openapi/parcellab-openapi.yml
+- name: campaignsApi
+  url: ../openapi/parcellab-campaigns-api-openapi.yml
+  type: openapi
+- name: ordersApi
+  url: ../openapi/parcellab-orders-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: track-and-target-campaign

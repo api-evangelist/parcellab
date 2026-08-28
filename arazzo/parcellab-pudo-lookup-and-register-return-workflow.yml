@@ -11,8 +11,11 @@ info:
     opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: parcellabApi
-  url: ../openapi/parcellab-openapi.yml
+- name: placeInfoApi
+  url: ../openapi/parcellab-place-info-api-openapi.yml
+  type: openapi
+- name: returnsApi
+  url: ../openapi/parcellab-returns-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: pudo-lookup-and-register-return

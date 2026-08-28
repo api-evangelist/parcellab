@@ -10,8 +10,11 @@ info:
     read and executed without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: parcellabApi
-  url: ../openapi/parcellab-openapi.yml
+- name: returnsApi
+  url: ../openapi/parcellab-returns-api-openapi.yml
+  type: openapi
+- name: surveysApi
+  url: ../openapi/parcellab-surveys-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: register-return-and-survey

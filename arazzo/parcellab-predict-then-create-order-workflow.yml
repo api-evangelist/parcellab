@@ -12,8 +12,11 @@ info:
     description.
   version: 1.0.0
 sourceDescriptions:
-- name: parcellabApi
-  url: ../openapi/parcellab-openapi.yml
+- name: ordersApi
+  url: ../openapi/parcellab-orders-api-openapi.yml
+  type: openapi
+- name: promiseApi
+  url: ../openapi/parcellab-promise-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: predict-then-create-order
