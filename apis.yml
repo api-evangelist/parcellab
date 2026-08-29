@@ -9,6 +9,19 @@ description: >-
   control tower) — layered with AI agents (WISMO/R, Insights, Fraud & Abuse) and exposed via the parcelLab API v4
   Enhanced. Global, EU, and US regional endpoints are available; the same data backs a Model Context Protocol server at
   agents.parcellab.com/mcp/ for agentic clients.
+deliveryModel:
+  model: unknown
+  open_source: unknown
+  commercial: true
+  callable_host: true
+  label: Delivery model not determined — needs a product licence on record
+  confidence: low
+  source:
+  - openapi
+  - pricing
+  - repository-unlicensed
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
@@ -394,6 +407,12 @@ apis:
   - type: Examples
     url: examples/parcellab-pudo-lookup-example.json
 common:
+  - type: IssueTracker
+    url: https://github.com/parcelLab/parcellab-mcp-server/issues
+  - type: CodeOfConduct
+    url: https://github.com/parcelLab/.github/blob/main/CODE_OF_CONDUCT.md
+  - type: ContributionGuide
+    url: https://github.com/parcelLab/.github/blob/main/CONTRIBUTING.md
   - type: AgenticAccess
     url: agentic-access/parcellab-agentic-access.yml
   - type: VulnerabilityDisclosure
