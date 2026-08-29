@@ -407,6 +407,9 @@ apis:
   - type: Examples
     url: examples/parcellab-pudo-lookup-example.json
 common:
+  - type: CapabilityMap
+    url: capabilities/parcellab-capability-edges.yml
+    name: parcelLab Business Capability Map
   - type: IssueTracker
     url: https://github.com/parcelLab/parcellab-mcp-server/issues
   - type: CodeOfConduct
