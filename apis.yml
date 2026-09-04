@@ -24,16 +24,17 @@ deliveryModel:
   method: derived
 accessModel:
   pricing: unknown
-  onboarding: self-serve
+  onboarding: unknown
   trial: false
   try_now: false
   public: false
-  label: Self-serve signup
-  confidence: high
+  label: Unknown
+  confidence: low
   source:
   - plans
   - authentication
-  generated: '2026-07-22'
+  - security
+  generated: '2026-09-03'
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/parcellab.png
 tags:
@@ -53,7 +54,7 @@ specificationVersion: '0.23'
 type: Index
 kind: contract
 access: 3rd-Party
-position: Producer
+position: Producing
 apis:
 - aid: parcellab:parcellab-mcp
   name: parcelLab MCP Server
