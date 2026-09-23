@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: parcelLab Campaigns Place Info API
+  title: parcelLab Place Info API
   description: 'parcelLab API v4 Enhanced — the REST API for the parcelLab post-purchase
 
     experience platform. Send orders and trackings, retrieve order status,
@@ -14,9 +14,7 @@ info:
 
     Regional base URLs are available for EU and US workloads in addition to
 
-    the global endpoint.
-
-    '
+    the global endpoint.'
   version: '4'
   contact:
     name: parcelLab Developer Support
@@ -75,20 +73,45 @@ paths:
         '403':
           $ref: '#/components/responses/Forbidden'
 components:
-  responses:
-    Forbidden:
-      description: Token lacks required permissions.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Invalid payload or query parameters.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   schemas:
+    PlaceInfoLookupResponseItem:
+      type: object
+      properties:
+        courier:
+          type: string
+        place_type:
+          type: string
+          enum:
+          - default
+          - self-service
+          - partner
+          - store
+          - other
+        address:
+          $ref: '#/components/schemas/Address'
+        location:
+          type: object
+          properties:
+            latitude:
+              type: number
+            longitude:
+              type: number
+        opening_hours:
+          type: object
+          additionalProperties: true
+        distance_meters:
+          type: integer
+        services:
+          type: array
+          items:
+            type: string
+        phone:
+          type: string
+        website:
+          type: string
+          format: uri
+        external_reference:
+          type: string
     Address:
       type: object
       properties:
@@ -159,44 +182,19 @@ components:
           type: string
         query:
           type: string
-    PlaceInfoLookupResponseItem:
-      type: object
-      properties:
-        courier:
-          type: string
-        place_type:
-          type: string
-          enum:
-          - default
-          - self-service
-          - partner
-          - store
-          - other
-        address:
-          $ref: '#/components/schemas/Address'
-        location:
-          type: object
-          properties:
-            latitude:
-              type: number
-            longitude:
-              type: number
-        opening_hours:
-          type: object
-          additionalProperties: true
-        distance_meters:
-          type: integer
-        services:
-          type: array
-          items:
-            type: string
-        phone:
-          type: string
-        website:
-          type: string
-          format: uri
-        external_reference:
-          type: string
+  responses:
+    Forbidden:
+      description: Token lacks required permissions.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Invalid payload or query parameters.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     parcellabApiToken:
       type: apiKey

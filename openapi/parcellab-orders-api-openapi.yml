@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: parcelLab Campaigns Orders API
+  title: parcelLab Orders API
   description: 'parcelLab API v4 Enhanced — the REST API for the parcelLab post-purchase
 
     experience platform. Send orders and trackings, retrieve order status,
@@ -14,9 +14,7 @@ info:
 
     Regional base URLs are available for EU and US workloads in addition to
 
-    the global endpoint.
-
-    '
+    the global endpoint.'
   version: '4'
   contact:
     name: parcelLab Developer Support
@@ -157,60 +155,7 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  responses:
-    Forbidden:
-      description: Token lacks required permissions.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Missing or invalid API token.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Invalid payload or query parameters.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   schemas:
-    LineItem:
-      type: object
-      properties:
-        sku:
-          type: string
-        name:
-          type: string
-        quantity:
-          type: integer
-        price:
-          type: number
-        currency:
-          type: string
-        image_url:
-          type: string
-          format: uri
-    Tracking:
-      type: object
-      properties:
-        tracking_number:
-          type: string
-        courier:
-          type: string
-        status:
-          type: string
-        lifecycle:
-          type: string
-        delivery_estimate:
-          type: string
-          format: date-time
-        checkpoints:
-          type: array
-          items:
-            $ref: '#/components/schemas/Checkpoint'
     Address:
       type: object
       properties:
@@ -233,94 +178,6 @@ components:
         email:
           type: string
           format: email
-    Checkpoint:
-      type: object
-      properties:
-        timestamp:
-          type: string
-          format: date-time
-        status:
-          type: string
-        status_details:
-          type: string
-        location:
-          type: string
-        courier:
-          type: string
-    OrderUpsertRequest:
-      type: object
-      required:
-      - account
-      - order_number
-      properties:
-        account:
-          type: integer
-        order_number:
-          type: string
-        destination_country_iso3:
-          type: string
-        recipient_email:
-          type: string
-          format: email
-        recipient_name:
-          type: string
-        shipping_address:
-          $ref: '#/components/schemas/Address'
-        articles_order:
-          type: array
-          items:
-            $ref: '#/components/schemas/LineItem'
-        mutations:
-          type: array
-          items:
-            $ref: '#/components/schemas/Mutation'
-    OrderInfo:
-      type: object
-      properties:
-        order_number:
-          type: string
-        client_key:
-          type: string
-        order_date:
-          type: string
-          format: date-time
-        recipient_name:
-          type: string
-        recipient_email:
-          type: string
-          format: email
-        destination_country_iso3:
-          type: string
-        trackings:
-          type: array
-          items:
-            $ref: '#/components/schemas/Tracking'
-    Mutation:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - add_tracking
-          - cancel_tracking
-          - cancel_order
-          - change_line_item_quantity
-          - add_line_item
-          - replace_line_item
-        payload:
-          type: object
-          additionalProperties: true
-    ErrorResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-          example: false
-        message:
-          type: string
-        errors:
-          type: object
-          additionalProperties: true
     OrderUpsertResponse:
       type: object
       properties:
@@ -350,6 +207,147 @@ components:
                     type: array
                     items:
                       type: string
+    Checkpoint:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        status:
+          type: string
+        status_details:
+          type: string
+        location:
+          type: string
+        courier:
+          type: string
+    ErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: false
+        message:
+          type: string
+        errors:
+          type: object
+          additionalProperties: true
+    Mutation:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - add_tracking
+          - cancel_tracking
+          - cancel_order
+          - change_line_item_quantity
+          - add_line_item
+          - replace_line_item
+        payload:
+          type: object
+          additionalProperties: true
+    LineItem:
+      type: object
+      properties:
+        sku:
+          type: string
+        name:
+          type: string
+        quantity:
+          type: integer
+        price:
+          type: number
+        currency:
+          type: string
+        image_url:
+          type: string
+          format: uri
+    OrderInfo:
+      type: object
+      properties:
+        order_number:
+          type: string
+        client_key:
+          type: string
+        order_date:
+          type: string
+          format: date-time
+        recipient_name:
+          type: string
+        recipient_email:
+          type: string
+          format: email
+        destination_country_iso3:
+          type: string
+        trackings:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tracking'
+    Tracking:
+      type: object
+      properties:
+        tracking_number:
+          type: string
+        courier:
+          type: string
+        status:
+          type: string
+        lifecycle:
+          type: string
+        delivery_estimate:
+          type: string
+          format: date-time
+        checkpoints:
+          type: array
+          items:
+            $ref: '#/components/schemas/Checkpoint'
+    OrderUpsertRequest:
+      type: object
+      required:
+      - account
+      - order_number
+      properties:
+        account:
+          type: integer
+        order_number:
+          type: string
+        destination_country_iso3:
+          type: string
+        recipient_email:
+          type: string
+          format: email
+        recipient_name:
+          type: string
+        shipping_address:
+          $ref: '#/components/schemas/Address'
+        articles_order:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItem'
+        mutations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Mutation'
+  responses:
+    Forbidden:
+      description: Token lacks required permissions.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Invalid payload or query parameters.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Missing or invalid API token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     parcellabApiToken:
       type: apiKey

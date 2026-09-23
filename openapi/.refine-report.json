@@ -1,13 +1,7 @@
 {
   "provider": "parcellab",
   "sources": [
-    "parcellab-campaigns-api-openapi.yml",
-    "parcellab-events-api-openapi.yml",
-    "parcellab-orders-api-openapi.yml",
-    "parcellab-place-info-api-openapi.yml",
-    "parcellab-promise-api-openapi.yml",
-    "parcellab-returns-api-openapi.yml",
-    "parcellab-surveys-api-openapi.yml"
+    "_original/parcellab-openapi.yml"
   ],
   "outputs": [
     "parcellab-campaigns-api-openapi.yml",
@@ -21,6 +15,18 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "parcellab-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "parcellab-campaigns-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "parcellab-events-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "parcellab-orders-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "parcellab-place-info-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "parcellab-promise-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "parcellab-returns-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "parcellab-surveys-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: parcelLab Campaigns Promise API
+  title: parcelLab Promise API
   description: 'parcelLab API v4 Enhanced — the REST API for the parcelLab post-purchase
 
     experience platform. Send orders and trackings, retrieve order status,
@@ -14,9 +14,7 @@ info:
 
     Regional base URLs are available for EU and US workloads in addition to
 
-    the global endpoint.
-
-    '
+    the global endpoint.'
   version: '4'
   contact:
     name: parcelLab Developer Support
@@ -106,14 +104,18 @@ paths:
         '400':
           $ref: '#/components/responses/BadRequest'
 components:
-  responses:
-    BadRequest:
-      description: Invalid payload or query parameters.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: false
+        message:
+          type: string
+        errors:
+          type: object
+          additionalProperties: true
     PromisePrediction:
       type: object
       properties:
@@ -151,17 +153,13 @@ components:
               localized:
                 type: object
                 additionalProperties: true
-    ErrorResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-          example: false
-        message:
-          type: string
-        errors:
-          type: object
-          additionalProperties: true
+  responses:
+    BadRequest:
+      description: Invalid payload or query parameters.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     parcellabApiToken:
       type: apiKey
