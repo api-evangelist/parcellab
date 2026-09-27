@@ -191,40 +191,20 @@ paths:
                   type: object
                   additionalProperties: true
 components:
+  responses:
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Invalid payload or query parameters.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   schemas:
-    Address:
-      type: object
-      properties:
-        name:
-          type: string
-        street:
-          type: string
-        house_no:
-          type: string
-        city:
-          type: string
-        postal_code:
-          type: string
-        country_iso3:
-          type: string
-        state:
-          type: string
-        phone:
-          type: string
-        email:
-          type: string
-          format: email
-    ErrorResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-          example: false
-        message:
-          type: string
-        errors:
-          type: object
-          additionalProperties: true
     LineItem:
       type: object
       properties:
@@ -241,25 +221,17 @@ components:
         image_url:
           type: string
           format: uri
-    ReturnRegistrationList:
+    ErrorResponse:
       type: object
       properties:
-        count:
-          type: integer
-        next:
-          type:
-          - string
-          - 'null'
-          format: uri
-        previous:
-          type:
-          - string
-          - 'null'
-          format: uri
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/ReturnRegistration'
+        success:
+          type: boolean
+          example: false
+        message:
+          type: string
+        errors:
+          type: object
+          additionalProperties: true
     ReturnRegistration:
       type: object
       required:
@@ -346,6 +318,28 @@ components:
           type: string
           format: date-time
           readOnly: true
+    Address:
+      type: object
+      properties:
+        name:
+          type: string
+        street:
+          type: string
+        house_no:
+          type: string
+        city:
+          type: string
+        postal_code:
+          type: string
+        country_iso3:
+          type: string
+        state:
+          type: string
+        phone:
+          type: string
+        email:
+          type: string
+          format: email
     ReturnConfiguration:
       type: object
       properties:
@@ -377,19 +371,25 @@ components:
           items:
             type: object
             additionalProperties: true
-  responses:
-    BadRequest:
-      description: Invalid payload or query parameters.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Resource not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
+    ReturnRegistrationList:
+      type: object
+      properties:
+        count:
+          type: integer
+        next:
+          type:
+          - string
+          - 'null'
+          format: uri
+        previous:
+          type:
+          - string
+          - 'null'
+          format: uri
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReturnRegistration'
   securitySchemes:
     parcellabApiToken:
       type: apiKey

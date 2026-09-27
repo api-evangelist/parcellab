@@ -156,82 +156,33 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    Address:
+    OrderUpsertRequest:
       type: object
+      required:
+      - account
+      - order_number
       properties:
-        name:
-          type: string
-        street:
-          type: string
-        house_no:
-          type: string
-        city:
-          type: string
-        postal_code:
-          type: string
-        country_iso3:
-          type: string
-        state:
-          type: string
-        phone:
-          type: string
-        email:
-          type: string
-          format: email
-    OrderUpsertResponse:
-      type: object
-      properties:
-        external_id:
-          type: string
-          format: uuid
+        account:
+          type: integer
         order_number:
           type: string
+        destination_country_iso3:
+          type: string
+        recipient_email:
+          type: string
+          format: email
+        recipient_name:
+          type: string
+        shipping_address:
+          $ref: '#/components/schemas/Address'
+        articles_order:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItem'
         mutations:
           type: array
           items:
-            type: object
-            properties:
-              type:
-                type: string
-              result:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                  message:
-                    type: string
-                  errors:
-                    type: object
-                    additionalProperties: true
-                  warnings:
-                    type: array
-                    items:
-                      type: string
-    Checkpoint:
-      type: object
-      properties:
-        timestamp:
-          type: string
-          format: date-time
-        status:
-          type: string
-        status_details:
-          type: string
-        location:
-          type: string
-        courier:
-          type: string
-    ErrorResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-          example: false
-        message:
-          type: string
-        errors:
-          type: object
-          additionalProperties: true
+            $ref: '#/components/schemas/Mutation'
     Mutation:
       type: object
       properties:
@@ -247,22 +198,6 @@ components:
         payload:
           type: object
           additionalProperties: true
-    LineItem:
-      type: object
-      properties:
-        sku:
-          type: string
-        name:
-          type: string
-        quantity:
-          type: integer
-        price:
-          type: number
-        currency:
-          type: string
-        image_url:
-          type: string
-          format: uri
     OrderInfo:
       type: object
       properties:
@@ -302,36 +237,101 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Checkpoint'
-    OrderUpsertRequest:
+    LineItem:
       type: object
-      required:
-      - account
-      - order_number
       properties:
-        account:
+        sku:
+          type: string
+        name:
+          type: string
+        quantity:
           type: integer
+        price:
+          type: number
+        currency:
+          type: string
+        image_url:
+          type: string
+          format: uri
+    OrderUpsertResponse:
+      type: object
+      properties:
+        external_id:
+          type: string
+          format: uuid
         order_number:
           type: string
-        destination_country_iso3:
-          type: string
-        recipient_email:
-          type: string
-          format: email
-        recipient_name:
-          type: string
-        shipping_address:
-          $ref: '#/components/schemas/Address'
-        articles_order:
-          type: array
-          items:
-            $ref: '#/components/schemas/LineItem'
         mutations:
           type: array
           items:
-            $ref: '#/components/schemas/Mutation'
+            type: object
+            properties:
+              type:
+                type: string
+              result:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  errors:
+                    type: object
+                    additionalProperties: true
+                  warnings:
+                    type: array
+                    items:
+                      type: string
+    ErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: false
+        message:
+          type: string
+        errors:
+          type: object
+          additionalProperties: true
+    Address:
+      type: object
+      properties:
+        name:
+          type: string
+        street:
+          type: string
+        house_no:
+          type: string
+        city:
+          type: string
+        postal_code:
+          type: string
+        country_iso3:
+          type: string
+        state:
+          type: string
+        phone:
+          type: string
+        email:
+          type: string
+          format: email
+    Checkpoint:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        status:
+          type: string
+        status_details:
+          type: string
+        location:
+          type: string
+        courier:
+          type: string
   responses:
-    Forbidden:
-      description: Token lacks required permissions.
+    Unauthorized:
+      description: Missing or invalid API token.
       content:
         application/json:
           schema:
@@ -342,8 +342,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Missing or invalid API token.
+    Forbidden:
+      description: Token lacks required permissions.
       content:
         application/json:
           schema:

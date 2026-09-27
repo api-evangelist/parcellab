@@ -137,17 +137,6 @@ paths:
                 additionalProperties: true
 components:
   schemas:
-    ErrorResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-          example: false
-        message:
-          type: string
-        errors:
-          type: object
-          additionalProperties: true
     SurveyResponseResponse:
       type: object
       properties:
@@ -190,15 +179,26 @@ components:
           enum:
           - return_registration
           - tracking
+    ErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: false
+        message:
+          type: string
+        errors:
+          type: object
+          additionalProperties: true
   responses:
-    BadRequest:
-      description: Invalid payload or query parameters.
+    NotFound:
+      description: Resource not found.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Resource not found.
+    BadRequest:
+      description: Invalid payload or query parameters.
       content:
         application/json:
           schema:

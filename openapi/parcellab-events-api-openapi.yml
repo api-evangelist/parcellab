@@ -57,6 +57,17 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: false
+        message:
+          type: string
+        errors:
+          type: object
+          additionalProperties: true
     ShopEvent:
       type: object
       required:
@@ -84,17 +95,6 @@ components:
           type: string
         order_number:
           type: string
-    ErrorResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-          example: false
-        message:
-          type: string
-        errors:
-          type: object
-          additionalProperties: true
   responses:
     Unauthorized:
       description: Missing or invalid API token.
