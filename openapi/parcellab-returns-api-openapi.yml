@@ -191,47 +191,7 @@ paths:
                   type: object
                   additionalProperties: true
 components:
-  responses:
-    NotFound:
-      description: Resource not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Invalid payload or query parameters.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   schemas:
-    LineItem:
-      type: object
-      properties:
-        sku:
-          type: string
-        name:
-          type: string
-        quantity:
-          type: integer
-        price:
-          type: number
-        currency:
-          type: string
-        image_url:
-          type: string
-          format: uri
-    ErrorResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-          example: false
-        message:
-          type: string
-        errors:
-          type: object
-          additionalProperties: true
     ReturnRegistration:
       type: object
       required:
@@ -318,28 +278,6 @@ components:
           type: string
           format: date-time
           readOnly: true
-    Address:
-      type: object
-      properties:
-        name:
-          type: string
-        street:
-          type: string
-        house_no:
-          type: string
-        city:
-          type: string
-        postal_code:
-          type: string
-        country_iso3:
-          type: string
-        state:
-          type: string
-        phone:
-          type: string
-        email:
-          type: string
-          format: email
     ReturnConfiguration:
       type: object
       properties:
@@ -390,6 +328,68 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ReturnRegistration'
+    LineItem:
+      type: object
+      properties:
+        sku:
+          type: string
+        name:
+          type: string
+        quantity:
+          type: integer
+        price:
+          type: number
+        currency:
+          type: string
+        image_url:
+          type: string
+          format: uri
+    Address:
+      type: object
+      properties:
+        name:
+          type: string
+        street:
+          type: string
+        house_no:
+          type: string
+        city:
+          type: string
+        postal_code:
+          type: string
+        country_iso3:
+          type: string
+        state:
+          type: string
+        phone:
+          type: string
+        email:
+          type: string
+          format: email
+    ErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: false
+        message:
+          type: string
+        errors:
+          type: object
+          additionalProperties: true
+  responses:
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Invalid payload or query parameters.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     parcellabApiToken:
       type: apiKey

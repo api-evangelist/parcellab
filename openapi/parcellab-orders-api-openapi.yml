@@ -183,76 +183,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Mutation'
-    Mutation:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - add_tracking
-          - cancel_tracking
-          - cancel_order
-          - change_line_item_quantity
-          - add_line_item
-          - replace_line_item
-        payload:
-          type: object
-          additionalProperties: true
-    OrderInfo:
-      type: object
-      properties:
-        order_number:
-          type: string
-        client_key:
-          type: string
-        order_date:
-          type: string
-          format: date-time
-        recipient_name:
-          type: string
-        recipient_email:
-          type: string
-          format: email
-        destination_country_iso3:
-          type: string
-        trackings:
-          type: array
-          items:
-            $ref: '#/components/schemas/Tracking'
-    Tracking:
-      type: object
-      properties:
-        tracking_number:
-          type: string
-        courier:
-          type: string
-        status:
-          type: string
-        lifecycle:
-          type: string
-        delivery_estimate:
-          type: string
-          format: date-time
-        checkpoints:
-          type: array
-          items:
-            $ref: '#/components/schemas/Checkpoint'
-    LineItem:
-      type: object
-      properties:
-        sku:
-          type: string
-        name:
-          type: string
-        quantity:
-          type: integer
-        price:
-          type: number
-        currency:
-          type: string
-        image_url:
-          type: string
-          format: uri
     OrderUpsertResponse:
       type: object
       properties:
@@ -282,17 +212,69 @@ components:
                     type: array
                     items:
                       type: string
-    ErrorResponse:
+    Mutation:
       type: object
       properties:
-        success:
-          type: boolean
-          example: false
-        message:
+        type:
           type: string
-        errors:
+          enum:
+          - add_tracking
+          - cancel_tracking
+          - cancel_order
+          - change_line_item_quantity
+          - add_line_item
+          - replace_line_item
+        payload:
           type: object
           additionalProperties: true
+    Checkpoint:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        status:
+          type: string
+        status_details:
+          type: string
+        location:
+          type: string
+        courier:
+          type: string
+    LineItem:
+      type: object
+      properties:
+        sku:
+          type: string
+        name:
+          type: string
+        quantity:
+          type: integer
+        price:
+          type: number
+        currency:
+          type: string
+        image_url:
+          type: string
+          format: uri
+    Tracking:
+      type: object
+      properties:
+        tracking_number:
+          type: string
+        courier:
+          type: string
+        status:
+          type: string
+        lifecycle:
+          type: string
+        delivery_estimate:
+          type: string
+          format: date-time
+        checkpoints:
+          type: array
+          items:
+            $ref: '#/components/schemas/Checkpoint'
     Address:
       type: object
       properties:
@@ -315,20 +297,38 @@ components:
         email:
           type: string
           format: email
-    Checkpoint:
+    OrderInfo:
       type: object
       properties:
-        timestamp:
+        order_number:
+          type: string
+        client_key:
+          type: string
+        order_date:
           type: string
           format: date-time
-        status:
+        recipient_name:
           type: string
-        status_details:
+        recipient_email:
           type: string
-        location:
+          format: email
+        destination_country_iso3:
           type: string
-        courier:
+        trackings:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tracking'
+    ErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: false
+        message:
           type: string
+        errors:
+          type: object
+          additionalProperties: true
   responses:
     Unauthorized:
       description: Missing or invalid API token.

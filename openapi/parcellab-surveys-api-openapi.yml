@@ -137,13 +137,6 @@ paths:
                 additionalProperties: true
 components:
   schemas:
-    SurveyResponseResponse:
-      type: object
-      properties:
-        isComplete:
-          type: boolean
-        detail:
-          type: string
     PublicSurvey:
       type: object
       properties:
@@ -164,6 +157,13 @@ components:
           additionalProperties: true
         editable:
           type: boolean
+    SurveyResponseResponse:
+      type: object
+      properties:
+        isComplete:
+          type: boolean
+        detail:
+          type: string
     SurveyResponseRequest:
       type: object
       properties:

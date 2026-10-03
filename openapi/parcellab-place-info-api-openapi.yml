@@ -74,43 +74,17 @@ paths:
           $ref: '#/components/responses/Forbidden'
 components:
   schemas:
-    PlaceInfoLookupItem:
+    ErrorResponse:
       type: object
       properties:
-        courier:
+        success:
+          type: boolean
+          example: false
+        message:
           type: string
-        service_level:
-          type: string
-        query:
-          type: string
-    PlaceInfoLookupRequest:
-      type: object
-      required:
-      - account
-      - lookups
-      - country_iso3
-      properties:
-        account:
-          type: integer
-        country_iso3:
-          type: string
-        lookups:
-          type: array
-          minItems: 1
-          maxItems: 3
-          items:
-            $ref: '#/components/schemas/PlaceInfoLookupItem'
-        location:
+        errors:
           type: object
-          properties:
-            latitude:
-              type: number
-            longitude:
-              type: number
-        external_reference:
-          type: string
-        location_address:
-          $ref: '#/components/schemas/Address'
+          additionalProperties: true
     PlaceInfoLookupResponseItem:
       type: object
       properties:
@@ -149,17 +123,6 @@ components:
           format: uri
         external_reference:
           type: string
-    ErrorResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-          example: false
-        message:
-          type: string
-        errors:
-          type: object
-          additionalProperties: true
     Address:
       type: object
       properties:
@@ -182,15 +145,52 @@ components:
         email:
           type: string
           format: email
+    PlaceInfoLookupRequest:
+      type: object
+      required:
+      - account
+      - lookups
+      - country_iso3
+      properties:
+        account:
+          type: integer
+        country_iso3:
+          type: string
+        lookups:
+          type: array
+          minItems: 1
+          maxItems: 3
+          items:
+            $ref: '#/components/schemas/PlaceInfoLookupItem'
+        location:
+          type: object
+          properties:
+            latitude:
+              type: number
+            longitude:
+              type: number
+        external_reference:
+          type: string
+        location_address:
+          $ref: '#/components/schemas/Address'
+    PlaceInfoLookupItem:
+      type: object
+      properties:
+        courier:
+          type: string
+        service_level:
+          type: string
+        query:
+          type: string
   responses:
-    BadRequest:
-      description: Invalid payload or query parameters.
+    Forbidden:
+      description: Token lacks required permissions.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Forbidden:
-      description: Token lacks required permissions.
+    BadRequest:
+      description: Invalid payload or query parameters.
       content:
         application/json:
           schema:
