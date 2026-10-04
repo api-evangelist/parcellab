@@ -104,6 +104,13 @@ paths:
         '400':
           $ref: '#/components/responses/BadRequest'
 components:
+  responses:
+    BadRequest:
+      description: Invalid payload or query parameters.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   schemas:
     ErrorResponse:
       type: object
@@ -153,13 +160,6 @@ components:
               localized:
                 type: object
                 additionalProperties: true
-  responses:
-    BadRequest:
-      description: Invalid payload or query parameters.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     parcellabApiToken:
       type: apiKey

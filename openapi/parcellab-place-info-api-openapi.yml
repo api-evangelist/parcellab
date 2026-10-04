@@ -73,18 +73,42 @@ paths:
         '403':
           $ref: '#/components/responses/Forbidden'
 components:
+  responses:
+    Forbidden:
+      description: Token lacks required permissions.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Invalid payload or query parameters.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   schemas:
-    ErrorResponse:
+    Address:
       type: object
       properties:
-        success:
-          type: boolean
-          example: false
-        message:
+        name:
           type: string
-        errors:
-          type: object
-          additionalProperties: true
+        street:
+          type: string
+        house_no:
+          type: string
+        city:
+          type: string
+        postal_code:
+          type: string
+        country_iso3:
+          type: string
+        state:
+          type: string
+        phone:
+          type: string
+        email:
+          type: string
+          format: email
     PlaceInfoLookupResponseItem:
       type: object
       properties:
@@ -123,28 +147,6 @@ components:
           format: uri
         external_reference:
           type: string
-    Address:
-      type: object
-      properties:
-        name:
-          type: string
-        street:
-          type: string
-        house_no:
-          type: string
-        city:
-          type: string
-        postal_code:
-          type: string
-        country_iso3:
-          type: string
-        state:
-          type: string
-        phone:
-          type: string
-        email:
-          type: string
-          format: email
     PlaceInfoLookupRequest:
       type: object
       required:
@@ -182,19 +184,17 @@ components:
           type: string
         query:
           type: string
-  responses:
-    Forbidden:
-      description: Token lacks required permissions.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Invalid payload or query parameters.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
+    ErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: false
+        message:
+          type: string
+        errors:
+          type: object
+          additionalProperties: true
   securitySchemes:
     parcellabApiToken:
       type: apiKey

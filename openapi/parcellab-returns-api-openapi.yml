@@ -278,6 +278,47 @@ components:
           type: string
           format: date-time
           readOnly: true
+    ReturnRegistrationList:
+      type: object
+      properties:
+        count:
+          type: integer
+        next:
+          type:
+          - string
+          - 'null'
+          format: uri
+        previous:
+          type:
+          - string
+          - 'null'
+          format: uri
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReturnRegistration'
+    Address:
+      type: object
+      properties:
+        name:
+          type: string
+        street:
+          type: string
+        house_no:
+          type: string
+        city:
+          type: string
+        postal_code:
+          type: string
+        country_iso3:
+          type: string
+        state:
+          type: string
+        phone:
+          type: string
+        email:
+          type: string
+          format: email
     ReturnConfiguration:
       type: object
       properties:
@@ -309,25 +350,6 @@ components:
           items:
             type: object
             additionalProperties: true
-    ReturnRegistrationList:
-      type: object
-      properties:
-        count:
-          type: integer
-        next:
-          type:
-          - string
-          - 'null'
-          format: uri
-        previous:
-          type:
-          - string
-          - 'null'
-          format: uri
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/ReturnRegistration'
     LineItem:
       type: object
       properties:
@@ -344,28 +366,6 @@ components:
         image_url:
           type: string
           format: uri
-    Address:
-      type: object
-      properties:
-        name:
-          type: string
-        street:
-          type: string
-        house_no:
-          type: string
-        city:
-          type: string
-        postal_code:
-          type: string
-        country_iso3:
-          type: string
-        state:
-          type: string
-        phone:
-          type: string
-        email:
-          type: string
-          format: email
     ErrorResponse:
       type: object
       properties:
@@ -378,14 +378,14 @@ components:
           type: object
           additionalProperties: true
   responses:
-    NotFound:
-      description: Resource not found.
+    BadRequest:
+      description: Invalid payload or query parameters.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Invalid payload or query parameters.
+    NotFound:
+      description: Resource not found.
       content:
         application/json:
           schema:
