@@ -1,0 +1,16 @@
+generated: '2026-10-12'
+method: none
+source:
+- https://zapier.com/apps/parcellab/integrations
+- https://n8n.io/integrations/parcellab/
+- https://composio.dev/toolkits/parcellab
+- https://monid.ai/tools/parcellab
+checked:
+- https://composio.dev/toolkits/parcellab
+- https://monid.ai/tools/parcellab
+- https://n8n.io/integrations/parcellab/
+- https://zapier.com/apps/parcellab/integrations
+summary: null
+marketplace_apps: []
+edges: []
+templates: []
