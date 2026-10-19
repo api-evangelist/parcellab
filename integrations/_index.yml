@@ -29,3 +29,16 @@
     builder: Fivetran
   status: not-a-workflow
   arazzo: null
+- slug: parcellab-zendesk-own
+  label: Zendesk (own)
+  partner: zendesk
+  partner_name: Zendesk (own)
+  category: eComm and Payments
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://www.zendesk.com/marketplace/apps/support/852035/parcellab/
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
