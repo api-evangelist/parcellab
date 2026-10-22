@@ -16,6 +16,23 @@ checked:
 summary: null
 marketplace_apps: []
 edges:
+- partner_name: Zendesk (own)
+  partner: zendesk
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://www.zendesk.com/marketplace/apps/support/852035/parcellab/
+  mirror_of: zendesk/integrations/zendesk-integration-edges.yml
+  apps:
+  - parcelLab
+  listing_count: 1
+  detected: '2026-10-19'
+  detected_by: mirror-platform-listings.py
+  category: eComm and Payments
 - partner_name: Fivetran
   partner: fivetran
   partner_match: aggregator
@@ -42,21 +59,4 @@ edges:
     builder: Fivetran
   detected_by: sweep-data-integration.py
   first_seen: '2026-10-18'
-- partner_name: Zendesk (own)
-  partner: zendesk
-  partner_match: mirror
-  mirror_match: domain
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://www.zendesk.com/marketplace/apps/support/852035/parcellab/
-  mirror_of: zendesk/integrations/zendesk-integration-edges.yml
-  apps:
-  - parcelLab
-  listing_count: 1
-  detected: '2026-10-19'
-  detected_by: mirror-platform-listings.py
-  category: eComm and Payments
 templates: []
