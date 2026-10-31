@@ -1,4 +1,4 @@
-# parcelLab (parcellab)
+# parcelLab
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,138 +66,202 @@
 
 parcelLab is a Munich-headquartered post-purchase experience platform (parcelLab GmbH) used by retailers including IKEA, Hugo Boss, Dyson, Puma, and John Lewis to turn delivery and returns into a branded, revenue-generating part of the customer journey. The platform spans four modules — Convert (pre-checkout delivery promise), Engage (multichannel post-purchase communications), Retain (Returns Portal and returns experience), and Insights (analytics, benchmarking, control tower) — layered with AI agents (WISMO/R, Insights, Fraud & Abuse) and exposed via the parcelLab API v4 Enhanced. Global, EU, and US regional endpoints are available; the same data backs a Model Context Protocol server at agents.parcellab.com/mcp/ for agentic clients.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/parcellab/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/parcellab/refs/heads/main/apis.yml)
+**Areas:** Post-Purchase · E-Commerce · Tracking · Returns · Shipping · Delivery · Customer Experience · Logistics · Communications · Germany
 
-## Scope
+## parcelLab on APIs.io
 
-- **Type:** Index
-- **Position:** Producer
-- **Access:** 3rd-Party
+Everything profiled for parcelLab is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/parcellab/](https://apis.io/providers/parcellab/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (8)
 
-- Post-Purchase
-- E-Commerce
-- Tracking
-- Returns
-- Shipping
-- Delivery
-- Customer Experience
-- Logistics
-- Communications
-- Germany
+- [parcelLab MCP Server](https://apis.io/apis/parcellab/parcellab-mcp/) — Hosted Model Context Protocol server exposing the parcelLab order tracking and returns registration workflow to MCP-compatible agents, authenticated via…
+- [parcelLab Campaigns API](https://apis.io/apis/parcellab/parcellab-campaigns-api/) — Evaluate campaign targeting and redirect analytics events.
+- [parcelLab Events API](https://apis.io/apis/parcellab/parcellab-events-api/) — Send custom shop or warehouse events into the tracking timeline.
+- [parcelLab Orders API](https://apis.io/apis/parcellab/parcellab-orders-api/) — Create, update, and inspect orders and their trackings.
+- [parcelLab Place Info API](https://apis.io/apis/parcellab/parcellab-place-info-api/) — Look up nearby pickup and drop-off (PUDO) locations.
+- [parcelLab Promise API](https://apis.io/apis/parcellab/parcellab-promise-api/) — Pre-checkout delivery date predictions.
+- [parcelLab Returns API](https://apis.io/apis/parcellab/parcellab-returns-api/) — Return registrations, configurations, and document templates.
+- [parcelLab Surveys API](https://apis.io/apis/parcellab/parcellab-surveys-api/) — Retrieve survey definitions and submit responses.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-05-25
-- **Modified:** 2026-05-25
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Arazzo workflows (11)
 
-### parcelLab API
+Multi-step workflows that chain operations into a business task.
 
-parcelLab API v4 Enhanced — the unified REST API for ingesting orders and trackings, retrieving order status, looking up pickup/drop-off locations, predicting delivery dates (Promise), creating and managing return registrations against returns configurations, evaluating campaign targeting, and serving surveys back to customers.
+- [parcelLab Create and Fetch Return](https://apis.io/arazzos/parcellab/parcellab-create-and-fetch-return-workflow/)
+- [parcelLab Evaluate Campaign and Log Redirect](https://apis.io/arazzos/parcellab/parcellab-evaluate-campaign-and-redirect-workflow/)
+- [parcelLab List and Get Return](https://apis.io/arazzos/parcellab/parcellab-list-and-get-return-workflow/)
+- [parcelLab Predict Delivery and Create Order](https://apis.io/arazzos/parcellab/parcellab-predict-then-create-order-workflow/)
+- [parcelLab PUDO Lookup and Register Return](https://apis.io/arazzos/parcellab/parcellab-pudo-lookup-and-register-return-workflow/)
+- [parcelLab Register Return and Collect Survey](https://apis.io/arazzos/parcellab/parcellab-register-return-and-survey-workflow/)
+- [parcelLab Resolve Config and Register Return](https://apis.io/arazzos/parcellab/parcellab-resolve-config-and-register-return-workflow/)
+- [parcelLab Send Event and Refresh Status](https://apis.io/arazzos/parcellab/parcellab-send-event-and-refresh-workflow/)
+- [parcelLab Survey Fetch and Submit](https://apis.io/arazzos/parcellab/parcellab-survey-fetch-and-submit-workflow/)
+- [parcelLab Track and Target Campaign](https://apis.io/arazzos/parcellab/parcellab-track-and-target-campaign-workflow/)
+- [parcelLab Create Order and Track](https://apis.io/arazzos/parcellab/parcellab-upsert-order-and-track-workflow/)
 
-- **Human URL:** [https://docs.parcellab.com/docs/developers/readme](https://docs.parcellab.com/docs/developers/readme)
-- **Base URL:** `https://api.parcellab.com`
+#### Agentic access (1)
 
-#### Tags
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- Orders
-- Tracking
-- Returns
-- Promise
-- Surveys
-- Campaigns
-- PUDO
+- [Parcellab Agentic Access](https://apis.io/agentic-access/parcellab/parcellab-agentic-access/)
 
-#### Properties
+#### JSON Schema (6)
 
-- [Documentation](https://docs.parcellab.com/docs/developers/readme)
-- [API Reference](https://docs.parcellab.com/docs/developers/getting-started/api-reference)
-- [Quickstart](https://docs.parcellab.com/docs/developers/getting-started/quickstart-guide)
-- [Authentication](https://docs.parcellab.com/docs/developers/getting-started/authentication)
-- [OpenAPI](openapi/parcellab-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/parcellab.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/parcellab.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/parcellab-order-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/parcellab-tracking-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/parcellab-return-registration-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/parcellab-address-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/parcellab-line-item-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/parcellab-promise-prediction-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Structure](json-structure/parcellab-order-structure.json)
-- [JSON Structure](json-structure/parcellab-return-registration-structure.json)
-- [JSON-LD](json-ld/parcellab-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [Example](examples/parcellab-upsert-order-example.json)
-- [Example](examples/parcellab-get-order-info-example.json)
-- [Example](examples/parcellab-predict-delivery-example.json)
-- [Example](examples/parcellab-create-return-registration-example.json)
-- [Example](examples/parcellab-pudo-lookup-example.json)
+The data models the API reads and writes.
 
-### parcelLab MCP Server
+- [parcelLab Address](https://apis.io/schemas/parcellab/parcellab-address/)
+- [parcelLab Line Item](https://apis.io/schemas/parcellab/parcellab-line-item/)
+- [parcelLab Order](https://apis.io/schemas/parcellab/parcellab-order/)
+- [parcelLab Promise Prediction](https://apis.io/schemas/parcellab/parcellab-promise-prediction/)
+- [parcelLab Return Registration](https://apis.io/schemas/parcellab/parcellab-return-registration/)
+- [parcelLab Tracking](https://apis.io/schemas/parcellab/parcellab-tracking/)
 
-Hosted Model Context Protocol server exposing the parcelLab order tracking and returns registration workflow to MCP-compatible agents, authenticated via OAuth 2.1 bearer tokens with scopes such as `track:orderinfo` and `returns:registration`.
+#### JSON Structure (2)
 
-- **Human URL:** [https://github.com/parcelLab/parcellab-mcp-server](https://github.com/parcelLab/parcellab-mcp-server)
-- **Base URL:** `https://agents.parcellab.com/mcp/`
+Data models expressed in JSON Structure.
 
-#### Tags
+- [Parcellab Order Structure](https://apis.io/json-structure/parcellab/parcellab-order-structure/)
+- [Parcellab Return Registration Structure](https://apis.io/json-structure/parcellab/parcellab-return-registration-structure/)
 
-- MCP
-- AI
-- Agents
-- Tracking
-- Returns
+#### JSON-LD (1)
 
-#### Properties
+Linked-data contexts for the provider's vocabulary.
 
-- [GitHub Repository](https://github.com/parcelLab/parcellab-mcp-server)
-- [Documentation](https://github.com/parcelLab/parcellab-mcp-server)
-- [Postman Collection](collections/parcellab.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/parcellab.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Parcellab Context](https://apis.io/jsonld/parcellab/parcellab-context/)
 
-## Common Properties
+#### Vocabulary (1)
 
-- [Arazzo Workflows](arazzo/) — [Arazzo Specification](https://spec.openapis.org/arazzo/latest.html)
+The provider's domain terms, defined.
+
+- [parcelLab Vocabulary](https://apis.io/vocabularies/parcellab/parcellab-vocabulary/)
+
+#### Examples (5)
+
+Example requests and responses.
+
+- [Parcellab Create Return Registration Example](https://apis.io/examples/parcellab/parcellab-create-return-registration-example/)
+- [Parcellab Get Order Info Example](https://apis.io/examples/parcellab/parcellab-get-order-info-example/)
+- [Parcellab Predict Delivery Example](https://apis.io/examples/parcellab/parcellab-predict-delivery-example/)
+- [Parcellab Pudo Lookup Example](https://apis.io/examples/parcellab/parcellab-pudo-lookup-example/)
+- [Parcellab Upsert Order Example](https://apis.io/examples/parcellab/parcellab-upsert-order-example/)
+
+#### Collections (9)
+
+Postman and Open Collection request collections.
+
+- [parcelLab API](https://apis.io/collections/parcellab/open-parcellab/)
+- [parcelLab Campaigns API](https://apis.io/collections/parcellab/open-parcellab-campaigns-api/)
+- [parcelLab Campaigns Events API](https://apis.io/collections/parcellab/open-parcellab-events-api/)
+- [parcelLab Campaigns Orders API](https://apis.io/collections/parcellab/open-parcellab-orders-api/)
+- [parcelLab Campaigns Place Info API](https://apis.io/collections/parcellab/open-parcellab-place-info-api/)
+- [parcelLab Campaigns Promise API](https://apis.io/collections/parcellab/open-parcellab-promise-api/)
+- [parcelLab Campaigns Returns API](https://apis.io/collections/parcellab/open-parcellab-returns-api/)
+- [parcelLab Campaigns Surveys API](https://apis.io/collections/parcellab/open-parcellab-surveys-api/)
+- [parcelLab API](https://apis.io/collections/parcellab/postman-parcellab/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [parcelLab — jsonschema rules](https://apis.io/rules/parcellab/parcellab-jsonschema-spectral-rules/)
+- [parcelLab API Rules](https://apis.io/rules/parcellab/parcellab-rules/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Parcellab Authentication](https://apis.io/security/parcellab/parcellab-authentication/)
+- [Parcellab Domain Security](https://apis.io/security/parcellab/parcellab-domain-security/)
+- [Parcellab Vulnerability Disclosure](https://apis.io/security/parcellab/parcellab-vulnerability-disclosure/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Parcellab Plans Pricing](https://apis.io/plans/parcellab/parcellab-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Parcellab Rate Limits](https://apis.io/rate-limits/parcellab/parcellab-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Parcellab Finops](https://apis.io/finops/parcellab/parcellab-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://parcellab.com)
-- [Developer Portal](https://docs.parcellab.com/docs/developers/readme)
 - [Documentation](https://docs.parcellab.com/docs/readme)
-- [Getting Started](https://docs.parcellab.com/docs/onboarding)
-- [Authentication](https://docs.parcellab.com/docs/developers/getting-started/authentication)
-- [API Reference](https://docs.parcellab.com/docs/developers/getting-started/api-reference)
-- [Error Codes](https://docs.parcellab.com/docs/developers/getting-started/error-codes)
-- [Sign Up](https://app.parcellab.com/signin)
-- [Console](https://app.parcellab.com)
-- [Status Page](https://status.parcellab.com)
+- [Getting started](https://docs.parcellab.com/docs/onboarding)
+- [API reference](https://docs.parcellab.com/docs/developers/getting-started/api-reference)
 - [Pricing](https://parcellab.com/contact-us)
-- [Blog](https://parcellab.com/blog/)
-- [Terms of Service](https://parcellab.com/legal/terms-of-service/)
-- [Careers](https://parcellab.com/careers)
 - [Support](https://parcellab.com/contact-us)
-- [GitHub Organization](https://github.com/parcelLab)
-- [LinkedIn](https://www.linkedin.com/company/parcellab)
-- [Security Compliance](https://docs.parcellab.com/docs/platform/security-compliance)
-- [Single Sign On](https://docs.parcellab.com/docs/platform/security-compliance/single-sign-on)
-- [Data Retention Policy](https://docs.parcellab.com/docs/platform/security-compliance/data-retention-policy)
-- [SDK](https://github.com/parcelLab/parcelLab-js-plugin)
-- [SDK](https://github.com/parcelLab/js-plugin-utils)
-- [SDK](https://github.com/parcelLab/regionIdentifier)
-- [SDK](https://github.com/parcelLab/parcellab-embedded-ui-snippets)
-- [SDK](https://github.com/parcelLab/charts)
-- [Agent S D K](https://github.com/parcelLab/parcellab-mcp-server)
-- [Plans](plans/parcellab-plans-pricing.yml)
-- [Rate Limits](rate-limits/parcellab-rate-limits.yml)
-- [Fin Ops](finops/parcellab-finops.yml)
-- [Spectral Rules](rules/parcellab-rules.yml)
-- [Vocabulary](vocabulary/parcellab-vocabulary.yml)
-- [Features](undefined)
-- [Use Cases](undefined)
-- [Integrations](undefined)
-- [Solutions](undefined)
-- [Offices](undefined)
+- [Blog](https://parcellab.com/blog/)
+- [Terms of service](https://parcellab.com/legal/terms-of-service/)
+- [GitHub](https://github.com/parcelLab)
+- [Status](https://status.parcellab.com)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 56.9** — strong · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 63.5 |
+| Contract governance | 27.3 |
+| Operational transparency | 34.2 |
+| Developer ergonomics | 75.0 |
+| Access clarity | 31.6 |
+
+**Agent readiness 26.3** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | documented (partial credit) |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | paginated |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 22.5** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/parcellab/](https://apis.io/providers/parcellab/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for parcelLab: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/parcellab/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
