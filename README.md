@@ -64,17 +64,146 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-parcelLab is a Munich-headquartered post-purchase experience platform (parcelLab GmbH) used by retailers including IKEA, Hugo Boss, Dyson, Puma, and John Lewis to turn delivery and returns into a branded, revenue-generating part of the customer journey. The platform spans four modules — Convert (pre-checkout delivery promise), Engage (multichannel post-purchase communications), Retain (Returns Portal and returns experience), and Insights (analytics, benchmarking, control tower) — layered with AI agents (WISMO/R, Insights, Fraud & Abuse) and exposed via the parcelLab API v4 Enhanced. Global, EU, and US regional endpoints are available; the same data backs a Model Context Protocol server at agents.parcellab.com/mcp/ for agentic clients.
+parcelLab connects delivery promises, shipment tracking, customer communications, and returns through APIs and AI agents. Retailers can show delivery dates before checkout, keep customers informed after purchase, and build branded tracking and returns experiences. Developers can integrate these capabilities into storefronts, order and warehouse systems, customer service tools, and AI assistants.
 
-**Areas:** Post-Purchase · E-Commerce · Tracking · Returns · Shipping · Delivery · Customer Experience · Logistics · Communications · Germany
+The platform offers REST APIs, shipment and return event integrations, an Agents API, and hosted Model Context Protocol (MCP) servers. Agents can work with order and return flows and, with the required permissions, configure the customer experience through MCP tools.
+
+**Areas** · Delivery Promise · Order Management · Shipment Tracking · Returns and Exchanges · Customer Communications · AI Agents · MCP · E-Commerce
+
+The coverage notes below were contributed for review on **2026-11-06**. They link to the public v4 specification, MCP discovery documents, and parcelLab developer guides. Guide descriptions were also checked against local documentation and implementation sources. Public verification results are recorded below to support catalog corrections and a new assessment.
+
+## Start here
+
+- [Interactive API v4 reference](https://product-api.parcellab.com/v4/docs/)
+- [OpenAPI specification](https://product-api.parcellab.com/v4/openapi/?format=json)
+- [Markdown API reference for developers and agents](https://product-api.parcellab.com/v4/docs/markdown/)
+- [Developer guides for API v4](https://docs.parcellab.com/developers/v4)
+- [Developer guides for API v2 LTS](https://docs.parcellab.com/developers/v2)
+- [MCP connection and access](#mcp-for-ai-assistants)
+- [Agents API](#agents-api)
+
+## API v4 coverage
+
+The public specification contains **75 operations across 56 paths and 16 tag groups**, checked on 2026-11-06. Each group is listed below. Translations appear under two tags, so group counts overlap. Access depends on the operation, account configuration, and permissions. Use the linked operation reference for request fields, authentication, and response schemas.
+
+| API group | What developers can build | Operations | Reference |
+| --- | --- | ---: | --- |
+| Agents | Embed configured agents in applications and support channels. Start executions, read thread status and messages, and continue conversations. | 3 | [API reference](https://product-api.parcellab.com/v4/docs/markdown/agents/) |
+| Apps | Render Order Status Page plugins and invoke deployed app ingress webhooks. | 2 | [API reference](https://product-api.parcellab.com/v4/docs/markdown/apps/) |
+| Campaign | Evaluate campaign targeting and record campaign redirect activity. | 2 | [API reference](https://product-api.parcellab.com/v4/docs/markdown/campaign/) |
+| Customer Portals | Retrieve the customer portals available for an account. | 1 | [API reference](https://product-api.parcellab.com/v4/docs/markdown/customer-portals/) |
+| Events | Send shop and warehouse events into the shipment lifecycle. | 1 | [API reference](https://product-api.parcellab.com/v4/docs/markdown/events/) |
+| Order | Create, update, list, and look up orders and trackings. Retrieve shipment status and an order status widget. | 6 | [API reference](https://product-api.parcellab.com/v4/docs/markdown/order/) |
+| Order Status Page Theme | Create and edit branded tracking themes and assets, then publish them. | 11 | [API reference](https://product-api.parcellab.com/v4/docs/markdown/order-status-page-theme/) |
+| Place Info | Find pickup and drop-off locations. List, retrieve, upsert, and remove account location records. | 5 | [API reference](https://product-api.parcellab.com/v4/docs/markdown/place-info/) |
+| Promise | Calculate delivery date predictions for product pages and checkout. | 1 | [API reference](https://product-api.parcellab.com/v4/docs/markdown/promise/) |
+| Return Configuration Set | Retrieve return configurations and document templates, and read or update translations. | 5 | [API reference](https://product-api.parcellab.com/v4/docs/markdown/return-configuration-set/) |
+| Return Registration | Build headless returns and exchanges, from order lookup and item validation through return options, pickup availability, submission, labels, receipt, and lifecycle updates. | 19 | [Interactive API reference](https://product-api.parcellab.com/v4/docs/) |
+| Size Recommender | List articles with fit information and retrieve size recommendations. | 3 | [API reference](https://product-api.parcellab.com/v4/docs/markdown/size-recommender/) |
+| Survey | Retrieve surveys and themes, and read or submit survey answers. | 4 | [API reference](https://product-api.parcellab.com/v4/docs/markdown/survey/) |
+| Theme | Create and edit Returns Portal themes and assets, then publish them. | 11 | [API reference](https://product-api.parcellab.com/v4/docs/markdown/theme/) |
+| Translation | Retrieve return translations and update translation strings. | 2 | [API reference](https://product-api.parcellab.com/v4/docs/markdown/translation/) |
+| Voucher | Check voucher availability. | 1 | [API reference](https://product-api.parcellab.com/v4/docs/markdown/voucher/) |
+
+### Promise from checkout to delivery
+
+The Promise API returns delivery predictions for the account's configured delivery methods. Integrations can use destination, carrier, service level, and warehouse information to show an estimated date or date range before purchase. Keep the promise shown at checkout with the order so later communications can refer to that commitment. The v4 entry point is `GET /v4/promise/prediction/predict/`. API v2 LTS also documents `GET /v2/prediction`. [Promise API reference](https://product-api.parcellab.com/v4/docs/markdown/promise/), [Promise integration guide](https://docs.parcellab.com/developers/v4/promise/api).
+
+### Agents API
+
+The Agents API embeds a configured parcelLab agent into a support tool, application, or chat interface. It supports asynchronous execution and continued conversations through three operations.
+
+| Operation | Endpoint |
+| --- | --- |
+| Start an execution | `POST /v4/agents/{agent_id}/execute/` |
+| Read thread status and messages | `GET /v4/agents/{agent_id}/threads/{thread_ref}/` |
+| Add a message to a thread | `POST /v4/agents/{agent_id}/threads/{thread_ref}/messages/` |
+
+Use the returned thread reference to poll for completion and continue the conversation. The integration requires an agent configured for the account, API access, and the account's AI opt-in. Follow the response schema for execution status values. [Agents API reference](https://product-api.parcellab.com/v4/docs/markdown/agents/).
+
+## MCP for AI assistants
+
+parcelLab hosts MCP servers that let compatible AI clients use parcelLab through tools. The customer endpoints serve two workflows.
+
+| Endpoint | Use |
+| --- | --- |
+| `https://agents.parcellab.com/mcp/` | Shopper service workflows, including order status and guided return registration. |
+| `https://agents.parcellab.com/admin/mcp/` | Account configuration, including journeys, messages, Returns Portals, Order Status Pages, themes, translations, campaigns, and notifications. |
+
+The configuration endpoint lets teams use an assistant to inspect settings, prepare changes, and publish supported configuration. Available tools depend on the signed-in user's account access and roles. The documented connection requires the account's AI opt-in, OAuth support, and Streamable HTTP. [MCP developer guide](https://docs.parcellab.com/developers/v4/mcp/mcp-server).
+
+For example, connect Claude Code to the configuration endpoint, then complete the parcelLab sign-in and consent flow.
+
+```bash
+claude mcp add --transport http parcellab https://agents.parcellab.com/admin/mcp/
+```
+
+An assistant can use the shopper endpoint to answer an order status question or guide a return. An authorized configuration user can ask it to inspect a journey or prepare a Returns Portal theme change. Tool permissions determine the actions available to that user. The guide documents read/write tool annotations and an approval step for publishing. [MCP setup and permissions](https://docs.parcellab.com/developers/v4/mcp/mcp-server).
+
+The live server publishes OAuth protected-resource metadata and authorization-server metadata. On 2026-11-06, these advertised authorization-code and refresh-token grants, dynamic client registration, and PKCE with `S256`. Clients can discover the authorization endpoints and supported scopes from these documents. [Protected-resource metadata](https://agents.parcellab.com/.well-known/oauth-protected-resource), [Authorization-server metadata](https://agents.parcellab.com/.well-known/oauth-authorization-server).
+
+### Authentication by interface
+
+| Interface | Credential and flow | Access checks |
+| --- | --- | --- |
+| REST API, including Agents | Send `Authorization: Parcellab-API-Token <encoded-token>`. The value is `base64(account_id:token)`, with the colon and no trailing newline. The parcelLab App supplies an already encoded value. Copy it directly. | The token needs the scope for the HTTP method and access to the requested account. |
+| REST API with provisioned OAuth | Send `Authorization: Bearer <access-token>` for an unbound token. For a DPoP-bound token, send `Authorization: DPoP <access-token>` and a signed `DPoP` proof for each request. | The identity and operation permissions apply. The specification lists `ES256` and `RS256` for DPoP proofs. |
+| MCP | Let an OAuth-capable MCP client perform discovery, parcelLab sign-in, consent, and token acquisition. Use Streamable HTTP with either customer endpoint above. | Tool scopes, account access, user roles, and AI opt-in determine available actions. Account API tokens are for REST integrations. |
+| Public storefront and Returns Portal operations | Use the operation's documented public parameters or verification flow. | Account configuration, recipient verification, and supported Returns Portal nonces still apply. |
+
+API tokens use the `Parcellab-API-Token` authorization scheme. OAuth access tokens use the scheme defined by their OAuth flow. Keep API tokens in server-side integrations. The [authentication guide](https://docs.parcellab.com/developers/v4/getting-started/authentication) describes token creation and endpoint access. The live contract defines the supported security schemes. [OpenAPI specification](https://product-api.parcellab.com/v4/openapi/?format=json).
+
+For API tokens, order reads accept `read` or `track:read`, and order writes accept `write` or `track:write`. Agent execution and message submission accept `write` or `agents:write`. Reading an agent thread accepts `read` or `agents:read`. The agent must be available to the account, with AI opt-in enabled. [Authentication guide](https://docs.parcellab.com/developers/v4/getting-started/authentication), [Agents API](https://product-api.parcellab.com/v4/docs/markdown/agents/).
+
+Public access is operation-specific. The live specification permits unauthenticated requests for campaign evaluation and redirects, Size Recommender, Promise prediction, return order lookup, and public order status. Required input and account checks still apply. Order status can require recipient email, postal code, or a security hash. Return order lookup uses the Returns Portal's verification rules. Supported subsequent return actions can use `x-parcellab-nonce`. [Authentication guide](https://docs.parcellab.com/developers/v4/getting-started/authentication), [Live operation contracts](https://product-api.parcellab.com/v4/openapi/?format=json).
+
+In OpenAPI, separate security objects are alternatives. An empty security object `{}` permits unauthenticated access, and `security: []` removes an operation's authentication requirement. When `security` is omitted, the root declaration applies. The current v4 contract has no root-level security requirement. Consult the operation guide for verification rules and Returns Portal nonce flows that are not fully represented by those declarations. [OpenAPI specification](https://product-api.parcellab.com/v4/openapi/?format=json).
+
+### Verify access
+
+For a server integration, use an account API token with `read` or `track:read` to make a read-only order-list request.
+
+```bash
+curl --request GET 'https://api.parcellab.com/v4/track/orders/' \
+  --header 'Authorization: Parcellab-API-Token <encoded-token>'
+```
+
+A successful response verifies this credential's access to this operation. An account with no orders returns an empty `results` array. HTTP `401` indicates an authentication problem, and HTTP `403` indicates an access or permission problem. Read the response's error details to identify the cause. For MCP, finish sign-in and invoke a read-only tool on an authorized account. Tool availability and write permission require their own checks. [Authentication guide](https://docs.parcellab.com/developers/v4/getting-started/authentication).
+
+OpenAPI and OAuth discovery documents are accessible without signing in. Reading them verifies the published contracts and discovery configuration. The verification steps above check credential access. Developers and agents can also use the [Markdown API reference](https://product-api.parcellab.com/v4/docs/markdown/) for operation details, schemas, and documented errors.
+
+## Additional documented integration services
+
+API v2 LTS and the integration guides cover services beyond the public v4 specification. The Backend route definitions were cross-checked against these guides. Use the guide for each service's access requirements and setup.
+
+| Service | Coverage | Documentation |
+| --- | --- | --- |
+| Orders and tracking ingestion | Send order and shipment data through the documented LTS APIs. | [Orders and trackings](https://docs.parcellab.com/developers/v2/orders/trackings-orders) |
+| Tracking search and checkpoints | Search recent trackings and retrieve shipment status and checkpoint history. | [Search](https://docs.parcellab.com/developers/v2/orders/search), [Checkpoints](https://docs.parcellab.com/developers/v2/status-updates/checkpoints) |
+| Notification history | Retrieve sent notifications for a tracking. | [Tracking notifications](https://docs.parcellab.com/developers/v2/status-updates/checkpoints) |
+| Files and attachments | Upload data files and tracking attachments. | [Files and attachments](https://docs.parcellab.com/developers/v2/orders/files-and-attachments) |
+| Customer communications | Trigger and re-trigger messages for a tracking. | [Trigger messages](https://docs.parcellab.com/developers/v2/orders/trigger-messages) |
+| Shipment webhooks | Receive configured shipment events and status data at an HTTPS receiver. | [Tracking webhooks](https://docs.parcellab.com/developers/v2/data-elements/get-status-updates/webhooks) |
+| Return events and RMA actions | Receive return data and manage returns, labels, and pickup actions. | [Return data](https://docs.parcellab.com/developers/v2/returns/receive-data), [RMA actions](https://docs.parcellab.com/developers/v2/returns/rma-actions-api) |
+| Claims | Submit a claim for a tracking. | [Claims](https://docs.parcellab.com/developers/v2/orders/claim) |
+| Carrier data integration | Supply scans, status events, and live location data through documented carrier integrations. | [Carrier integration](https://docs.parcellab.com/developers/v2/data-elements/carrier-integration) |
+| Apple Wallet | Integrate parcel tracking with Apple Wallet. | [Apple Wallet](https://docs.parcellab.com/developers/v2/status-updates/apple-wallet) |
+| Data protection | Request disclosure or erasure through account-authorized APIs. | [Data protection](https://docs.parcellab.com/developers/v2/security/data-protection) |
+| Barcode generation | Generate barcodes for supported formats. | [Barcodes](https://docs.parcellab.com/developers/v2/utility-services/barcodes) |
+
+### Source verification
+
+On 2026-11-06, the public OpenAPI specification, interactive API reference, and MCP OAuth discovery documents returned HTTP 200 without credentials. The specification supplies the v4 operation coverage and REST security declarations above. MCP metadata supplies the authorization, registration, and PKCE evidence.
+
+The documentation host returned HTTP 403 to the review client. Guide descriptions were checked locally, and the linked guide paths follow the GitBook site configuration. These guide links still need an independent public check. The Markdown return-registration page returned HTTP 500, so its table entry links to the interactive reference. This review checked documentation and discovery metadata.
 
 ## parcelLab on APIs.io
 
-Everything profiled for parcelLab is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/parcellab/](https://apis.io/providers/parcellab/)** — or go straight to one of the APIs or properties below.
+API Evangelist publishes its derived catalog artifacts on APIs.io. The coverage sections above describe additional APIs and capabilities for catalog review. [Provider profile](https://apis.io/providers/parcellab/).
 
-### APIs (8)
+### Catalog entries (8)
 
-- [parcelLab MCP Server](https://apis.io/apis/parcellab/parcellab-mcp/) — Hosted Model Context Protocol server exposing the parcelLab order tracking and returns registration workflow to MCP-compatible agents, authenticated via…
+- [parcelLab MCP Server](https://apis.io/apis/parcellab/parcellab-mcp/) — Hosted MCP access for AI assistants. The shopper endpoint supports order and return workflows, and the configuration endpoint supports authorized account setup changes. See [MCP coverage](#mcp-for-ai-assistants).
 - [parcelLab Campaigns API](https://apis.io/apis/parcellab/parcellab-campaigns-api/) — Evaluate campaign targeting and redirect analytics events.
 - [parcelLab Events API](https://apis.io/apis/parcellab/parcellab-events-api/) — Send custom shop or warehouse events into the tracking timeline.
 - [parcelLab Orders API](https://apis.io/apis/parcellab/parcellab-orders-api/) — Create, update, and inspect orders and their trackings.
@@ -107,7 +236,7 @@ Multi-step workflows that chain operations into a business task.
 
 Which operations an agent can call, which act, and which need a human in the loop.
 
-- [Parcellab Agentic Access](https://apis.io/agentic-access/parcellab/parcellab-agentic-access/)
+- [parcelLab Agentic Access](https://apis.io/agentic-access/parcellab/parcellab-agentic-access/)
 
 #### JSON Schema (6)
 
@@ -124,14 +253,14 @@ The data models the API reads and writes.
 
 Data models expressed in JSON Structure.
 
-- [Parcellab Order Structure](https://apis.io/json-structure/parcellab/parcellab-order-structure/)
-- [Parcellab Return Registration Structure](https://apis.io/json-structure/parcellab/parcellab-return-registration-structure/)
+- [parcelLab Order Structure](https://apis.io/json-structure/parcellab/parcellab-order-structure/)
+- [parcelLab Return Registration Structure](https://apis.io/json-structure/parcellab/parcellab-return-registration-structure/)
 
 #### JSON-LD (1)
 
 Linked-data contexts for the provider's vocabulary.
 
-- [Parcellab Context](https://apis.io/jsonld/parcellab/parcellab-context/)
+- [parcelLab Context](https://apis.io/jsonld/parcellab/parcellab-context/)
 
 #### Vocabulary (1)
 
@@ -143,11 +272,11 @@ The provider's domain terms, defined.
 
 Example requests and responses.
 
-- [Parcellab Create Return Registration Example](https://apis.io/examples/parcellab/parcellab-create-return-registration-example/)
-- [Parcellab Get Order Info Example](https://apis.io/examples/parcellab/parcellab-get-order-info-example/)
-- [Parcellab Predict Delivery Example](https://apis.io/examples/parcellab/parcellab-predict-delivery-example/)
-- [Parcellab Pudo Lookup Example](https://apis.io/examples/parcellab/parcellab-pudo-lookup-example/)
-- [Parcellab Upsert Order Example](https://apis.io/examples/parcellab/parcellab-upsert-order-example/)
+- [parcelLab Create Return Registration Example](https://apis.io/examples/parcellab/parcellab-create-return-registration-example/)
+- [parcelLab Get Order Info Example](https://apis.io/examples/parcellab/parcellab-get-order-info-example/)
+- [parcelLab Predict Delivery Example](https://apis.io/examples/parcellab/parcellab-predict-delivery-example/)
+- [parcelLab Pudo Lookup Example](https://apis.io/examples/parcellab/parcellab-pudo-lookup-example/)
+- [parcelLab Upsert Order Example](https://apis.io/examples/parcellab/parcellab-upsert-order-example/)
 
 #### Collections (9)
 
@@ -155,12 +284,12 @@ Postman and Open Collection request collections.
 
 - [parcelLab API](https://apis.io/collections/parcellab/open-parcellab/)
 - [parcelLab Campaigns API](https://apis.io/collections/parcellab/open-parcellab-campaigns-api/)
-- [parcelLab Campaigns Events API](https://apis.io/collections/parcellab/open-parcellab-events-api/)
-- [parcelLab Campaigns Orders API](https://apis.io/collections/parcellab/open-parcellab-orders-api/)
-- [parcelLab Campaigns Place Info API](https://apis.io/collections/parcellab/open-parcellab-place-info-api/)
-- [parcelLab Campaigns Promise API](https://apis.io/collections/parcellab/open-parcellab-promise-api/)
-- [parcelLab Campaigns Returns API](https://apis.io/collections/parcellab/open-parcellab-returns-api/)
-- [parcelLab Campaigns Surveys API](https://apis.io/collections/parcellab/open-parcellab-surveys-api/)
+- [parcelLab Events API](https://apis.io/collections/parcellab/open-parcellab-events-api/)
+- [parcelLab Orders API](https://apis.io/collections/parcellab/open-parcellab-orders-api/)
+- [parcelLab Place Info API](https://apis.io/collections/parcellab/open-parcellab-place-info-api/)
+- [parcelLab Promise API](https://apis.io/collections/parcellab/open-parcellab-promise-api/)
+- [parcelLab Returns API](https://apis.io/collections/parcellab/open-parcellab-returns-api/)
+- [parcelLab Surveys API](https://apis.io/collections/parcellab/open-parcellab-surveys-api/)
 - [parcelLab API](https://apis.io/collections/parcellab/postman-parcellab/)
 
 #### Governance rules (2)
@@ -174,36 +303,38 @@ Spectral rulesets for the provider's contracts.
 
 Authentication, trust centre, and vulnerability disclosure.
 
-- [Parcellab Authentication](https://apis.io/security/parcellab/parcellab-authentication/)
-- [Parcellab Domain Security](https://apis.io/security/parcellab/parcellab-domain-security/)
-- [Parcellab Vulnerability Disclosure](https://apis.io/security/parcellab/parcellab-vulnerability-disclosure/)
+- [parcelLab Authentication](https://apis.io/security/parcellab/parcellab-authentication/)
+- [parcelLab Domain Security](https://apis.io/security/parcellab/parcellab-domain-security/)
+- [parcelLab Vulnerability Disclosure](https://apis.io/security/parcellab/parcellab-vulnerability-disclosure/)
 
 #### Plans and pricing (1)
 
 Published plans, tiers and prices.
 
-- [Parcellab Plans Pricing](https://apis.io/plans/parcellab/parcellab-plans-pricing/)
+- [parcelLab Plans Pricing](https://apis.io/plans/parcellab/parcellab-plans-pricing/)
 
 #### Rate limits (1)
 
 Published request limits.
 
-- [Parcellab Rate Limits](https://apis.io/rate-limits/parcellab/parcellab-rate-limits/)
+- [parcelLab Rate Limits](https://apis.io/rate-limits/parcellab/parcellab-rate-limits/)
 
 #### FinOps (1)
 
 What the API costs to run, by operation.
 
-- [Parcellab Finops](https://apis.io/finops/parcellab/parcellab-finops/)
+- [parcelLab Finops](https://apis.io/finops/parcellab/parcellab-finops/)
 
 ## Where to find this API
 
 Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://parcellab.com)
-- [Documentation](https://docs.parcellab.com/docs/readme)
-- [Getting started](https://docs.parcellab.com/docs/onboarding)
-- [API reference](https://docs.parcellab.com/docs/developers/getting-started/api-reference)
+- [Documentation](https://docs.parcellab.com/)
+- [Getting started](https://docs.parcellab.com/developers/v4/getting-started/quickstart-guide)
+- [API reference](https://product-api.parcellab.com/v4/docs/)
+- [OpenAPI](https://product-api.parcellab.com/v4/openapi/?format=json)
+- [MCP documentation](https://docs.parcellab.com/developers/v4/mcp/mcp-server)
 - [Pricing](https://parcellab.com/contact-us)
 - [Support](https://parcellab.com/contact-us)
 - [Blog](https://parcellab.com/blog/)
@@ -211,7 +342,9 @@ Links to the company's own pages. This repository publishes no copy of their spe
 - [GitHub](https://github.com/parcelLab)
 - [Status](https://status.parcellab.com)
 
-## API Evangelist rating
+## API Evangelist rating from 2026-10-23
+
+These are the assessment results from 2026-10-23. The MCP rows below reflect that dated assessment. The current evidence above includes a hosted MCP service, OAuth discovery, dynamic client registration, and PKCE. A new independent assessment is needed to update the scores.
 
 **Kin Score 56.9** — strong · rubric 0.25.0 · scored 2026-10-23
 
