@@ -342,9 +342,7 @@ Links to the company's own pages. This repository publishes no copy of their spe
 - [GitHub](https://github.com/parcelLab)
 - [Status](https://status.parcellab.com)
 
-## API Evangelist rating from 2026-10-23
-
-These are the assessment results from 2026-10-23. The MCP rows below reflect that dated assessment. The current evidence above includes a hosted MCP service, OAuth discovery, dynamic client registration, and PKCE. A new independent assessment is needed to update the scores.
+## API Evangelist rating
 
 **Kin Score 56.9** — strong · rubric 0.25.0 · scored 2026-10-23
 
