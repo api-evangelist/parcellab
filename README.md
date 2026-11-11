@@ -72,16 +72,25 @@ parcelLab is a Munich-headquartered post-purchase experience platform (parcelLab
 
 Everything profiled for parcelLab is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/parcellab/](https://apis.io/providers/parcellab/)** — or go straight to one of the APIs or properties below.
 
-### APIs (8)
+### APIs (17)
 
 - [parcelLab MCP Server](https://apis.io/apis/parcellab/parcellab-mcp/) — Hosted Model Context Protocol server exposing the parcelLab order tracking and returns registration workflow to MCP-compatible agents, authenticated via…
-- [parcelLab Campaigns API](https://apis.io/apis/parcellab/parcellab-campaigns-api/) — Evaluate campaign targeting and redirect analytics events.
 - [parcelLab Events API](https://apis.io/apis/parcellab/parcellab-events-api/) — Send custom shop or warehouse events into the tracking timeline.
-- [parcelLab Orders API](https://apis.io/apis/parcellab/parcellab-orders-api/) — Create, update, and inspect orders and their trackings.
 - [parcelLab Place Info API](https://apis.io/apis/parcellab/parcellab-place-info-api/) — Look up nearby pickup and drop-off (PUDO) locations.
 - [parcelLab Promise API](https://apis.io/apis/parcellab/parcellab-promise-api/) — Pre-checkout delivery date predictions.
-- [parcelLab Returns API](https://apis.io/apis/parcellab/parcellab-returns-api/) — Return registrations, configurations, and document templates.
-- [parcelLab Surveys API](https://apis.io/apis/parcellab/parcellab-surveys-api/) — Retrieve survey definitions and submit responses.
+- [parcelLab Agents API](https://apis.io/apis/parcellab/parcellab-agents-api/) — The Agents API from parcelLab — 3 operation(s) for agents.
+- [parcelLab Apps API](https://apis.io/apis/parcellab/parcellab-apps-api/) — The Apps API from parcelLab — 2 operation(s) for apps.
+- [parcelLab Campaign API](https://apis.io/apis/parcellab/parcellab-campaign-api/) — The Campaign API from parcelLab — 2 operation(s) for campaign.
+- [parcelLab Customer Portals API](https://apis.io/apis/parcellab/parcellab-customer-portals-api/) — The Customer Portals API from parcelLab — 1 operation(s) for customer portals.
+- [parcelLab Order API](https://apis.io/apis/parcellab/parcellab-order-api/) — The Order API from parcelLab — 4 operation(s) for order.
+- [parcelLab Order Status Page Theme API](https://apis.io/apis/parcellab/parcellab-order-status-page-theme-api/) — The Order Status Page Theme API from parcelLab — 6 operation(s) for order status page theme.
+- [parcelLab Return Configuration Set API](https://apis.io/apis/parcellab/parcellab-return-configuration-set-api/) — The Return Configuration Set API from parcelLab — 5 operation(s) for return configuration set.
+- [parcelLab Return Registration API](https://apis.io/apis/parcellab/parcellab-return-registration-api/) — The Return Registration API from parcelLab — 14 operation(s) for return registration.
+- [parcelLab Size Recommender API](https://apis.io/apis/parcellab/parcellab-size-recommender-api/) — The Size Recommender API from parcelLab — 3 operation(s) for size recommender.
+- [parcelLab Survey API](https://apis.io/apis/parcellab/parcellab-survey-api/) — The Survey API from parcelLab — 3 operation(s) for survey.
+- [parcelLab Theme API](https://apis.io/apis/parcellab/parcellab-theme-api/) — The Theme API from parcelLab — 6 operation(s) for theme.
+- [parcelLab Translation API](https://apis.io/apis/parcellab/parcellab-translation-api/) — The Translation API from parcelLab — 2 operation(s) for translation.
+- [parcelLab Voucher API](https://apis.io/apis/parcellab/parcellab-voucher-api/) — The Voucher API from parcelLab — 1 operation(s) for voucher.
 
 ### Published properties
 
@@ -107,7 +116,7 @@ Multi-step workflows that chain operations into a business task.
 
 Which operations an agent can call, which act, and which need a human in the loop.
 
-- [Parcellab Agentic Access](https://apis.io/agentic-access/parcellab/parcellab-agentic-access/)
+- [parcelLab Agentic Access](https://apis.io/agentic-access/parcellab/parcellab-agentic-access/)
 
 #### JSON Schema (6)
 
@@ -124,8 +133,8 @@ The data models the API reads and writes.
 
 Data models expressed in JSON Structure.
 
-- [Parcellab Order Structure](https://apis.io/json-structure/parcellab/parcellab-order-structure/)
-- [Parcellab Return Registration Structure](https://apis.io/json-structure/parcellab/parcellab-return-registration-structure/)
+- [parcelLab Order Structure](https://apis.io/json-structure/parcellab/parcellab-order-structure/)
+- [parcelLab Return Registration Structure](https://apis.io/json-structure/parcellab/parcellab-return-registration-structure/)
 
 #### JSON-LD (1)
 
@@ -143,11 +152,11 @@ The provider's domain terms, defined.
 
 Example requests and responses.
 
-- [Parcellab Create Return Registration Example](https://apis.io/examples/parcellab/parcellab-create-return-registration-example/)
-- [Parcellab Get Order Info Example](https://apis.io/examples/parcellab/parcellab-get-order-info-example/)
-- [Parcellab Predict Delivery Example](https://apis.io/examples/parcellab/parcellab-predict-delivery-example/)
-- [Parcellab Pudo Lookup Example](https://apis.io/examples/parcellab/parcellab-pudo-lookup-example/)
-- [Parcellab Upsert Order Example](https://apis.io/examples/parcellab/parcellab-upsert-order-example/)
+- [parcelLab Create Return Registration Example](https://apis.io/examples/parcellab/parcellab-create-return-registration-example/)
+- [parcelLab Get Order Info Example](https://apis.io/examples/parcellab/parcellab-get-order-info-example/)
+- [parcelLab Predict Delivery Example](https://apis.io/examples/parcellab/parcellab-predict-delivery-example/)
+- [parcelLab Pudo Lookup Example](https://apis.io/examples/parcellab/parcellab-pudo-lookup-example/)
+- [parcelLab Upsert Order Example](https://apis.io/examples/parcellab/parcellab-upsert-order-example/)
 
 #### Collections (9)
 
@@ -174,27 +183,27 @@ Spectral rulesets for the provider's contracts.
 
 Authentication, trust centre, and vulnerability disclosure.
 
-- [Parcellab Authentication](https://apis.io/security/parcellab/parcellab-authentication/)
-- [Parcellab Domain Security](https://apis.io/security/parcellab/parcellab-domain-security/)
-- [Parcellab Vulnerability Disclosure](https://apis.io/security/parcellab/parcellab-vulnerability-disclosure/)
+- [parcelLab Authentication](https://apis.io/security/parcellab/parcellab-authentication/)
+- [parcelLab Domain Security](https://apis.io/security/parcellab/parcellab-domain-security/)
+- [parcelLab Vulnerability Disclosure](https://apis.io/security/parcellab/parcellab-vulnerability-disclosure/)
 
 #### Plans and pricing (1)
 
 Published plans, tiers and prices.
 
-- [Parcellab Plans Pricing](https://apis.io/plans/parcellab/parcellab-plans-pricing/)
+- [parcelLab Plans Pricing](https://apis.io/plans/parcellab/parcellab-plans-pricing/)
 
 #### Rate limits (1)
 
 Published request limits.
 
-- [Parcellab Rate Limits](https://apis.io/rate-limits/parcellab/parcellab-rate-limits/)
+- [parcelLab Rate Limits](https://apis.io/rate-limits/parcellab/parcellab-rate-limits/)
 
 #### FinOps (1)
 
 What the API costs to run, by operation.
 
-- [Parcellab Finops](https://apis.io/finops/parcellab/parcellab-finops/)
+- [parcelLab Finops](https://apis.io/finops/parcellab/parcellab-finops/)
 
 ## Where to find this API
 
@@ -206,8 +215,10 @@ Links to the company's own pages. This repository publishes no copy of their spe
 - [API reference](https://docs.parcellab.com/docs/developers/getting-started/api-reference)
 - [Pricing](https://parcellab.com/contact-us)
 - [Support](https://parcellab.com/contact-us)
+- [Changelog](https://parcellab.com/whats-new/)
 - [Blog](https://parcellab.com/blog/)
-- [Terms of service](https://parcellab.com/legal/terms-of-service/)
+- [Terms of service](https://parcellab.com/legal-notice/)
+- [Privacy policy](https://parcellab.com/privacy-policy/)
 - [GitHub](https://github.com/parcelLab)
 - [Status](https://status.parcellab.com)
 
